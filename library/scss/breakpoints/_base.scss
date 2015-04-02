@@ -511,6 +511,9 @@ OVERLAY & VIDEO STYLES
 	.vjs-volume-level, .vjs-play-progress {
 		background-color:#f00;
 	}
+	&.vjs-fullscreen {
+		@include transform(none);
+	}
 }
 
 /*********************
