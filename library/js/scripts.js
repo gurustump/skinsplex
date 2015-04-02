@@ -218,6 +218,7 @@ jQuery(document).ready(function($) {
 				$('.TRIGGER_LOGOUT').parent('li').removeClass('inactive');
                 if (data.loggedin == true){
 					console.log(data)
+					location.reload();
                     //document.location.href = ajax_login_object.redirecturl;
                 }
             }

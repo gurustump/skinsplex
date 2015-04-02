@@ -88,7 +88,7 @@ function media_item_custom_type() {
 			'show_admin_column' => true, 
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'custom-slug' ),
+			'rewrite' => array( 'slug' => 'media-item-cat' ),
 		)
 	);
 	

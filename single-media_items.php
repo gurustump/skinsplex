@@ -7,7 +7,7 @@
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						<?php $itemMeta = get_post_meta(get_the_ID()); ?>
 						<div class="video-wrapper">
-							<?php if (is_user_logged_in()) { ?>
+							<?php if (is_user_logged_in() && $itemMeta['_skinsplex_media_item_video_link'][0]) { ?>
 							<div class="video-controls">
 								<a class="video-thumb TRIGGER_VIDEO" href="#">
 									<?php echo get_the_post_thumbnail(get_the_ID(), 'media-item-thumb'); ?>
@@ -15,9 +15,16 @@
 								<a class="btn TRIGGER_VIDEO" href="#">Play</a>
 							</div>
 							<div class="vid-player-container ov VID_PLAYER_OV OV">
-								<video id="vidPlayer" class="video-js vjs-default-skin" controls>
+								<video id="vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
 									<source src="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" type="video/mp4">
 								</video>
+							</div>
+							<?php } else if (is_user_logged_in()) { ?>
+							<div class="video-controls">
+								<span class="video-thumb">
+									<?php echo get_the_post_thumbnail(get_the_ID(), 'media-item-thumb'); ?>
+									<span class="sub-head">Coming Soon</span>
+								</span>
 							</div>
 							<?php } else { ?>
 							<div class="video-login">
@@ -30,7 +37,19 @@
 							<?php } ?>
 						</div>
 						<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+							<?php // checking whether this is in the preview media-item category
+							$mediaItemCatTerms = get_the_terms( get_the_ID(), 'media_item_cat'); 
+							$isPreview = false;
+							foreach ($mediaItemCatTerms as $term) {
+								if ($term->slug == 'previews') {
+									$isPreview = true;
+									break;
+								}
+							} ?> 
 							<header class="article-header entry-header">
+								<?php if ($isPreview) { ?>
+								<h2 class="super-head">Coming Soon</h2>
+								<?php } ?>
 								<h1 class="entry-title single-title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
 							</header> <?php // end article header ?>
 							<section class="entry-content cf" itemprop="articleBody">
