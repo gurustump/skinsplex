@@ -2170,26 +2170,26 @@ OVERLAY & VIDEO STYLES
   position: relative;
   top: 50%;
 }
-
-/* line 506, ../scss/breakpoints/_base.scss */
-.vjs-skinsplex-skin {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-/* line 508, ../scss/breakpoints/_base.scss */
-.vjs-skinsplex-skin .vjs-control-bar {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-/* line 511, ../scss/breakpoints/_base.scss */
-.vjs-skinsplex-skin .vjs-volume-level, .vjs-skinsplex-skin .vjs-play-progress {
-  background-color: #f00;
-}
-/* line 514, ../scss/breakpoints/_base.scss */
-.vjs-skinsplex-skin.vjs-fullscreen {
+/* line 503, ../scss/breakpoints/_base.scss */
+.vid-player-ov-container .vid-player-container .video-js.vjs-fullscreen {
   -webkit-transform: none;
   -moz-transform: none;
   -ms-transform: none;
   -o-transform: none;
   transform: none;
+}
+
+/* line 509, ../scss/breakpoints/_base.scss */
+.vjs-skinsplex-skin {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* line 511, ../scss/breakpoints/_base.scss */
+.vjs-skinsplex-skin .vjs-control-bar {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+/* line 514, ../scss/breakpoints/_base.scss */
+.vjs-skinsplex-skin .vjs-volume-level, .vjs-skinsplex-skin .vjs-play-progress {
+  background-color: #f00;
 }
 
 /*********************
