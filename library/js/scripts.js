@@ -217,7 +217,7 @@ jQuery(document).ready(function($) {
 				$('.TRIGGER_LOGIN').parent('li').addClass('inactive');
 				$('.TRIGGER_LOGOUT').parent('li').removeClass('inactive');
                 if (data.loggedin == true){
-					console.log(data)
+					//console.log(data)
 					location.reload();
                     //document.location.href = ajax_login_object.redirecturl;
                 }
@@ -243,7 +243,7 @@ jQuery(document).ready(function($) {
 				$('.TRIGGER_LOGOUT').parent('li').addClass('inactive');
 				$('.TRIGGER_LOGIN').parent('li').removeClass('inactive');
                 if (data.loggedout == true){
-					console.log(data)
+					//console.log(data)
                     //document.location.href = ajax_login_object.redirecturl;
                 }
             }
@@ -266,7 +266,6 @@ jQuery(document).ready(function($) {
 		
 		/* OWL NAV */
 		function owlNavVisibility() {
-			console.log('ran this')
 			var allActive = true;
 			$('.owl-item').each(function() {
 				if (!$(this).hasClass('active')) {
@@ -355,7 +354,7 @@ jQuery(document).ready(function($) {
 			var delay = gal.hasClass('initialized') ? 275 : 0;
 			gal.removeClass('initialized')
 			setTimeout(function() {
-				var activeThumb = thumbs.find('.THUMBNAIL_ITEM.active');
+				var activeThumb = thumbs.find('.THUMBNAIL_ITEM.active:first');
 				activeThumb.find('.INDEX_BANNER').imgpreload(function() {
 					gal.addClass('initialized');
 				});
