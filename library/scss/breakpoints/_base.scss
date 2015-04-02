@@ -502,6 +502,9 @@ OVERLAY & VIDEO STYLES
 			@include v-center;
 			&.vjs-fullscreen {
 				@include transform(none);
+				top:auto;
+				max-width:none;
+				max-height:none;
 			}
 		}
 	}
