@@ -13,8 +13,13 @@ http://codex.wordpress.org/Creating_Admin_Themes
 
 ******************************************************************/
 
+// typography
+@import "partials/typography";
 
-body.login {}
+body.login {
+	font-family: $lato;
+	background:#000;
+}
 
 
 #login {} /* the form box */
@@ -25,13 +30,25 @@ You'll have to load your own images and mess
 with the width and height.
 */
 .login h1 a {
-	background: url(../images/login-logo.png) no-repeat top center; /* make sure to replace this! */
-	width: 326px;
-	height: 67px;
-	text-indent: -9999px;
+	/*background: url(../images/login-logo.png) no-repeat top center; 
+	text-indent: -9999px;*/
+	background:none;
+	text-indent:0;
+	width:auto;
+	height:auto;
+	/*width: 326px;
+	height: 67px;*/
 	overflow: hidden;
-	padding-bottom: 15px;
-	display: block;
+	margin-bottom: 15px;
+	display:inline-block;
+	text-transform:uppercase;
+	font-size:40px;
+	color:#fff;
+	font-weight:900;
+	height:55px;
+	line-height:55px;
+	background:url(../images/skinsplex-logo-41x31.png) no-repeat 0 13px;
+	padding-left:33px;
 }
 
 form {

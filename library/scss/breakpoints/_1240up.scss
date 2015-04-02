@@ -9,3 +9,32 @@ on larger screens.
 
 ******************************************************************/
 
+.wrap {
+	margin:0 150px;
+}
+
+.nav {
+	&.top-nav {
+		position:static;
+		& > li {
+			& > a {
+				padding:12px;
+				font-size:13px;
+			}
+		}
+	}
+}
+
+
+/******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+/* Home/Category index pages */
+body.page-template-page-custom-index {
+	.thumbnail-gallery {
+		.owl-nav {
+			margin-left:160px;
+			margin-right:160px;
+		}
+	}
+}

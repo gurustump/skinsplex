@@ -25,34 +25,116 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 *********************/
 
 %btn {
-  display: inline-block;
-  position: relative;
-  font-family: $sans-serif;
-  text-decoration: none;
-  color: $white;
-  font-size: 0.9em;
-  font-size: 34px;
-  line-height: 34px;
-  font-weight: normal;
-  padding: 0 24px;
-  border-radius: 4px;
-  border: 0;
-  cursor: pointer;
-  @include transition(background-color 0.14s ease-in-out);
+	font-family:$lato;
+	display:inline-block;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-decoration:none;
+	letter-spacing:2px;
+	color:#eee;
+	background:rgba(255,255,255,.2);
+	font-size:20px;
+	height:40px;
+	line-height:40px;
+	padding:0 12px;
+	border:0;
+	cursor:pointer;
+	outline:none;
+	@include border-radius(3px);
+	@include transition(background-color 0.15s ease-in-out);
 
-  // hovering on the btn
-  &:hover, &:focus {
-    color: $white;
-    text-decoration: none;
-  } // end hover
+	// hovering on the btn
+	&:hover, &:focus {
+		color: $white;
+		text-decoration: none;
+		background:rgba(255,255,255,.25);
+	} // end hover
 
-  // clicking on the button
-  &:active {
-    top: 1px; // adds a tiny hop to the click
-  } // end active
+	/* // clicking on the button
+	&:active {
+		top: 1px; // adds a tiny hop to the click
+	} // end active */
 
 } // end .button
 
+%btn-close {
+	@extend %btn;
+	text-indent:-9999px;
+	width:40px;
+	position:relative;
+	@include box-sizing;
+	&:before, &:after {
+		content:"";
+		position:absolute;
+		left:9px;
+		top:19px;
+		background:#eee;
+		@include border-radius(1px);
+		display:block;
+		height:3px;
+		margin-bottom:3px;
+		@include transition(all 275ms);
+		width:22px;
+		@include transform(rotate(-45deg));
+	}
+	&:after {
+		@include transform(rotate(45deg));
+	}
+	&:hover {
+		&:before, &:after {
+			background:$white;
+		}
+	}
+}
+%btn-tri {
+	&:after {
+		content:"";
+		display:block;
+	}
+}
+%btn-tri-horiz {
+	@extend %btn-tri;
+	&:after {
+		border-top:12px solid transparent;
+		border-bottom:12px solid transparent;
+	}
+}
+%btn-tri-left {
+	@extend %btn-tri-horiz;
+	&:after {
+		border-right:24px solid $white;
+	}
+}
+%btn-tri-right {
+	@extend %btn-tri-horiz;
+	&:after {
+		border-left:24px solid $white;
+	}
+}
+
+%btn-play {
+	position:relative;
+	outline:none;
+	&:before, &:after {
+		content:"";
+		display:block;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+	&:before {
+		border:4px solid #fff;
+		@include border-radius(50%);
+		width:45px;
+		height:45px;
+		box-shadow:0 5px 15px $black;
+		background-color:rgba(0,0,0,.4);
+	}
+	@extend %btn-tri-right;
+	&:after {
+		@include transform(translate(18px,14px));
+	}
+}
 /*
 An example button.
 You can use this example if you want. Just replace all the variables

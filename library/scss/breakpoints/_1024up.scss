@@ -1,0 +1,254 @@
+/******************************************************************
+
+Stylesheet: Tablet Landscape Stylsheet
+
+
+******************************************************************/
+
+.wrap {
+	margin:0 80px;
+}
+.main-nav {
+	float:right;
+}
+.nav {
+	border: 0;
+	ul {
+		background:$black;
+		margin-top:0;
+	}
+	li {
+		float: left;
+		position: relative;
+
+		a {
+			border-bottom: 0;
+
+			/*
+			you can use hover styles here even though this size
+			has the possibility of being a mobile device.
+			*/
+			&:hover, &:focus {
+			}
+		}
+
+		&:first-child {}
+		&:last-child {}
+
+		/*
+		plan your menus and drop-downs wisely.
+		*/
+		ul.sub-menu,
+		ul.children {
+			margin-top: 0;
+			border: 1px solid #ccc;
+			border-top: 0;
+			position: absolute;
+			visibility: hidden;
+			z-index: 8999;
+
+			li {
+
+				a {
+					padding-left: 10px;
+					border-right: 0;
+					display: block;
+					width: 180px;
+					border-bottom: 1px solid #ccc; 
+
+					&:hover,
+					&:focus {}
+
+					&:link {}
+				}
+
+				&:first-child {}
+
+				&:last-child {
+
+					a {
+						border-bottom: 0;
+					}
+				}
+
+				/*
+				if you need to go deeper, go nuts
+				just remember deeper menus suck
+				for usability. k, bai.
+				*/
+				ul {
+					top:0;
+					left:100%;
+				}
+			}
+
+			/* highlight sub-menu current page */
+			li.current-menu-item,
+			li.current_page_item,
+			li.current_page_ancestor {
+				a {}
+			}
+		}
+
+		/* showing sub-menus */
+		&:hover > ul {
+			top: auto;
+			visibility:visible;
+		}
+
+	} /* end .menu ul li */
+
+	/* highlight current page */
+	li.current-menu-item,
+	li.current_page_item,
+	li.current_page_ancestor {
+		a {}
+	}  /* end current highlighters */
+	&.top-nav {
+		position:static;
+		& > li {
+			& > a {
+				padding:12px 8px;
+				font-size:12px;
+				margin-top:0;
+				border:0;
+				@include transition(background-color 0.25s ease-in-out);
+				&:hover, &:focus {
+					color:$white;
+					background-color:rgba(255,0,0,.3); 
+				}
+			}
+			&.menu-item-search, &.menu-item-login, &.menu-item-logout {
+				& > a {
+					text-indent:-9999px;
+					width:18px;
+					padding-left:12px;
+				}
+			}
+			&.menu-item-search {
+				& > a {
+					background-position:50% -282px;
+				}
+			}
+			&.menu-item-login {
+				& > a {
+					background-position:50% -82px;
+				}
+			}
+			&.menu-item-logout {
+				& > a {
+					background-position:50% -182px;
+				}
+			}
+		}
+	}
+} /* end .nav */
+.trigger-nav {
+	display:none;
+}
+.footer {
+	#inner-footer {
+		height:39px;
+		border-top:1px solid #303030;
+	}
+}
+
+/******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+/* Home/Category index pages */
+body.page-template-page-custom-index {
+	.banner-gallery {
+		.banner-heading {
+			h2 {
+				font-size:48px;
+				line-height:48px;
+			}
+			p {
+				font-size:18px;
+			}
+		}
+		.navigation {
+			& > a {
+				@include v-center;
+				position:absolute;
+				text-indent:-9999px;
+				background:rgba(255,255,255,.2);
+				@include transition(background-color 0.15s ease-in-out);
+				@include border-radius(50%);
+				width:50px;
+				height:50px;
+				&:hover {
+					background-color:rgba(255,255,255,.3);
+				}
+				&:after {
+					content:"";
+					display:block;
+					width: 0;
+					height: 0;
+					border-top:12px solid transparent;
+					border-bottom:12px solid transparent;
+					position:absolute;
+					top:13px;
+				}
+				&.prev {
+					left:20px;
+					&:after {
+						border-right:24px solid rgba(255,255,255,.8);
+						left:10px;
+					}
+				}
+				&.next {
+					right:20px;
+					&:after {
+						border-left:24px solid rgba(255,255,255,.8);
+						right:10px;
+					}
+				}
+			}
+			.hit-zone {
+				opacity:0;
+				@include transition(opacity 0.275s ease-in-out);
+			}
+			&.hit-zone-active, &.banner-active {
+				background:rgba(0,0,0,.5);
+				.hit-zone {
+					opacity:1;
+				}
+			}
+		}
+		&:hover {
+			.navigation {
+				opacity:1;
+				a {
+					display:inline-block;
+				}
+			}
+		}
+	}
+	.thumbnail-gallery {
+		.owl-nav {
+			margin-left:90px;
+			margin-right:90px;
+		}
+		.thumbnail-item {
+			a {
+				&:hover, &:focus {
+					color:$white;
+				}
+				&:hover {
+					background-color:rgba(255,0,0,.3);
+				}
+			}
+		}
+	}
+}
+
+/* Single Media Item Page */
+body.single-media_items {
+	.hentry {
+		.entry-content {
+			padding-right:0;
+		}
+	}
+}

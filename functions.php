@@ -12,7 +12,18 @@ sidebars, comments, ect.
 require_once( 'library/bones.php' );
 
 // CUSTOMIZE THE WORDPRESS ADMIN (off by default)
-// require_once( 'library/admin.php' );
+require_once( 'library/admin.php' );
+
+if (!is_admin()) {
+	wp_register_style( 'owl-stylesheet', get_stylesheet_directory_uri() . '/library/css/owl.carousel.css', array(), '', 'all' );
+	wp_register_script( 'owl-carousel', get_stylesheet_directory_uri() . '/library/js/libs/owl.carousel.min.js', array('jquery'), '2.0', false );
+	wp_register_style( 'video-js-stylesheet', get_stylesheet_directory_uri() . '/library/css/video-js.min.css', array(), '', 'all' );
+	wp_register_script( 'video-js', get_stylesheet_directory_uri() . '/library/js/libs/video.js', array('jquery'), '4.2', false );
+	wp_enqueue_style( 'owl-stylesheet' );
+	wp_enqueue_script( 'owl-carousel' );
+	wp_enqueue_style( 'video-js-stylesheet' );
+	wp_enqueue_script( 'video-js' );
+}
 
 /*********************
 LAUNCH BONES
@@ -73,8 +84,9 @@ if ( ! isset( $content_width ) ) {
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'index-thumb', 160, 90, true );
+add_image_size( 'index-banner', 1280, 512, true );
+add_image_size( 'media-item-thumb', 320, 180, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -100,8 +112,9 @@ add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
 
 function bones_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
-        'bones-thumb-600' => __('600px by 150px'),
-        'bones-thumb-300' => __('300px by 100px'),
+        'index-thumb' => __('160px by 90px'),
+        'index-banner' => __('1280px by 512px'),
+        'media-item-thumb' => __('320px by 180px'),
     ) );
 }
 
@@ -250,5 +263,68 @@ add_action('wp_enqueue_scripts', 'bones_fonts');
 		'search-form',
 		'comment-form'
 	) );
+
+require_once( 'cmb-functions.php' );
+
+
+add_filter('wp_nav_menu_items','add_items_to_main_menu', 10, 2);
+function add_items_to_main_menu( $nav, $args ) {
+	if ( $args->theme_location == 'main-nav' ) {
+		return $nav. '<li class="menu-item-search"><a href="#" class="TRIGGER_SEARCH">Search</a></li><li class="menu-item-logout'.(is_user_logged_in() ? '':' inactive').'"><a href="#" class="TRIGGER_LOGOUT">Logout</a></li><li class="menu-item-login'.(is_user_logged_in() ? ' inactive':'').'"><a href="'.get_site_url().'/login" class="TRIGGER_LOGIN">Login</a></li>';
+	}
+	return $nav;
+}
+
+// Ajax login: http://natko.com/wordpress-ajax-login-without-a-plugin-the-right-way/
+function ajax_login_init(){
+    // Enable the user with no privileges to run ajax_login() in AJAX
+    add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
+}
+function ajax_logout_init(){
+    // Enable the user with no privileges to run ajax_login() in AJAX
+	add_action('wp_ajax_ajaxlogout','ajax_logout');
+}
+
+// Execute the action only if the user isn't logged in
+if (is_user_logged_in()) {
+    add_action('init', 'ajax_logout_init');
+} else {
+    add_action('init', 'ajax_login_init');
+}
+
+function ajax_login(){
+    // First check the nonce, if it fails the function will break
+    check_ajax_referer( 'ajax-login-nonce', 'security' );
+
+    // Nonce is checked, get the POST data and sign user on
+    $info = array();
+    $info['user_login'] = $_POST['username'];
+    $info['user_password'] = $_POST['password'];
+    $info['remember'] = true;
+
+    $user_signon = wp_signon( $info, false );
+    if ( is_wp_error($user_signon) ){
+        echo json_encode(array('loggedin'=>false, 'message'=>__('Wrong username or password.')));
+    } else {
+        echo json_encode(array('loggedin'=>true, 'message'=>__('Login successful')));
+    }
+
+    die();
+}
+
+function ajax_logout() {
+	check_ajax_referer( 'ajax-logout-nonce', 'security' );
+	wp_clear_auth_cookie();
+	wp_logout();
+	ob_clean(); // probably overkill for this, but good habit
+	echo json_encode(array('loggedout'=>true, 'message'=>__('Logout successful')));
+	wp_die();
+}
+// adding favicon to admin and login pages
+function add_favicon_admin() {
+	echo '<link rel="shortcut icon" href="' . get_stylesheet_directory_uri().'/favicon.png' . '" />';
+}
+add_action('login_head', 'add_favicon_admin');
+add_action('admin_head', 'add_favicon_admin'); 
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

@@ -9,6 +9,8 @@ be seen on the Desktop.
 
 ******************************************************************/
 
-.wrap {
-  width: 1040px;
+.nav {
+	&.top-nav {
+		position:static;
+	}
 }

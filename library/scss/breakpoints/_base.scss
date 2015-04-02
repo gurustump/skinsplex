@@ -14,15 +14,31 @@ and will be used across all viewports.
 /*********************
 GENERAL STYLES
 *********************/
-
+html.skinsplex {
+	height:100%;
+	margin-top:0 !important;
+}
 body {
+	height:100%;
 	font-family: $lato;
-	font-size: 100%;
-	line-height: 1.5;
+	font-size:14px;
+	line-height: 1.4;
 	color: $text-color;
-	background-color: $gray;
+	background-color:#222;
+	/* @include css-gradient-3(#222, $black, 0%, #222, 10%, #222, 100%, top); */
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
+}
+#container {
+	height:100%;
+	#content {
+		min-height:100%;
+		margin-top:-56px;
+		margin-top:0;
+		margin-bottom:-40px;
+		padding:56px 0 40px;
+		@include box-sizing;
+	}
 }
 
 /********************
@@ -71,19 +87,24 @@ LAYOUT & GRID STYLES
 *********************/
 
 .wrap {
-	width: 96%;
 	margin: 0 auto;
+}
+.full-wrap {
+	padding:0 10px;
+}
+#inner-content {
+	margin-top:10px;
 }
 
 /*********************
 LINK STYLES
 *********************/
 
-a, a:visited {
+a {
 	color: $link-color;
 
 	/* on hover */
-	&:hover, &:focus {
+	&:hover {
 		color: $link-hover;
 	}
 
@@ -101,6 +122,9 @@ a, a:visited {
 		*/
 		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
 	}
+}
+.btn {
+	@extend %btn;
 }
 
 /******************************************************************
@@ -153,16 +177,36 @@ HEADER STYLES
 *********************/
 
 .header {
-	background-color: $black;
+	@include css-gradient($from: $black, $to: #222, $vstart:"top", $vend:"bottom");
+	@include box-sizing;
+	width:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:2;
 }
-
-	#logo {
-		margin: 0.75em 0;
-
-		a {
-			color: $white;
+#inner-header {
+	position:relative;
+	border-bottom:1px solid #333;
+}
+#logo {
+	margin:0;
+	text-transform:uppercase;
+	font-weight:900;
+	float:left;
+	/*@include css-gradient(#333,$black,0,0,0,100);*/
+	a {
+		color: $white;
+		display:block;
+		height:55px;
+		line-height:55px;
+		background:url(../images/skinsplex-logo-41x31.png) no-repeat 0 13px;
+		padding-left:33px;
+		.subhead {
+			display:none;
 		}
 	}
+}
 
 /*********************
 NAVIGATION STYLES
@@ -175,7 +219,6 @@ easily write one group of styles for
 the navs on the site so our css is cleaner
 and more scalable.
 */
-
 .nav {
 	border-bottom: 0;
 	margin: 0;
@@ -187,7 +230,6 @@ and more scalable.
 			color: $white;
 			text-decoration: none;
 			padding: 0.75em;
-
 			/*
 			remember this is for mobile ONLY, so there's no need
 			to even declare hover styles here, you can do it in
@@ -243,9 +285,214 @@ and more scalable.
 		a {}
 
 	}  /* end current highlighters */
-
+	&.top-nav {
+		width:100%;
+		padding:0 10px;
+		position:absolute;
+		top:0;
+		left:110%;
+		z-index:9998;
+		background:rgba(0,0,0,.98);
+		@include transition(left .35s);
+		& > li {
+			& > a {
+				border-top:1px solid #111;
+				border-bottom:1px solid #111;
+				margin-top:-1px;
+				outline:none;
+				font-size:13px;
+				text-transform:uppercase;
+				padding:12px;
+				height:31px;
+				line-height:31px;
+			}
+			&.current-menu-item {
+				& > a {
+					background-color:rgba(255,255,255,.15);
+				}
+			}
+			&.inactive {
+				display:none;
+			}
+			&.menu-item-search, &.menu-item-login, &.menu-item-logout {
+				& > a {
+					background-image:url(../images/ic.png);
+					background-repeat:no-repeat;
+					padding-left:40px;
+				}
+			}
+			&.menu-item-search {
+				& > a {
+					background-position:0 -282px;
+				}
+			}
+			&.menu-item-login {
+				& > a {
+					background-position:0 -82px;
+				}
+			}
+			&.menu-item-logout {
+				& > a {
+					background-position:0 -182px;
+				}
+			}
+		}
+	}
 } /* end .nav */
 
+nav.active .nav.top-nav {
+	left:-10px;
+}
+
+.trigger-nav {
+	color:#ccc;
+	position:absolute;
+	padding:12px;
+	top:3px;
+	right:-10px;
+	font-size:17px;
+	z-index:9999;
+	outline:none !important;
+	@include transition(top .275ms);
+	&.active {
+		@include box-sizing;
+	}
+	& > span {
+		float:left;
+		height:24px;
+		line-height:24px;
+	}
+	.ic {
+		margin-right:10px;
+		@include box-sizing;
+		padding-top:5px;
+		@include transition(all 275ms);
+		& > span {
+			background:#ccc;
+			@include border-radius(1px);
+			display:block;
+			height:3px;
+			margin-bottom:3px;
+			@include transition(all 275ms);
+			width:22px;
+		}
+	}
+	&.active {
+		.ic {
+			@include transform(rotate(-45deg));
+			& > span {
+				background:#aaa;
+				&.bar-1 {
+					@include transform(translateY(6px));
+				}
+				&.bar-2 {
+					opacity:0;
+				}
+				&.bar-3 {
+					@include transform(rotate(-90deg) translateX(5px));
+				}
+			}
+		}
+	}
+}
+
+.top-nav-hidden-form {
+	position:absolute;
+	left:-9999px;
+	top:-9999;
+	background:rgba(0,0,0,.95);
+	padding:10px;
+	width:100%;
+	@include box-sizing(content-box);
+	opacity:0;
+	height:0;
+	z-index:-1;
+	@include transition(opacity 275ms);
+	&.active {
+		left:-10px;
+		top:50px;
+		opacity:1;
+		height:auto;
+		z-index:9998;
+	}
+	h2 {
+		font-size:14px;
+		text-transform:uppercase;
+		color:#eee;
+	}
+	.alt-links {
+		color:#aaa;
+		font-size:12px;
+		margin-bottom:10px;
+		& > span, a {
+			display:block;
+			float:left;
+			padding:10px;
+		}
+		a {
+			padding:10px 0;
+			text-decoration:none;
+			color:#ccc;
+			span {
+				border-bottom:1px solid #444;
+			}
+		}
+		&:after {
+			@include clearfix;
+		}
+	}
+	input {
+		max-width:100%;
+		@include box-sizing;
+	}
+	.btn-close {
+		@extend %btn-close;
+		float:right;
+	}
+	&.search-form {
+		
+	}
+}
+
+
+/*********************
+OVERLAY & VIDEO STYLES
+*********************/
+.ov {
+	display:none;
+}
+.vid-player-ov-container, .vid-player-container {
+	position:fixed !important;
+	width:100% !important;
+	height:100% !important;
+}
+.vid-player-container {
+	z-index:-1 !important;
+}
+.vid-player-ov-container {
+	z-index:9999 !important;
+	.ui-dialog-titlebar {
+		position:absolute;
+		right:0;
+		top:0;
+		z-index:1;
+		.ui-dialog-titlebar-close {
+			@extend %btn-close;
+		}
+	}
+	.vid-player-container {
+		z-index:auto !important;
+		background:rgba(0,0,0,.9);
+		.video-js {
+			margin:0 auto;
+			width:100% !important;
+			max-width:1280px;
+			height:100% !important;
+			max-height:720px;
+			@include v-center;
+		}
+	}
+}
 
 /*********************
 POSTS & CONTENT STYLES
@@ -254,239 +501,197 @@ POSTS & CONTENT STYLES
 #content {
 	margin-top: 1.5em;
 }
+.hentry {
+	background-color: $white;
+	border-radius: 3px;
+	margin-bottom: 1.5em;
+	border: 1px solid $border-color;
 
-		.hentry {
-			background-color: $white;
-			border-radius: 3px;
-			margin-bottom: 1.5em;
-			border: 1px solid $border-color;
-
-			header {
-				border-bottom: 1px solid $light-gray;
-				padding: 1.5em;
-			}
-
-			footer {
-				padding: 1.5em;
-				border-top: 1px solid $light-gray;
-
-				p {
-					margin: 0;
-				}
-			}
-
-		} /* end .hentry */
-
-		.single-title,
-		.page-title,
-		.entry-title {
-			margin: 0;
-		}
-
-		.single-title {}
-
-		.page-title {}
-
-		.entry-title {}
-
-		.archive-title {}
-
-		/* want to style individual post classes? Booya! */
-		.post-id {}         /* post by id (i.e. post-3) */
-		.post {}            /* general post style */
-		.page {}            /* general article on a page style */
-		.attachment {}      /* general style on an attatchment */
-		.sticky {}          /* sticky post style */
-		.hentry {}          /* hentry class */
-		.category-slug {}   /* style by category (i.e. category-videos) */
-		.tag-slug {}        /* style by tag (i.e. tag-news) */
-
-		/* post meta */
-		.byline {
-			color: $meta-gray;
-			font-style: italic;
-			margin: 0;
-
-			time {}
-		}
-
-		/* entry content */
-		.entry-content {
-			padding: 1.5em 1.5em 0;
-
-			p {
-				margin: 0 0 1.5em;
-			}
-
-
-			ul, ol, table, dl {}
-
-			ul, ol {
-
-				li {}
-
-			}
-
-			ul {
-
-				li {}
-
-			}
-
-			ol {
-
-				li {}
-
-			}
-
-			table {
-				width: 100%;
-				border: 1px solid $gray;
-				margin-bottom: 1.5em;
-
-				caption {
-					margin: 0 0 7px;
-					font-size: 0.75em;
-					color: $meta-gray;
-					text-transform: uppercase;
-					letter-spacing: 1px;
-				}
-			}
-
-			tr {
-				border-bottom: 1px solid $gray;
-
-				&:nth-child(even) {
-					background-color: $light-gray;
-				}
-			}
-
-			td {
-				padding: 7px;
-				border-right: 1px solid $gray;
-
-				&:last-child {
-					border-right: 0;
-				}
-			}
-
-			th {
-				background-color: $light-gray;
-				border-bottom: 1px solid $gray;
-				border-right: 1px solid $gray;
-
-				&:last-child {
-					border-right: 0;
-				}
-			}
-
-			blockquote {
-				margin: 0 0 1.5em 0.75em;
-				padding: 0 0 0 0.75em;
-				border-left: 3px solid $blue;
-				font-style: italic;
-				color: $meta-gray;
-
-				&:before {}
-
-			}
-
-			dl {}
-
-			dt {}
-
-			dd {
-				margin-left: 0;
-				font-size: 0.9em;
-				color: #787878;
-				margin-bottom: 1.5em;
-			}
-
-			img {
-				margin: 0 0 1.5em 0;
-				max-width: 100%;
-				height: auto;
-			}
-
-			/*
-			image alignment on a screen this size may be
-			a bit difficult. It's set to start aligning
-			and floating images at the next breakpoint,
-			but it's up to you. Feel free to change it up.
-			*/
-			.alignleft, img.alignleft {}
-			.alignright, img.alignright {}
-			.aligncenter, img.aligncenter {}
-
-			.size-auto,
-			.size-full,
-			.size-large,
-			.size-medium,
-			.size-thumbnail {
-				max-width: 100%;
-				height: auto;
-			}
-
-			pre {
-				background: $black;
-				color: $light-gray;
-				font-size: 0.9em;
-				padding: 1.5em;
-				margin: 0 0 1.5em;
-				border-radius: 3px;
-			}
-
-		} /* end .entry-content */
-
-		.wp-caption {
-			max-width: 100%;
-			background: #eee;
-			padding: 5px;
-
-			/* images inside wp-caption */
-			img {
-				max-width: 100%;
-				margin-bottom: 0;
-				width: 100%;
-			}
-
-			p.wp-caption-text {
-				font-size: 0.85em;
-				margin: 4px 0 7px;
-				text-align: center;
-			}
-
-		} /* end .wp-caption */
-
-		/* image gallery styles */
-		.gallery {
-
-			dl {
-
-				a {}
-
-				img {}
-
-			}
-
-			dt {}
-
-			dd {}
-
-		} /* end .gallery */
-
-		/* gallery caption styles */
-		.gallery-caption {}
-
-		.size-full {}
-		.size-large {}
-		.size-medium {}
-		.size-thumbnail {}
-
-	// the tag output
-	.tags {
-		margin: 0;
+	header {
+		border-bottom: 1px solid $light-gray;
+		padding: 1.5em;
 	}
+
+	footer {
+		padding: 1.5em;
+		border-top: 1px solid $light-gray;
+
+		p {
+			margin: 0;
+		}
+	}
+
+} /* end .hentry */
+
+.single-title,
+.page-title,
+.entry-title {
+	margin: 0;
+}
+
+.single-title {}
+
+.page-title {}
+
+.entry-title {}
+
+.archive-title {}
+
+/* want to style individual post classes? Booya! */
+.post-id {}         /* post by id (i.e. post-3) */
+.post {}            /* general post style */
+.page {}            /* general article on a page style */
+.attachment {}      /* general style on an attatchment */
+.sticky {}          /* sticky post style */
+.hentry {}          /* hentry class */
+.category-slug {}   /* style by category (i.e. category-videos) */
+.tag-slug {}        /* style by tag (i.e. tag-news) */
+
+/* post meta */
+.byline {
+	color: $meta-gray;
+	font-style: italic;
+	margin: 0;
+
+	time {}
+}
+
+/* entry content */
+.entry-content {
+	padding: 1.5em 1.5em 0;
+
+	p {
+		margin: 0 0 1.5em;
+	}
+
+
+	ul, ol, table, dl {}
+
+	ul, ol {
+
+		li {}
+
+	}
+
+	ul {
+
+		li {}
+
+	}
+
+	ol {
+
+		li {}
+
+	}
+
+
+
+	blockquote {
+		margin: 0 0 1.5em 0.75em;
+		padding: 0 0 0 0.75em;
+		border-left: 3px solid $blue;
+		font-style: italic;
+		color: $meta-gray;
+		&:before {}
+	}
+
+	dl {}
+
+	dt {}
+
+	dd {
+		margin-left: 0;
+		font-size: 0.9em;
+		color: #787878;
+		margin-bottom: 1.5em;
+	}
+
+	img {
+		margin: 0 0 1.5em 0;
+		max-width: 100%;
+		height: auto;
+	}
+
+	/*
+	image alignment on a screen this size may be
+	a bit difficult. It's set to start aligning
+	and floating images at the next breakpoint,
+	but it's up to you. Feel free to change it up.
+	*/
+	.alignleft, img.alignleft {}
+	.alignright, img.alignright {}
+	.aligncenter, img.aligncenter {}
+
+	.size-auto,
+	.size-full,
+	.size-large,
+	.size-medium,
+	.size-thumbnail {
+		max-width: 100%;
+		height: auto;
+	}
+
+	pre {
+		background: $black;
+		color: $light-gray;
+		font-size: 0.9em;
+		padding: 1.5em;
+		margin: 0 0 1.5em;
+		border-radius: 3px;
+	}
+
+} /* end .entry-content */
+
+.wp-caption {
+	max-width: 100%;
+	background: #eee;
+	padding: 5px;
+
+	/* images inside wp-caption */
+	img {
+		max-width: 100%;
+		margin-bottom: 0;
+		width: 100%;
+	}
+
+	p.wp-caption-text {
+		font-size: 0.85em;
+		margin: 4px 0 7px;
+		text-align: center;
+	}
+
+} /* end .wp-caption */
+
+/* image gallery styles */
+.gallery {
+
+	dl {
+
+		a {}
+
+		img {}
+
+	}
+
+	dt {}
+
+	dd {}
+
+} /* end .gallery */
+
+/* gallery caption styles */
+.gallery-caption {}
+
+.size-full {}
+.size-large {}
+.size-medium {}
+.size-thumbnail {}
+
+// the tag output
+.tags {
+	margin: 0;
+}
 
 /******************************************************************
 PAGE NAVI STYLES
@@ -862,8 +1067,12 @@ FOOTER STYLES
 
 .footer {
 	clear: both;
-	background-color: $black;
 	color: $light-gray;
+	.copyright {
+		font-size:11px;
+		color:#555;
+		float:right;
+	}
 }
 
 	/*
@@ -887,3 +1096,298 @@ FOOTER STYLES
 
 
 	.copyright {}
+
+/******************************************
+ADMIN BAR CUSTOMIZATION
+******************************************/
+
+html body div#wpadminbar {
+	border-bottom:1px solid #444;
+	z-index:9999 !important;
+	& > .wpadminbar-activator {
+		display:block;
+		position:absolute;
+		left:0;
+		bottom:-15px;
+		height:15px;
+		width:30px;
+		text-indent:-9999px;
+		@include box-sizing;
+		@include css-gradient($from: #222, $to: #111, $vstart:"top", $vend:"bottom");
+		@include border-radius(0 0 5px 5px);
+		border:1px solid #444;
+		border-top:0;
+		cursor:pointer;
+		&:after {
+			content:"";
+			border-style:solid;
+			border-color:#444 transparent;
+			border-width:5px 5px 0;
+			position:absolute;
+			margin-left:-5px;
+			left:50%;
+			top:5px;
+		}
+	}
+	&.wpadminbar-shown {
+		& > .wpadminbar-activator {
+			display:none;
+		}
+	}
+}
+
+/******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+/* Home/Category index pages */
+body.page-template-page-custom-index {
+	.hentry {
+		background:transparent;
+		border:0;
+		header {
+			border:0;
+		}
+	}
+	.entry-content {
+		padding:0;
+	}
+	&.mobile {
+		.banner-gallery .banner-heading {
+			color:$white !important;
+		}
+	}
+	.banner-gallery {
+		opacity:0;
+		@include transition(all 275ms ease-in-out);
+		position:relative;
+		&.initialized {
+			opacity:1;
+		}
+		.banner-heading {
+			left:10%;
+			top:10%;
+			color:$white;
+			margin:0 10px 4px;
+			h2 {
+				margin:0;
+				font-size:28px;
+				line-height:28px;
+			}
+			p {
+				font-size:15px;
+				margin:0;
+			}
+		}
+		& > img {
+			width:100%;
+			margin:0;
+		}
+		.navigation {
+			@include transition(all 275ms ease-in-out);
+			opacity:0;
+			position:absolute;
+			left:0;
+			top:0;
+			width:100%;
+			height:100%;
+			a {
+				display:none;
+				outline:none;
+			}
+			.hit-zone {
+				text-align:center;
+				width:60%;
+				height:60%;
+				margin:0 auto;
+				@include v-center;
+				.btn {
+					@include v-center;
+					span {
+						display:none;
+					}
+				}
+			}
+			&.banner-active {
+				opacity:1;
+				background-color:rgba(0,0,0,.5);
+				.hit-zone a {
+					display:inline-block;
+				}
+			}
+		}
+	}
+	.thumbnail-gallery {
+		margin:0;
+		.owl-stage {
+			margin:0 auto;
+		}
+		.owl-controls.inactive {
+			display:none;
+		}
+		.owl-nav {
+			margin:8px 0 0;
+			border-bottom:1px solid #333;
+			border-top:1px solid #333;
+			background:rgba(255,255,255,.03);
+			padding:0 10px;
+			&:after {
+				@include clearfix;
+			}
+			.owl-prev, .owl-next {
+				color:#fff;
+				font-size:10px;
+				text-transform:uppercase;
+				height:45px;
+				line-height:45px;
+				position:relative;
+				&:after {
+					top:18px;
+				}
+			}
+			.owl-prev {
+				padding-left:14px;
+				float:left;
+				@extend %btn-tri-left;
+				&:after {
+					position:absolute;
+					border-width:4px 10px 4px 0;
+					left:0;
+				}
+			}
+			.owl-next {
+				padding-right:14px;
+				float:right;
+				@extend %btn-tri-right;
+				&:after {
+					position:absolute;
+					border-width:4px 0 4px 10px;
+					right:0;
+				}
+			}
+		}
+		.thumbnail-item {
+			&.active {
+				a {
+					background-color:rgba(255,255,255,.15);
+				}
+			}
+			float:left;
+			font-size:12px;
+			line-height:15px;
+			text-transform:uppercase;
+			text-align:center;
+			a {
+				outline:none;
+				display:block;
+				width:160px;
+				height:160px;
+				text-decoration:none;
+				padding:5px;
+				@include border-radius(3px);
+				@include box-sizing;
+				@include transition(all 250ms ease-in-out);
+				&:hover {
+					color:$white;
+					background-color:rgba(255,0,0,.3);
+				}
+			}
+			img, .item-title {
+				display:block;
+			}
+			img {
+				margin-bottom:10px;
+			}
+		}
+		.hidden-data {
+			display:none;
+		}
+	}
+}
+
+/* Single Media Item Page */
+body.single-media_items {
+	color:$white;
+	.video-wrapper {
+		margin:0 -10px 20px -10px;
+		border-bottom:1px solid #333;
+		padding-bottom:20px;
+	}
+	.video-login, .video-controls {
+		width:320px;
+		margin:0 auto;
+		text-align:center;
+	}
+	.video-login {
+		h2 {
+			margin:0 0 10px;
+			width:320px;
+			height:180px;
+			background-repeat:no-repeat;
+			span {
+				display:block;
+				height:100%;
+				background:rgba(0,0,0,.7);
+				padding:60px 25px 0;
+				@include box-sizing;
+				line-height:32px;
+			}
+		}
+		& > span {
+			display:block;
+			margin-bottom:8px;
+		}
+	}
+	.video-controls {
+		.video-thumb {
+			display:inline-block;
+			margin-bottom:15px;
+			background:$black;
+			@extend %btn-play;
+			&:before, &:after {
+				left:137px;
+				top:67px;
+				z-index:1;
+			}
+			img {
+				display:block;
+				@include transition(all 275ms ease-in-out);
+			}
+			&:hover {
+				img {
+					opacity:.7;
+				}
+			}
+		}
+	}
+	.hentry {
+		background:transparent;
+		&, .entry-header {
+			border:0;
+		}
+		.entry-header, .entry-content {
+			padding:0;
+		}
+		h1 {
+			font-size:32px;
+			line-height:32px;
+			margin-bottom:20px;
+		}
+		.media-item-info {
+			border:1px solid #333;
+			padding:20px;
+			table {
+				width:100%;
+			}
+			td {
+				padding:6px 0 6px 20px;
+				vertical-align:top;
+				&:first-child {
+					padding-left:0;
+					padding-right:20px;
+					border-right:1px solid #333;
+					/*min-width:110px;*/
+				}
+			}
+		}
+	}
+}

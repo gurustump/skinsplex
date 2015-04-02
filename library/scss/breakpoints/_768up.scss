@@ -17,14 +17,11 @@ come into play. Have fun!
 GENERAL STYLES
 *********************/
 
-body {}
-
-/*********************
-LAYOUT & GRID STYLES
-*********************/
-
-.wrap {
-	width: 760px;
+body {
+	font-size:15px;
+}
+#inner-content {
+	margin-top:20px;
 }
 
 /*********************
@@ -39,103 +36,18 @@ HEADER STYLES
 NAVIGATION STYLES
 *********************/
 
-.nav {
-	border: 0;
-	ul {
-		background:$black;
-		margin-top:0;
+.top-nav-hidden-form {
+	border:1px solid rgba(255,255,255,.1);
+	@include border-radius(3px);
+	padding:20px 30px;
+	position:absolute;
+	max-width:400px;
+	&.active {
+		left:auto;
+		top:0;
+		right:0;
 	}
-	li {
-		float: left;
-		position: relative;
-
-		a {
-			border-bottom: 0;
-
-			/*
-			you can use hover styles here even though this size
-			has the possibility of being a mobile device.
-			*/
-			&:hover, &:focus {
-				color: $white;
-				text-decoration: underline;
-			}
-		}
-
-		&:first-child {}
-		&:last-child {}
-
-		/*
-		plan your menus and drop-downs wisely.
-		*/
-		ul.sub-menu,
-		ul.children {
-			margin-top: 0;
-			border: 1px solid #ccc;
-			border-top: 0;
-			position: absolute;
-			visibility: hidden;
-			z-index: 8999;
-
-			li {
-
-				a {
-					padding-left: 10px;
-					border-right: 0;
-					display: block;
-					width: 180px;
-					border-bottom: 1px solid #ccc;
-
-					&:hover,
-					&:focus {}
-
-					&:link {}
-				}
-
-				&:first-child {}
-
-				&:last-child {
-
-					a {
-						border-bottom: 0;
-					}
-				}
-
-				/*
-				if you need to go deeper, go nuts
-				just remember deeper menus suck
-				for usability. k, bai.
-				*/
-				ul {
-					top:0;
-					left:100%;
-				}
-			}
-
-			/* highlight sub-menu current page */
-			li.current-menu-item,
-			li.current_page_item,
-			li.current_page_ancestor {
-				a {}
-			}
-		}
-
-		/* showing sub-menus */
-		&:hover > ul {
-			top: auto;
-			visibility:visible;
-		}
-
-	} /* end .menu ul li */
-
-	/* highlight current page */
-	li.current-menu-item,
-	li.current_page_item,
-	li.current_page_ancestor {
-		a {}
-	}  /* end current highlighters */
-
-} /* end .nav */
+}
 
 /*********************
 SIDEBARS & ASIDES
@@ -285,3 +197,66 @@ mobile. Make sure to double check these!
 	}
 } /* end .footer-links */
 
+/******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+/* Home/Category index pages */
+body.page-template-page-custom-index {
+	#inner-content {
+		margin-top:10px;
+	}
+	.banner-gallery {
+		.banner-heading {
+			position:absolute;
+			margin:0;
+			h2 {
+				font-size:36px;
+				line-height:36px;
+			}
+			p {
+				font-size:16px;
+			}
+		}
+		.navigation {
+			.hit-zone {
+				.btn {
+					span {
+						display:inline;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Single Media Item Page */
+body.single-media_items {
+	.video-wrapper {
+		position:relative;
+		z-index:1;
+		padding:0 20px 0 0;
+		float:left;
+		border-right:1px solid #333;
+		margin:0;
+		border-bottom:0;
+	}
+	.video-login, .video-controls {
+	}
+	.hentry {
+		float:left;
+		width:100%;
+		@include box-sizing;
+		padding-left:340px;
+		margin-left:-341px;
+		h1 {
+			line-height:40px;
+			padding-left:20px
+		}
+		.entry-content {
+			border-left:1px solid #333;
+			padding-left:20px;
+			padding-right:10px;
+			max-width:700px;
+		}
+	}
+}

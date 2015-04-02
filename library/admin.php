@@ -111,6 +111,9 @@ add_action( 'wp_dashboard_setup', 'bones_custom_dashboard_widgets' );
 
 //Updated to proper 'enqueue' method
 //http://codex.wordpress.org/Plugin_API/Action_Reference/login_enqueue_scripts
+
+add_action('wp_enqueue_scripts', 'bones_fonts');
+add_action('login_enqueue_scripts', 'bones_fonts');
 function bones_login_css() {
 	wp_enqueue_style( 'bones_login_css', get_template_directory_uri() . '/library/css/login.css', false );
 }
@@ -143,5 +146,12 @@ function bones_custom_admin_footer() {
 
 // adding it to the admin area
 add_filter( 'admin_footer_text', 'bones_custom_admin_footer' );
+
+// Custom Admin css and scripts
+function load_admin_custom() {
+	wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/library/css/admin.css', false);
+	wp_enqueue_script( 'admin_js', get_template_directory_uri() . '/library/js/admin.js', false);
+}
+add_action( 'admin_enqueue_scripts', 'load_admin_custom' );
 
 ?>

@@ -1,0 +1,34 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Admin Stylesheet
+
+If you like living on the edge, you can add some styles here to
+customize the dashboard and WordPress admin area. This stylesheet
+is empty, but you can just start dropping your styles here to
+start customizing. All admin functions are located in lib/admin/
+
+******************************************************************/
+/* line 16, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items a div.wp-menu-image:after {
+  content: "";
+  background-image: url(../images/media-item-icon.png);
+  background-position: 5px 4px;
+  background-repeat: no-repeat;
+  height: 28px;
+  display: block;
+  margin: 3px 0;
+}
+/* line 25, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items a div.wp-menu-image img {
+  display: none;
+}
+/* line 31, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items a:hover div.wp-menu-image:after {
+  background-position: 5px -46px;
+}
+/* line 40, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items.wp-menu-open a div.wp-menu-image:after {
+  background-position: 5px -21px;
+}
