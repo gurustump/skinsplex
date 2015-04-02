@@ -23,9 +23,9 @@
 							<div class="video-login">
 								<?php $post_thumb_src_array = wp_get_attachment_image_src(get_post_thumbnail_id(),'media-item-thumb',true); ?>
 								<h2 style="background-image:url(<?php echo $post_thumb_src_array[0]; ?>);"><span>You must be logged in to view this video</span></h2>
-								<a class="btn" href="#">Login</a>
+								<a class="btn TRIGGER_LOGIN" href="#">Login</a>
 								<span>- or -</span>
-								<a class="btn" href="#">Create an account</a>
+								<a class="btn" href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register">Create an account</a>
 							</div>
 							<?php } ?>
 						</div>

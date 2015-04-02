@@ -320,6 +320,22 @@ function ajax_logout() {
 	echo json_encode(array('loggedout'=>true, 'message'=>__('Logout successful')));
 	wp_die();
 }
+
+// automatically login new registrants and drop them on the home page
+function auto_login_new_user( $user_id ) {
+	$user = get_user_by('id', $user_id);
+	if ($user) {
+		wp_set_current_user($user_id);
+		wp_set_auth_cookie($user_id);
+		do_action('wp_signon', $user->user_login);
+	}
+		// You can change home_url() to the specific URL,such as 
+	//wp_redirect( 'http://www.wpcoke.com' );
+	wp_redirect( home_url() );
+	exit;
+}
+add_action( 'user_register', 'auto_login_new_user' );
+
 // adding favicon to admin and login pages
 function add_favicon_admin() {
 	echo '<link rel="shortcut icon" href="' . get_stylesheet_directory_uri().'/favicon.png' . '" />';

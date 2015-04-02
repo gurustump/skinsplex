@@ -397,6 +397,7 @@ nav.active .nav.top-nav {
 }
 
 .top-nav-hidden-form {
+	color:#fff;
 	position:absolute;
 	left:-9999px;
 	top:-9999;
@@ -416,9 +417,21 @@ nav.active .nav.top-nav {
 		z-index:9998;
 	}
 	h2 {
+		margin:0 0 15px;
 		font-size:14px;
 		text-transform:uppercase;
 		color:#eee;
+	}
+	.section {
+		padding-bottom:15px;
+		border-bottom:1px solid #555;
+		margin-bottom:10px;
+		h2 {
+			font-size:20px;
+		}
+	}
+	.status {
+		margin-top:0;
 	}
 	.alt-links {
 		color:#aaa;
@@ -448,9 +461,6 @@ nav.active .nav.top-nav {
 	.btn-close {
 		@extend %btn-close;
 		float:right;
-	}
-	&.search-form {
-		
 	}
 }
 
@@ -1101,36 +1111,43 @@ FOOTER STYLES
 ADMIN BAR CUSTOMIZATION
 ******************************************/
 
-html body div#wpadminbar {
-	border-bottom:1px solid #444;
-	z-index:9999 !important;
-	& > .wpadminbar-activator {
-		display:block;
-		position:absolute;
-		left:0;
-		bottom:-15px;
-		height:15px;
-		width:30px;
-		text-indent:-9999px;
-		@include box-sizing;
-		@include css-gradient($from: #222, $to: #111, $vstart:"top", $vend:"bottom");
-		@include border-radius(0 0 5px 5px);
-		border:1px solid #444;
-		border-top:0;
-		cursor:pointer;
-		&:after {
-			content:"";
-			border-style:solid;
-			border-color:#444 transparent;
-			border-width:5px 5px 0;
+html body {
+	div#wpadminbar {
+		border-bottom:1px solid #444;
+		z-index:9999 !important;
+		& > .wpadminbar-activator {
+			display:block;
 			position:absolute;
-			margin-left:-5px;
-			left:50%;
-			top:5px;
+			left:0;
+			bottom:-15px;
+			height:15px;
+			width:30px;
+			text-indent:-9999px;
+			@include box-sizing;
+			@include css-gradient($from: #222, $to: #111, $vstart:"top", $vend:"bottom");
+			@include border-radius(0 0 5px 5px);
+			border:1px solid #444;
+			border-top:0;
+			cursor:pointer;
+			&:after {
+				content:"";
+				border-style:solid;
+				border-color:#444 transparent;
+				border-width:5px 5px 0;
+				position:absolute;
+				margin-left:-5px;
+				left:50%;
+				top:5px;
+			}
+		}
+		&.wpadminbar-shown {
+			& > .wpadminbar-activator {
+				display:none;
+			}
 		}
 	}
-	&.wpadminbar-shown {
-		& > .wpadminbar-activator {
+	&.hide-admin-bar {
+		div#wpadminbar {
 			display:none;
 		}
 	}

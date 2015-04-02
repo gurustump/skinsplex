@@ -168,21 +168,21 @@ jQuery(document).ready(function($) {
 	});
 	
 	$('.MAIN_NAV').on('click','a',function(e) {
-		if ($(this).hasClass('TRIGGER_SEARCH')) {
-			e.preventDefault();
-			$('.TOP_NAV_SEARCH_FORM').addClass('active');
-		}
-		if ($(this).hasClass('TRIGGER_LOGIN')) {
-			e.preventDefault();
-			$('.TOP_NAV_LOGIN_FORM').addClass('active');
-		}
-		if ($(this).hasClass('TRIGGER_LOGOUT')) {
-			e.preventDefault();
-			$('.TOP_NAV_LOGOUT_FORM').addClass('active');
-		}
 		if (mobileDeviceType()) {
 			$('.TRIGGER_NAV').click();
 		}
+	});
+	$('.TRIGGER_SEARCH').click(function(e) {
+		e.preventDefault();
+		$('.TOP_NAV_SEARCH_FORM').addClass('active');
+	});
+	$('.TRIGGER_LOGIN').click(function(e) {
+		e.preventDefault();
+		$('.TOP_NAV_LOGIN_FORM').addClass('active');
+	});
+	$('.TRIGGER_LOGOUT').click(function(e) {
+		e.preventDefault();
+		$('.TOP_NAV_LOGOUT_FORM').addClass('active');
 	});
 	
 	$('.OV_CLOSE').click(function(e) {
@@ -448,25 +448,27 @@ jQuery(document).ready(function($) {
 	if ( typeof is_single_media_item === "undefined" ) var is_single_media_item = $('body').hasClass('single-media_items');
 	
 	if (is_single_media_item) {
-		var vidPlayer = videojs('vidPlayer', {
-			/*'width':Math.min(1280,win.width()),
-			'height':Math.min(720,win.height())*/
-		});
-		var vidPlayerOv = $('.VID_PLAYER_OV')
-		vidPlayerOv.dialog({
-			autoOpen:false,
-			dialogClass:'vid-player-ov-container',
-			open: function() {
-				vidPlayer.play();
-			},
-			close: function() {
-				vidPlayer.exitFullscreen().pause();
-			}
-		});
-		$('.TRIGGER_VIDEO').click(function(e) {
-			e.preventDefault();
-			vidPlayerOv.dialog('open');
-		});
+		if ($('#vidPlayer').length > 0) {
+			var vidPlayer = videojs('vidPlayer', {
+				/*'width':Math.min(1280,win.width()),
+				'height':Math.min(720,win.height())*/
+			});
+			var vidPlayerOv = $('.VID_PLAYER_OV')
+			vidPlayerOv.dialog({
+				autoOpen:false,
+				dialogClass:'vid-player-ov-container',
+				open: function() {
+					vidPlayer.play();
+				},
+				close: function() {
+					vidPlayer.exitFullscreen().pause();
+				}
+			});
+			$('.TRIGGER_VIDEO').click(function(e) {
+				e.preventDefault();
+				vidPlayerOv.dialog('open');
+			});
+		}
 	}
 
 }); /* end of as page load scripts */

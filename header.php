@@ -39,8 +39,19 @@
 		<?php // end analytics ?>
 
 	</head>
-
-	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+	
+	
+	<?php 
+		$extraClasses = '';
+		if (is_user_logged_in()) {
+			$currentUser = wp_get_current_user();
+			/*echo '<pre style="padding-top:65px;">';
+			print_r($currentUser->roles[0]);
+			echo '</pre>';*/
+			$extraClasses .= $currentUser->roles[0] == 'subscriber' ? 'hide-admin-bar' : '';
+		} 
+	?>
+	<body <?php body_class($extraClasses); ?> itemscope itemtype="http://schema.org/WebPage">
 
 		<div id="container">
 
@@ -103,12 +114,17 @@
 						<a class="btn-close OV_CLOSE" href="">Close</a>
 						<?php wp_nonce_field( 'ajax-login-nonce', 'security' ); ?>
 					</form>
-					<form class="logout-form top-nav-hidden-form TOP_NAV_LOGOUT_FORM OV" id="logout" action="logout" method="post">
-						<h2>Are you sure you want to log out?</h2>
-						<p class="status"></p>
-						<button class="submit_button btn" type="submit" name="submit">Logout</button>
-						<a class="btn-close OV_CLOSE" href="">Cancel</a>
-					</form>
+					<div class="top-nav-hidden-form TOP_NAV_LOGOUT_FORM OV">
+						<div class="section">
+							<h2>My Account</h2>
+							<a class="btn" href="<?php bloginfo('wpurl'); ?>/wp-admin/profile.php">Edit my Profile</a>
+						</div>
+						<form class="logout-form" id="logout" action="logout" method="post">
+							<p class="status"></p>
+							<button class="submit_button btn" type="submit" name="submit">Logout</button>
+							<a class="btn-close OV_CLOSE" href="">Cancel</a>
+						</form>
+					</div>
 					<?php get_search_form(true); ?>
 				</div>
 
