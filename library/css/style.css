@@ -1184,13 +1184,13 @@ http://www.youtube.com/watch?v=hwdVpKiJzac
 }
 
 /* line 90, ../scss/modules/_buttons.scss */
-body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev:after, body.single-media_items .video-controls .video-thumb:after, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
+body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev:after, .vjs-skinsplex-skin .vjs-big-play-button:after, body.single-media_items .video-controls .video-thumb:after, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
   content: "";
   display: block;
 }
 
 /* line 97, ../scss/modules/_buttons.scss */
-body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev:after, body.single-media_items .video-controls .video-thumb:after, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
+body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev:after, .vjs-skinsplex-skin .vjs-big-play-button:after, body.single-media_items .video-controls .video-thumb:after, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
 }
@@ -1201,17 +1201,17 @@ body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev:after
 }
 
 /* line 110, ../scss/modules/_buttons.scss */
-body.single-media_items .video-controls .video-thumb:after, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
+.vjs-skinsplex-skin .vjs-big-play-button:after, body.single-media_items .video-controls .video-thumb:after, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
   border-left: 24px solid white;
 }
 
 /* line 115, ../scss/modules/_buttons.scss */
-body.single-media_items .video-controls .video-thumb {
+.vjs-skinsplex-skin .vjs-big-play-button, body.single-media_items .video-controls .video-thumb {
   position: relative;
   outline: none;
 }
 /* line 118, ../scss/modules/_buttons.scss */
-body.single-media_items .video-controls .video-thumb:before, body.single-media_items .video-controls .video-thumb:after {
+.vjs-skinsplex-skin .vjs-big-play-button:before, body.single-media_items .video-controls .video-thumb:before, .vjs-skinsplex-skin .vjs-big-play-button:after, body.single-media_items .video-controls .video-thumb:after {
   content: "";
   display: block;
   position: absolute;
@@ -1219,7 +1219,7 @@ body.single-media_items .video-controls .video-thumb:before, body.single-media_i
   top: 0;
 }
 /* line 125, ../scss/modules/_buttons.scss */
-body.single-media_items .video-controls .video-thumb:before {
+.vjs-skinsplex-skin .vjs-big-play-button:before, body.single-media_items .video-controls .video-thumb:before {
   border: 4px solid #fff;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -1232,7 +1232,7 @@ body.single-media_items .video-controls .video-thumb:before {
   background-color: rgba(0, 0, 0, 0.4);
 }
 /* line 134, ../scss/modules/_buttons.scss */
-body.single-media_items .video-controls .video-thumb:after {
+.vjs-skinsplex-skin .vjs-big-play-button:after, body.single-media_items .video-controls .video-thumb:after {
   -webkit-transform: translate(18px, 14px);
   -moz-transform: translate(18px, 14px);
   -ms-transform: translate(18px, 14px);
@@ -2186,47 +2186,108 @@ OVERLAY & VIDEO STYLES
 .vjs-skinsplex-skin {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-/* line 514, ../scss/breakpoints/_base.scss */
+/* line 515, ../scss/breakpoints/_base.scss */
+.vjs-skinsplex-skin:hover .vjs-big-play-button {
+  box-shadow: none;
+  background-color: transparent;
+}
+/* line 520, ../scss/breakpoints/_base.scss */
 .vjs-skinsplex-skin .vjs-control-bar {
   background-color: rgba(0, 0, 0, 0.7);
 }
-/* line 517, ../scss/breakpoints/_base.scss */
+/* line 523, ../scss/breakpoints/_base.scss */
 .vjs-skinsplex-skin .vjs-volume-level, .vjs-skinsplex-skin .vjs-play-progress {
   background-color: #f00;
+}
+/* line 526, ../scss/breakpoints/_base.scss */
+.vjs-skinsplex-skin .vjs-big-play-button {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  text-shadow: none;
+  width: 55px;
+  height: 55px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 537, ../scss/breakpoints/_base.scss */
+.vjs-skinsplex-skin .vjs-big-play-button:before {
+  content: "";
+}
+/* line 540, ../scss/breakpoints/_base.scss */
+.vjs-skinsplex-skin .vjs-big-play-button:hover {
+  box-shadow: 0 0 2em #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-transition: all 150ms ease-in-out;
+  -moz-transition: all 150ms ease-in-out;
+  -ms-transition: all 150ms ease-in-out;
+  -o-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
 }
 
 /*********************
 POSTS & CONTENT STYLES
 *********************/
-/* line 526, ../scss/breakpoints/_base.scss */
+/* line 552, ../scss/breakpoints/_base.scss */
 #content {
   margin-top: 1.5em;
 }
 
-/* line 529, ../scss/breakpoints/_base.scss */
+/* line 555, ../scss/breakpoints/_base.scss */
 .hentry {
   background-color: white;
   border-radius: 3px;
   margin-bottom: 1.5em;
   border: 1px solid #cccccc;
 }
-/* line 535, ../scss/breakpoints/_base.scss */
+/* line 561, ../scss/breakpoints/_base.scss */
 .hentry header {
   border-bottom: 1px solid #f8f9fa;
   padding: 1.5em;
 }
-/* line 540, ../scss/breakpoints/_base.scss */
+/* line 566, ../scss/breakpoints/_base.scss */
 .hentry footer {
   padding: 1.5em;
   border-top: 1px solid #f8f9fa;
 }
-/* line 544, ../scss/breakpoints/_base.scss */
+/* line 570, ../scss/breakpoints/_base.scss */
 .hentry footer p {
   margin: 0;
 }
 
 /* end .hentry */
-/* line 551, ../scss/breakpoints/_base.scss */
+/* line 577, ../scss/breakpoints/_base.scss */
 .single-title,
 .page-title,
 .entry-title {
@@ -2243,7 +2304,7 @@ POSTS & CONTENT STYLES
 /* style by category (i.e. category-videos) */
 /* style by tag (i.e. tag-news) */
 /* post meta */
-/* line 576, ../scss/breakpoints/_base.scss */
+/* line 602, ../scss/breakpoints/_base.scss */
 .byline {
   color: #9fa6b4;
   font-style: italic;
@@ -2251,7 +2312,7 @@ POSTS & CONTENT STYLES
 }
 
 /* entry content */
-/* line 585, ../scss/breakpoints/_base.scss */
+/* line 611, ../scss/breakpoints/_base.scss */
 .entry-content {
   padding: 1.5em 1.5em 0;
   /*
@@ -2261,11 +2322,11 @@ POSTS & CONTENT STYLES
   but it's up to you. Feel free to change it up.
   */
 }
-/* line 588, ../scss/breakpoints/_base.scss */
+/* line 614, ../scss/breakpoints/_base.scss */
 .entry-content p {
   margin: 0 0 1.5em;
 }
-/* line 615, ../scss/breakpoints/_base.scss */
+/* line 641, ../scss/breakpoints/_base.scss */
 .entry-content blockquote {
   margin: 0 0 1.5em 0.75em;
   padding: 0 0 0 0.75em;
@@ -2273,20 +2334,20 @@ POSTS & CONTENT STYLES
   font-style: italic;
   color: #9fa6b4;
 }
-/* line 628, ../scss/breakpoints/_base.scss */
+/* line 654, ../scss/breakpoints/_base.scss */
 .entry-content dd {
   margin-left: 0;
   font-size: 0.9em;
   color: #787878;
   margin-bottom: 1.5em;
 }
-/* line 635, ../scss/breakpoints/_base.scss */
+/* line 661, ../scss/breakpoints/_base.scss */
 .entry-content img {
   margin: 0 0 1.5em 0;
   max-width: 100%;
   height: auto;
 }
-/* line 651, ../scss/breakpoints/_base.scss */
+/* line 677, ../scss/breakpoints/_base.scss */
 .entry-content .size-auto,
 .entry-content .size-full,
 .entry-content .size-large,
@@ -2295,7 +2356,7 @@ POSTS & CONTENT STYLES
   max-width: 100%;
   height: auto;
 }
-/* line 660, ../scss/breakpoints/_base.scss */
+/* line 686, ../scss/breakpoints/_base.scss */
 .entry-content pre {
   background: black;
   color: #f8f9fa;
@@ -2306,20 +2367,20 @@ POSTS & CONTENT STYLES
 }
 
 /* end .entry-content */
-/* line 671, ../scss/breakpoints/_base.scss */
+/* line 697, ../scss/breakpoints/_base.scss */
 .wp-caption {
   max-width: 100%;
   background: #eee;
   padding: 5px;
   /* images inside wp-caption */
 }
-/* line 677, ../scss/breakpoints/_base.scss */
+/* line 703, ../scss/breakpoints/_base.scss */
 .wp-caption img {
   max-width: 100%;
   margin-bottom: 0;
   width: 100%;
 }
-/* line 683, ../scss/breakpoints/_base.scss */
+/* line 709, ../scss/breakpoints/_base.scss */
 .wp-caption p.wp-caption-text {
   font-size: 0.85em;
   margin: 4px 0 7px;
@@ -2330,7 +2391,7 @@ POSTS & CONTENT STYLES
 /* image gallery styles */
 /* end .gallery */
 /* gallery caption styles */
-/* line 717, ../scss/breakpoints/_base.scss */
+/* line 743, ../scss/breakpoints/_base.scss */
 .tags {
   margin: 0;
 }
@@ -2338,17 +2399,17 @@ POSTS & CONTENT STYLES
 /******************************************************************
 PAGE NAVI STYLES
 ******************************************************************/
-/* line 725, ../scss/breakpoints/_base.scss */
+/* line 751, ../scss/breakpoints/_base.scss */
 .pagination,
 .wp-prev-next {
   margin: 1.5em 0;
 }
 
-/* line 729, ../scss/breakpoints/_base.scss */
+/* line 755, ../scss/breakpoints/_base.scss */
 .pagination {
   text-align: center;
 }
-/* line 732, ../scss/breakpoints/_base.scss */
+/* line 758, ../scss/breakpoints/_base.scss */
 .pagination ul {
   display: inline-block;
   background-color: white;
@@ -2357,7 +2418,7 @@ PAGE NAVI STYLES
   clear: both;
   border-radius: 3px;
 }
-/* line 741, ../scss/breakpoints/_base.scss */
+/* line 767, ../scss/breakpoints/_base.scss */
 .pagination li {
   padding: 0;
   margin: 0;
@@ -2366,7 +2427,7 @@ PAGE NAVI STYLES
   overflow: hidden;
   border-right: 1px solid #eaedf2;
 }
-/* line 750, ../scss/breakpoints/_base.scss */
+/* line 776, ../scss/breakpoints/_base.scss */
 .pagination a, .pagination span {
   margin: 0;
   text-decoration: none;
@@ -2379,17 +2440,17 @@ PAGE NAVI STYLES
   display: block;
   color: #2980b9;
 }
-/* line 762, ../scss/breakpoints/_base.scss */
+/* line 788, ../scss/breakpoints/_base.scss */
 .pagination a:hover, .pagination a:focus, .pagination span:hover, .pagination span:focus {
   background-color: #2980b9;
   color: white;
 }
-/* line 768, ../scss/breakpoints/_base.scss */
+/* line 794, ../scss/breakpoints/_base.scss */
 .pagination .current {
   cursor: default;
   color: #5c6b80;
 }
-/* line 772, ../scss/breakpoints/_base.scss */
+/* line 798, ../scss/breakpoints/_base.scss */
 .pagination .current:hover, .pagination .current:focus {
   background-color: white;
   color: #5c6b80;
@@ -2397,11 +2458,11 @@ PAGE NAVI STYLES
 
 /* end .bones_page_navi */
 /* fallback previous & next links */
-/* line 785, ../scss/breakpoints/_base.scss */
+/* line 811, ../scss/breakpoints/_base.scss */
 .wp-prev-next .prev-link {
   float: left;
 }
-/* line 789, ../scss/breakpoints/_base.scss */
+/* line 815, ../scss/breakpoints/_base.scss */
 .wp-prev-next .next-link {
   float: right;
 }
@@ -2411,7 +2472,7 @@ PAGE NAVI STYLES
 COMMENT STYLES
 ******************************************************************/
 /* h3 comment title */
-/* line 800, ../scss/breakpoints/_base.scss */
+/* line 826, ../scss/breakpoints/_base.scss */
 #comments-title {
   padding: 0.75em;
   margin: 0;
@@ -2419,13 +2480,13 @@ COMMENT STYLES
   /* number of comments span */
 }
 
-/* line 820, ../scss/breakpoints/_base.scss */
+/* line 846, ../scss/breakpoints/_base.scss */
 .commentlist {
   margin: 0;
   list-style-type: none;
 }
 
-/* line 825, ../scss/breakpoints/_base.scss */
+/* line 851, ../scss/breakpoints/_base.scss */
 .comment {
   position: relative;
   clear: both;
@@ -2437,78 +2498,78 @@ COMMENT STYLES
   /* end children */
   /* general comment classes */
 }
-/* line 832, ../scss/breakpoints/_base.scss */
+/* line 858, ../scss/breakpoints/_base.scss */
 .comment .comment-author {
   padding: 7px;
   border: 0;
 }
-/* line 838, ../scss/breakpoints/_base.scss */
+/* line 864, ../scss/breakpoints/_base.scss */
 .comment .vcard {
   margin-left: 50px;
 }
-/* line 841, ../scss/breakpoints/_base.scss */
+/* line 867, ../scss/breakpoints/_base.scss */
 .comment .vcard cite.fn {
   font-weight: 700;
   font-style: normal;
 }
-/* line 849, ../scss/breakpoints/_base.scss */
+/* line 875, ../scss/breakpoints/_base.scss */
 .comment .vcard time {
   display: block;
   font-size: 0.9em;
   font-style: italic;
 }
-/* line 854, ../scss/breakpoints/_base.scss */
+/* line 880, ../scss/breakpoints/_base.scss */
 .comment .vcard time a {
   color: #9fa6b4;
   text-decoration: none;
 }
-/* line 858, ../scss/breakpoints/_base.scss */
+/* line 884, ../scss/breakpoints/_base.scss */
 .comment .vcard time a:hover {
   text-decoration: underline;
 }
-/* line 868, ../scss/breakpoints/_base.scss */
+/* line 894, ../scss/breakpoints/_base.scss */
 .comment .vcard .avatar {
   position: absolute;
   left: 16px;
   border-radius: 50%;
 }
-/* line 876, ../scss/breakpoints/_base.scss */
+/* line 902, ../scss/breakpoints/_base.scss */
 .comment:last-child {
   margin-bottom: 0;
 }
-/* line 880, ../scss/breakpoints/_base.scss */
+/* line 906, ../scss/breakpoints/_base.scss */
 .comment .children {
   margin: 0;
   /* variations */
   /* change number for different depth */
 }
-/* line 898, ../scss/breakpoints/_base.scss */
+/* line 924, ../scss/breakpoints/_base.scss */
 .comment[class*=depth-] {
   margin-top: 1.1em;
 }
-/* line 902, ../scss/breakpoints/_base.scss */
+/* line 928, ../scss/breakpoints/_base.scss */
 .comment.depth-1 {
   margin-left: 0;
   margin-top: 0;
 }
-/* line 907, ../scss/breakpoints/_base.scss */
+/* line 933, ../scss/breakpoints/_base.scss */
 .comment:not(.depth-1) {
   margin-top: 0;
   margin-left: 7px;
   padding: 7px;
 }
-/* line 920, ../scss/breakpoints/_base.scss */
+/* line 946, ../scss/breakpoints/_base.scss */
 .comment.odd {
   background-color: white;
 }
-/* line 923, ../scss/breakpoints/_base.scss */
+/* line 949, ../scss/breakpoints/_base.scss */
 .comment.even {
   background: #f8f9fa;
 }
 
 /* comment meta */
 /* comment content */
-/* line 957, ../scss/breakpoints/_base.scss */
+/* line 983, ../scss/breakpoints/_base.scss */
 .comment_content p {
   margin: 0.7335em 0 1.5em;
   font-size: 1em;
@@ -2517,7 +2578,7 @@ COMMENT STYLES
 
 /* end .commentlist .comment_content */
 /* comment reply link */
-/* line 966, ../scss/breakpoints/_base.scss */
+/* line 992, ../scss/breakpoints/_base.scss */
 .comment-reply-link {
   font-size: 0.9em;
   float: right;
@@ -2525,7 +2586,7 @@ COMMENT STYLES
 
 /* end .commentlist .comment-reply-link */
 /* edit comment link */
-/* line 978, ../scss/breakpoints/_base.scss */
+/* line 1004, ../scss/breakpoints/_base.scss */
 .comment-edit-link {
   font-style: italic;
   margin: 0 7px;
@@ -2536,34 +2597,34 @@ COMMENT STYLES
 /******************************************************************
 COMMENT FORM STYLES
 ******************************************************************/
-/* line 991, ../scss/breakpoints/_base.scss */
+/* line 1017, ../scss/breakpoints/_base.scss */
 .comment-respond {
   padding: 1.5em;
   border-top: 1px solid #f8f9fa;
 }
 
-/* line 997, ../scss/breakpoints/_base.scss */
+/* line 1023, ../scss/breakpoints/_base.scss */
 #reply-title {
   margin: 0;
 }
 
-/* line 1001, ../scss/breakpoints/_base.scss */
+/* line 1027, ../scss/breakpoints/_base.scss */
 .logged-in-as {
   color: #9fa6b4;
   font-style: italic;
   margin: 0;
 }
-/* line 1006, ../scss/breakpoints/_base.scss */
+/* line 1032, ../scss/breakpoints/_base.scss */
 .logged-in-as a {
   color: #5c6b80;
 }
 
-/* line 1011, ../scss/breakpoints/_base.scss */
+/* line 1037, ../scss/breakpoints/_base.scss */
 .comment-form-comment {
   margin: 1.5em 0 0.75em;
 }
 
-/* line 1015, ../scss/breakpoints/_base.scss */
+/* line 1041, ../scss/breakpoints/_base.scss */
 .form-allowed-tags {
   padding: 1.5em;
   background-color: #f8f9fa;
@@ -2571,14 +2632,14 @@ COMMENT FORM STYLES
 }
 
 /* comment submit button */
-/* line 1022, ../scss/breakpoints/_base.scss */
+/* line 1048, ../scss/breakpoints/_base.scss */
 #submit {
   float: right;
   font-size: 1em;
 }
 
 /* comment form title */
-/* line 1029, ../scss/breakpoints/_base.scss */
+/* line 1055, ../scss/breakpoints/_base.scss */
 #comment-form-title {
   margin: 0 0 1.1em;
 }
@@ -2586,13 +2647,13 @@ COMMENT FORM STYLES
 /* cancel comment reply link */
 /* logged in comments */
 /* allowed tags */
-/* line 1042, ../scss/breakpoints/_base.scss */
+/* line 1068, ../scss/breakpoints/_base.scss */
 #allowed_tags {
   margin: 1.5em 10px 0.7335em 0;
 }
 
 /* no comments */
-/* line 1047, ../scss/breakpoints/_base.scss */
+/* line 1073, ../scss/breakpoints/_base.scss */
 .nocomments {
   margin: 0 20px 1.1em;
 }
@@ -2600,12 +2661,12 @@ COMMENT FORM STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
-/* line 1063, ../scss/breakpoints/_base.scss */
+/* line 1089, ../scss/breakpoints/_base.scss */
 .widget ul li {
   /* deep nesting */
 }
 
-/* line 1080, ../scss/breakpoints/_base.scss */
+/* line 1106, ../scss/breakpoints/_base.scss */
 .no-widgets {
   background-color: white;
   padding: 1.5em;
@@ -2618,12 +2679,12 @@ SIDEBARS & ASIDES
 /*********************
 FOOTER STYLES
 *********************/
-/* line 1093, ../scss/breakpoints/_base.scss */
+/* line 1119, ../scss/breakpoints/_base.scss */
 .footer {
   clear: both;
   color: #f8f9fa;
 }
-/* line 1096, ../scss/breakpoints/_base.scss */
+/* line 1122, ../scss/breakpoints/_base.scss */
 .footer .copyright {
   font-size: 11px;
   color: #555;
@@ -2643,12 +2704,12 @@ view.
 /******************************************
 ADMIN BAR CUSTOMIZATION
 ******************************************/
-/* line 1130, ../scss/breakpoints/_base.scss */
+/* line 1156, ../scss/breakpoints/_base.scss */
 html body div#wpadminbar {
   border-bottom: 1px solid #444;
   z-index: 9999 !important;
 }
-/* line 1133, ../scss/breakpoints/_base.scss */
+/* line 1159, ../scss/breakpoints/_base.scss */
 html body div#wpadminbar > .wpadminbar-activator {
   display: block;
   position: absolute;
@@ -2677,7 +2738,7 @@ html body div#wpadminbar > .wpadminbar-activator {
   border-top: 0;
   cursor: pointer;
 }
-/* line 1147, ../scss/breakpoints/_base.scss */
+/* line 1173, ../scss/breakpoints/_base.scss */
 html body div#wpadminbar > .wpadminbar-activator:after {
   content: "";
   border-style: solid;
@@ -2688,11 +2749,11 @@ html body div#wpadminbar > .wpadminbar-activator:after {
   left: 50%;
   top: 5px;
 }
-/* line 1159, ../scss/breakpoints/_base.scss */
+/* line 1185, ../scss/breakpoints/_base.scss */
 html body div#wpadminbar.wpadminbar-shown > .wpadminbar-activator {
   display: none;
 }
-/* line 1165, ../scss/breakpoints/_base.scss */
+/* line 1191, ../scss/breakpoints/_base.scss */
 html body.hide-admin-bar div#wpadminbar {
   display: none;
 }
@@ -2701,24 +2762,24 @@ html body.hide-admin-bar div#wpadminbar {
 PAGE SPECIFIC STYLES
 ******************************************/
 /* Home/Category index pages */
-/* line 1176, ../scss/breakpoints/_base.scss */
+/* line 1202, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .hentry {
   background: transparent;
   border: 0;
 }
-/* line 1179, ../scss/breakpoints/_base.scss */
+/* line 1205, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .hentry header {
   border: 0;
 }
-/* line 1183, ../scss/breakpoints/_base.scss */
+/* line 1209, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .entry-content {
   padding: 0;
 }
-/* line 1187, ../scss/breakpoints/_base.scss */
+/* line 1213, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index.mobile .banner-gallery .banner-heading {
   color: white !important;
 }
-/* line 1191, ../scss/breakpoints/_base.scss */
+/* line 1217, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery {
   opacity: 0;
   -webkit-transition: all 275ms ease-in-out;
@@ -2728,34 +2789,34 @@ body.page-template-page-custom-index .banner-gallery {
   transition: all 275ms ease-in-out;
   position: relative;
 }
-/* line 1195, ../scss/breakpoints/_base.scss */
+/* line 1221, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery.initialized {
   opacity: 1;
 }
-/* line 1198, ../scss/breakpoints/_base.scss */
+/* line 1224, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .banner-heading {
   left: 10%;
   top: 10%;
   color: white;
   margin: 0 10px 4px;
 }
-/* line 1203, ../scss/breakpoints/_base.scss */
+/* line 1229, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .banner-heading h2 {
   margin: 0;
   font-size: 28px;
   line-height: 28px;
 }
-/* line 1208, ../scss/breakpoints/_base.scss */
+/* line 1234, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .banner-heading p {
   font-size: 15px;
   margin: 0;
 }
-/* line 1213, ../scss/breakpoints/_base.scss */
+/* line 1239, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery > img {
   width: 100%;
   margin: 0;
 }
-/* line 1217, ../scss/breakpoints/_base.scss */
+/* line 1243, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .navigation {
   -webkit-transition: all 275ms ease-in-out;
   -moz-transition: all 275ms ease-in-out;
@@ -2769,12 +2830,12 @@ body.page-template-page-custom-index .banner-gallery .navigation {
   width: 100%;
   height: 100%;
 }
-/* line 1225, ../scss/breakpoints/_base.scss */
+/* line 1251, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .navigation a {
   display: none;
   outline: none;
 }
-/* line 1229, ../scss/breakpoints/_base.scss */
+/* line 1255, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .navigation .hit-zone {
   text-align: center;
   width: 60%;
@@ -2808,7 +2869,7 @@ body.page-template-page-custom-index .banner-gallery .navigation .hit-zone {
   position: relative;
   top: 50%;
 }
-/* line 1235, ../scss/breakpoints/_base.scss */
+/* line 1261, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .navigation .hit-zone .btn {
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -2838,32 +2899,32 @@ body.page-template-page-custom-index .banner-gallery .navigation .hit-zone .btn 
   position: relative;
   top: 50%;
 }
-/* line 1237, ../scss/breakpoints/_base.scss */
+/* line 1263, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .navigation .hit-zone .btn span {
   display: none;
 }
-/* line 1242, ../scss/breakpoints/_base.scss */
+/* line 1268, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .navigation.banner-active {
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.5);
 }
-/* line 1245, ../scss/breakpoints/_base.scss */
+/* line 1271, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .banner-gallery .navigation.banner-active .hit-zone a {
   display: inline-block;
 }
-/* line 1251, ../scss/breakpoints/_base.scss */
+/* line 1277, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery {
   margin: 0;
 }
-/* line 1253, ../scss/breakpoints/_base.scss */
+/* line 1279, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-stage {
   margin: 0 auto;
 }
-/* line 1256, ../scss/breakpoints/_base.scss */
+/* line 1282, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-controls.inactive {
   display: none;
 }
-/* line 1259, ../scss/breakpoints/_base.scss */
+/* line 1285, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav {
   margin: 8px 0 0;
   border-bottom: 1px solid #333;
@@ -2871,7 +2932,7 @@ body.page-template-page-custom-index .thumbnail-gallery .owl-nav {
   background: rgba(255, 255, 255, 0.03);
   padding: 0 10px;
 }
-/* line 1265, ../scss/breakpoints/_base.scss */
+/* line 1291, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav:after {
   content: ".";
   height: 0;
@@ -2879,7 +2940,7 @@ body.page-template-page-custom-index .thumbnail-gallery .owl-nav:after {
   visibility: hidden;
   clear: both;
 }
-/* line 1268, ../scss/breakpoints/_base.scss */
+/* line 1294, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next {
   color: #fff;
   font-size: 10px;
@@ -2888,33 +2949,33 @@ body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev, body
   line-height: 45px;
   position: relative;
 }
-/* line 1275, ../scss/breakpoints/_base.scss */
+/* line 1301, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev:after, body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
   top: 18px;
 }
-/* line 1279, ../scss/breakpoints/_base.scss */
+/* line 1305, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev {
   padding-left: 14px;
   float: left;
 }
-/* line 1283, ../scss/breakpoints/_base.scss */
+/* line 1309, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-prev:after {
   position: absolute;
   border-width: 4px 10px 4px 0;
   left: 0;
 }
-/* line 1289, ../scss/breakpoints/_base.scss */
+/* line 1315, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next {
   padding-right: 14px;
   float: right;
 }
-/* line 1293, ../scss/breakpoints/_base.scss */
+/* line 1319, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .owl-nav .owl-next:after {
   position: absolute;
   border-width: 4px 0 4px 10px;
   right: 0;
 }
-/* line 1300, ../scss/breakpoints/_base.scss */
+/* line 1326, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item {
   float: left;
   font-size: 12px;
@@ -2922,11 +2983,11 @@ body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item {
   text-transform: uppercase;
   text-align: center;
 }
-/* line 1302, ../scss/breakpoints/_base.scss */
+/* line 1328, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item.active a {
   background-color: rgba(255, 255, 255, 0.15);
 }
-/* line 1311, ../scss/breakpoints/_base.scss */
+/* line 1337, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item a {
   outline: none;
   display: block;
@@ -2950,49 +3011,49 @@ body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item a {
   -o-transition: all 250ms ease-in-out;
   transition: all 250ms ease-in-out;
 }
-/* line 1321, ../scss/breakpoints/_base.scss */
+/* line 1347, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item a:hover {
   color: white;
   background-color: rgba(255, 0, 0, 0.3);
 }
-/* line 1326, ../scss/breakpoints/_base.scss */
+/* line 1352, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item img, body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item .item-title {
   display: block;
 }
-/* line 1329, ../scss/breakpoints/_base.scss */
+/* line 1355, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .thumbnail-item img {
   margin-bottom: 10px;
 }
-/* line 1333, ../scss/breakpoints/_base.scss */
+/* line 1359, ../scss/breakpoints/_base.scss */
 body.page-template-page-custom-index .thumbnail-gallery .hidden-data {
   display: none;
 }
 
 /* Single Media Item Page */
-/* line 1340, ../scss/breakpoints/_base.scss */
+/* line 1366, ../scss/breakpoints/_base.scss */
 body.single-media_items {
   color: white;
 }
-/* line 1342, ../scss/breakpoints/_base.scss */
+/* line 1368, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-wrapper {
   margin: 0 -10px 20px -10px;
   border-bottom: 1px solid #333;
   padding-bottom: 20px;
 }
-/* line 1347, ../scss/breakpoints/_base.scss */
+/* line 1373, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-login, body.single-media_items .video-controls {
   width: 320px;
   margin: 0 auto;
   text-align: center;
 }
-/* line 1353, ../scss/breakpoints/_base.scss */
+/* line 1379, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-login h2 {
   margin: 0 0 10px;
   width: 320px;
   height: 180px;
   background-repeat: no-repeat;
 }
-/* line 1358, ../scss/breakpoints/_base.scss */
+/* line 1384, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-login h2 span {
   display: block;
   height: 100%;
@@ -3005,24 +3066,24 @@ body.single-media_items .video-login h2 span {
   box-sizing: border-box;
   line-height: 32px;
 }
-/* line 1367, ../scss/breakpoints/_base.scss */
+/* line 1393, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-login > span {
   display: block;
   margin-bottom: 8px;
 }
-/* line 1373, ../scss/breakpoints/_base.scss */
+/* line 1399, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-controls .video-thumb {
   display: inline-block;
   margin-bottom: 15px;
   background: black;
 }
-/* line 1378, ../scss/breakpoints/_base.scss */
+/* line 1404, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-controls .video-thumb:before, body.single-media_items .video-controls .video-thumb:after {
   left: 137px;
   top: 67px;
   z-index: 1;
 }
-/* line 1383, ../scss/breakpoints/_base.scss */
+/* line 1409, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-controls .video-thumb img {
   display: block;
   -webkit-transition: all 275ms ease-in-out;
@@ -3031,7 +3092,7 @@ body.single-media_items .video-controls .video-thumb img {
   -o-transition: all 275ms ease-in-out;
   transition: all 275ms ease-in-out;
 }
-/* line 1387, ../scss/breakpoints/_base.scss */
+/* line 1413, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-controls .video-thumb .sub-head {
   text-transform: uppercase;
   font-size: 12px;
@@ -3039,27 +3100,27 @@ body.single-media_items .video-controls .video-thumb .sub-head {
   height: 20px;
   line-height: 20px;
 }
-/* line 1396, ../scss/breakpoints/_base.scss */
+/* line 1422, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-controls a.video-thumb:hover img {
   opacity: .7;
 }
-/* line 1401, ../scss/breakpoints/_base.scss */
+/* line 1427, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-controls span.video-thumb:before, body.single-media_items .video-controls span.video-thumb:after {
   opacity: .5;
 }
-/* line 1406, ../scss/breakpoints/_base.scss */
+/* line 1432, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry {
   background: transparent;
 }
-/* line 1408, ../scss/breakpoints/_base.scss */
+/* line 1434, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry, body.single-media_items .hentry .entry-header {
   border: 0;
 }
-/* line 1411, ../scss/breakpoints/_base.scss */
+/* line 1437, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .entry-header, body.single-media_items .hentry .entry-content {
   padding: 0;
 }
-/* line 1414, ../scss/breakpoints/_base.scss */
+/* line 1440, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .super-head {
   text-transform: uppercase;
   border: 1px dotted #333;
@@ -3067,27 +3128,27 @@ body.single-media_items .hentry .super-head {
   margin-top: 0;
   font-size: 16px;
 }
-/* line 1421, ../scss/breakpoints/_base.scss */
+/* line 1447, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry h1 {
   font-size: 32px;
   line-height: 32px;
   margin-bottom: 20px;
 }
-/* line 1426, ../scss/breakpoints/_base.scss */
+/* line 1452, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info {
   border: 1px solid #333;
   padding: 20px;
 }
-/* line 1429, ../scss/breakpoints/_base.scss */
+/* line 1455, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info table {
   width: 100%;
 }
-/* line 1432, ../scss/breakpoints/_base.scss */
+/* line 1458, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info td {
   padding: 6px 0 6px 20px;
   vertical-align: top;
 }
-/* line 1435, ../scss/breakpoints/_base.scss */
+/* line 1461, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info td:first-child {
   padding-left: 0;
   padding-right: 20px;

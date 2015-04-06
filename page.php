@@ -20,9 +20,6 @@
 									*/ ?>
 
 								</header> <?php // end article header ?>
-								<pre>test
-<?php echo $user_id; ?>
-</pre>
 								<section class="entry-content cf" itemprop="articleBody">
 									<?php
 										// the content (pretty self explanatory huh)

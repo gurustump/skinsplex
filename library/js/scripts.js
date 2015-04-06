@@ -251,6 +251,30 @@ jQuery(document).ready(function($) {
         e.preventDefault();
     });
 	
+	var vidPlayers = []
+	var vidPlayerOvs = []
+	$('.VID_PLAYER').each(function(k,v) {
+		vidPlayers[k] = videojs($(this).attr('id'), {
+			/*'width':Math.min(1280,win.width()),
+			'height':Math.min(720,win.height())*/
+		});
+		vidPlayerOvs[k] = $('.VID_PLAYER_OV')
+		vidPlayerOvs[k].dialog({
+			autoOpen:false,
+			dialogClass:'vid-player-ov-container',
+			open: function() {
+				vidPlayer.play();
+			},
+			close: function() {
+				vidPlayer.exitFullscreen().pause();
+			}
+		});
+		/*$('.TRIGGER_VIDEO').click(function(e) {
+			e.preventDefault();
+			vidPlayerOv.dialog('open');
+		});*/
+	})
+	
 /*****************************************************
  Page specific scripts
 */
@@ -384,14 +408,18 @@ jQuery(document).ready(function($) {
 		}
 		function selectThumb(selectedThumb,instigator) {
 			$('.BANNER_NAV').removeClass('banner-active hit-zone-active');
-			var current = thumbs.find('.THUMBNAIL_ITEM.active');
+			var current = thumbs.find('.THUMBNAIL_ITEM.active:first');
 			if (!selectedThumb) {
 				var selectedThumb = (instigator && instigator.hasClass('PREV')) ? (current.parents('.owl-item').prev().length > 0 ? current.parents('.owl-item').prev().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().last().find('.THUMBNAIL_ITEM')) : (current.parents('.owl-item').next().length > 0 ? current.parents('.owl-item').next().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().first().find('.THUMBNAIL_ITEM'))
 			}
 			current.removeClass('active');
 			selectedThumb.addClass('active');
 			if (!selectedThumb.parent('.owl-item').hasClass('active')) {
-				thumbs.trigger('next.owl.carousel');
+				if (instigator && instigator.hasClass('PREV')) {
+					thumbs.trigger('prev.owl.carousel');
+				} else {
+					thumbs.trigger('next.owl.carousel');
+				}
 			}
 			changeGalleryImage();
 		}

@@ -343,4 +343,77 @@ function add_favicon_admin() {
 add_action('login_head', 'add_favicon_admin');
 add_action('admin_head', 'add_favicon_admin'); 
 
+$vidShortcodeIncrement = 0;
+
+function override_default_video_shortcode($html,$atts) {
+	global $vidShortcodeIncrement;
+	$args = shortcode_atts( array(
+		'src' => '',
+		'poster' => '',
+		'loop' => '',
+		'autoplay' => '',
+		'preload' => '',
+		'mp4' => '',
+		'm4v' => '',
+		'webm' => '',
+		'ogv' => '',
+		'webm' => '',
+		'wmv' => '',
+		'flv' => '',
+		'class' => '',
+		'width' => '',
+		'height' => ''
+	), $atts);
+	
+	global $post;
+	$videoplayer = '<div class="vid-container '.$args['class'].'">';
+	$videoplayer .= '<video id="vidPlayer_'.$vidShortcodeIncrement.'" class="video-js vjs-default-skin vjs-skinsplex-skin VID_PLAYER" controls'.($args['autoplay'] != '' ? ' autoplay' : '').($args['loop'] != '' ? ' loop' : '').($args['width'] != '' ? ' width="'.$args['width'].'"' : '').($args['height'] != '' ? ' height="'.$args['height'].'"' : '').'>';
+	$videoplayer .= '<source src="'.$args['mp4'].'" type="video/mp4">';
+	if ($args['ogv'] != '') {
+		$videoplayer .= '<source src="'.$args['ogv'].'" type="video/ogg">';
+	}
+	if ($args['webm'] != '') {
+		$videoplayer .= '<source src="'.$args['webm'].'" type="video/webm">';
+	}
+	$videoplayer.= '</video>';
+	$videoplayer .= '</div>';
+	$html.=$videoplayer;
+	foreach($args as $key => $attr) {
+	$html.='<pre>'.$key.': '.$attr.'</pre>';
+	}
+	
+	$vidShortcodeIncrement ++;
+	return $videoplayer;
+}
+add_filter('wp_video_shortcode_override','override_default_video_shortcode',10,2);
+
+// SHORTCODES
+function video_player_shortcode($atts) {
+	global $vidShortcodeIncrement;
+	extract( shortcode_atts( array(
+		'mp4' => '',
+		'ogv' => '',
+		'webm' => '',
+		'class' => '',
+		'width' => '',
+		'height' => ''
+	), $atts) );
+	global $post;
+	$videoplayer = '<div id="VID_PLAYER_OV_'.$vidShortcodeIncrement.'" class="vid-container '.$class.'">';
+	$videoplayer .= '<video id="vidPlayer_'.$vidShortcodeIncrement.'" class="video-js vjs-default-skin vjs-skinsplex-skin VID_PLAYER" controls'.($width != '' ? ' width="'.$width.'"' : '').($height != '' ? ' height="'.$height.'"' : '').'>';
+	$videoplayer .= '<source src="'.$mp4.'" type="video/mp4">';
+	if ($ogg != '') {
+		$videoplayer .= '<source src="'.$ogg.'" type="video/ogg">';
+	}
+	if ($webm != '') {
+		$videoplayer .= '<source src="'.$webm.'" type="video/webm">';
+	}
+	$videoplayer.= '</video>';
+	$videoplayer .= '</div>';
+	$vidShortcodeIncrement ++;
+	return $videoplayer;
+}
+add_shortcode('video-player', 'video_player_shortcode');
+
+
 /* DON'T DELETE THIS CLOSING TAG */ ?>

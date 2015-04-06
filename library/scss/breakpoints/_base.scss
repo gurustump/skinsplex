@@ -511,11 +511,37 @@ OVERLAY & VIDEO STYLES
 }
 .vjs-skinsplex-skin {
 	font-family:$lato;
+	&:hover {
+		.vjs-big-play-button {
+			box-shadow:none;
+			background-color:transparent;
+		}
+	}
 	.vjs-control-bar {
 		background-color:rgba(0,0,0,.7);
 	}
 	.vjs-volume-level, .vjs-play-progress {
 		background-color:#f00;
+	}
+	.vjs-big-play-button {
+		@extend %btn-play;
+		background:transparent;
+		border:0;
+		box-shadow:none;
+		text-shadow:none;
+		width:55px;
+		height:55px;
+		@include v-center;
+		left:50%;
+		@include transform(translate(-50%,-50%));
+		&:before {
+			content:"";
+		}
+		&:hover {
+			box-shadow:0 0 2em #fff;
+			background-color:rgba(255,255,255,.1);
+			@include transition(all 150ms ease-in-out);
+		}
 	}
 }
 
