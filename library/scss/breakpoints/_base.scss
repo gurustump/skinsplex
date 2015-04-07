@@ -511,6 +511,7 @@ OVERLAY & VIDEO STYLES
 }
 .vjs-skinsplex-skin {
 	font-family:$lato;
+	max-width:100%;
 	&:hover {
 		.vjs-big-play-button {
 			box-shadow:none;
