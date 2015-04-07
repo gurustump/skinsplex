@@ -48,7 +48,11 @@ with the width and height.
 	height:55px;
 	line-height:55px;
 	background:url(../images/skinsplex-logo-41x31.png) no-repeat 0 13px;
+	background-size:auto;
 	padding-left:33px;
+	&:hover {
+		color:#fff;
+	}
 }
 
 form {

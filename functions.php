@@ -329,7 +329,7 @@ function auto_login_new_user( $user_id ) {
 		wp_set_auth_cookie($user_id);
 		do_action('wp_signon', $user->user_login);
 	}
-		// You can change home_url() to the specific URL,such as 
+	// You can change home_url() to the specific URL,such as 
 	//wp_redirect( 'http://www.wpcoke.com' );
 	wp_redirect( home_url() );
 	exit;
@@ -341,10 +341,20 @@ function add_favicon_admin() {
 	echo '<link rel="shortcut icon" href="' . get_stylesheet_directory_uri().'/favicon.png' . '" />';
 }
 add_action('login_head', 'add_favicon_admin');
-add_action('admin_head', 'add_favicon_admin'); 
+add_action('admin_head', 'add_favicon_admin');
+
+// changing default name and email address for system generated emails (like password recovery)
+add_filter( 'wp_mail_from_name', function( $name ) {
+	return 'Skinsplex Webmaster';
+});
+add_filter( 'wp_mail_from', function( $email ) {
+	return 'contact@skinsplex.com';
+});
+
+// SHORTCODES
+// Overriding default video shortcode
 
 $vidShortcodeIncrement = 0;
-
 function override_default_video_shortcode($html,$atts) {
 	global $vidShortcodeIncrement;
 	$args = shortcode_atts( array(
@@ -386,8 +396,7 @@ function override_default_video_shortcode($html,$atts) {
 	return $videoplayer;
 }
 add_filter('wp_video_shortcode_override','override_default_video_shortcode',10,2);
-
-// SHORTCODES
+/*
 function video_player_shortcode($atts) {
 	global $vidShortcodeIncrement;
 	extract( shortcode_atts( array(
@@ -414,6 +423,6 @@ function video_player_shortcode($atts) {
 	return $videoplayer;
 }
 add_shortcode('video-player', 'video_player_shortcode');
-
+*/
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>
