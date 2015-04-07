@@ -34,7 +34,7 @@ function media_item_custom_type() {
 			'add_new' => __( 'Add New', 'bonestheme' ),
 			'add_new_item' => __( 'Add New Media Item', 'bonestheme' ),
 			'edit' => __( 'Edit', 'bonestheme' ),
-			'edit_item' => __( 'Edit Media Items', 'bonestheme' ),
+			'edit_item' => __( 'Edit Media Item', 'bonestheme' ),
 			'new_item' => __( 'New Media Item', 'bonestheme' ),
 			'view_item' => __( 'View Media Item', 'bonestheme' ),
 			'search_items' => __( 'Search Media Item', 'bonestheme' ),

@@ -1212,6 +1212,7 @@ body.page-template-page-custom-index {
 	&.mobile {
 		.banner-gallery .banner-heading {
 			color:$white !important;
+			background:transparent !important;
 		}
 	}
 	.banner-gallery {
@@ -1226,14 +1227,20 @@ body.page-template-page-custom-index {
 			top:10%;
 			color:$white;
 			margin:0 10px 4px;
-			h2 {
+			font-size:5px;
+			h3, h2, p {
 				margin:0;
-				font-size:28px;
-				line-height:28px;
+				line-height:1.3em;
+			}
+			h3 {
+				font-size:2.8em;
+				line-height:1em;
+			}
+			h2 {
+				font-size:5.6em;
 			}
 			p {
-				font-size:15px;
-				margin:0;
+				font-size:2.4em;
 			}
 		}
 		& > img {

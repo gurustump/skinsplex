@@ -373,23 +373,16 @@ body.page-template-page-custom-index #inner-content {
 body.page-template-page-custom-index .banner-gallery .banner-heading {
   position: absolute;
   margin: 0;
+  padding: 10px 15px;
+  font-size: 6.5px;
 }
-/* line 212, ../scss/breakpoints/_768up.scss */
-body.page-template-page-custom-index .banner-gallery .banner-heading h2 {
-  font-size: 36px;
-  line-height: 36px;
-}
-/* line 216, ../scss/breakpoints/_768up.scss */
-body.page-template-page-custom-index .banner-gallery .banner-heading p {
-  font-size: 16px;
-}
-/* line 223, ../scss/breakpoints/_768up.scss */
+/* line 218, ../scss/breakpoints/_768up.scss */
 body.page-template-page-custom-index .banner-gallery .navigation .hit-zone .btn span {
   display: inline;
 }
 
 /* Single Media Item Page */
-/* line 234, ../scss/breakpoints/_768up.scss */
+/* line 229, ../scss/breakpoints/_768up.scss */
 body.single-media_items .video-wrapper {
   position: relative;
   z-index: 1;
@@ -399,7 +392,7 @@ body.single-media_items .video-wrapper {
   margin: 0;
   border-bottom: 0;
 }
-/* line 243, ../scss/breakpoints/_768up.scss */
+/* line 238, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry {
   float: left;
   width: 100%;
@@ -411,22 +404,22 @@ body.single-media_items .hentry {
   padding-left: 340px;
   margin-left: -341px;
 }
-/* line 249, ../scss/breakpoints/_768up.scss */
+/* line 244, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry .entry-header {
   max-width: 721px;
 }
-/* line 252, ../scss/breakpoints/_768up.scss */
+/* line 247, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry .super-head {
   border-width: 1px 0;
   font-size: 24px;
   margin-left: 20px;
 }
-/* line 257, ../scss/breakpoints/_768up.scss */
+/* line 252, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry h1 {
   line-height: 40px;
   padding-left: 20px;
 }
-/* line 261, ../scss/breakpoints/_768up.scss */
+/* line 256, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry .entry-content {
   border-left: 1px solid #333;
   padding-left: 20px;

@@ -155,6 +155,46 @@ function skinsplex_register_media_item_metabox() {
 		'type'		=> 'colorpicker',
 	) );
 
+	/*******************
+	rgba_colorpicker field type requires CMB2_RGBa_Picker to be installed in the plugins directory. It requires a javascript file that is also located in the plugins directory. The plugin has been modified slightly to rename the folder containing the javascript file.
+	
+	plugin comes from: https://github.com/JayWood/CMB2_RGBa_Picker
+	*/
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Excerpt Backround Color', 'cmb2' ),
+		'desc'       => __( 'Choose the color of the background field behind the title and excerpt text on banners.', 'cmb2' ),
+		'id' 			=> $prefix . 'exceprt_background_color',
+		'type'		=> 'rgba_colorpicker',
+	) );
+
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Supertitle', 'cmb2' ),
+		'desc'       => __( 'Puts text above the title and excerpt on the home and category pages.', 'cmb2' ),
+		'id' 			=> $prefix . 'super_title',
+		'type'		=> 'text',
+	) );
+
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Title size', 'cmb2' ),
+		'desc'       => __( 'Enter the size for your title (an integer), defaults to 56px', 'cmb2' ),
+		'id' 			=> $prefix . 'title_size',
+		'type'		=> 'text_small',
+	) );
+
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Supertitle size', 'cmb2' ),
+		'desc'       => __( 'Enter the size for your supertitle (an integer), defaults to 28px', 'cmb2' ),
+		'id' 			=> $prefix . 'super_title_size',
+		'type'		=> 'text_small',
+	) );
+
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Excerpt size', 'cmb2' ),
+		'desc'       => __( 'Enter the size for excerpt (an integer), defaults to 24px', 'cmb2' ),
+		'id' 			=> $prefix . 'excerpt_size',
+		'type'		=> 'text_small',
+	) );
+
 	$cmb_media_item_box->add_field( array(
 		'name' => __( 'Override Image', 'cmb2' ),
 		'desc' => __( 'Upload/Select an image or enter a URL -- used for home/category page main slider', 'cmb2' ),

@@ -32,6 +32,7 @@
 									if ( isset($sectionItems[0]) ) { ?>
 										<div class="banner-gallery BANNER_GALLERY">
 											<div class="banner-heading BANNER_HEADING">
+												<h3></h3>
 												<h2></h2>
 												<p></p>
 											</div>
@@ -57,6 +58,9 @@
 														<?php } else {
 															echo get_the_post_thumbnail($item->ID, 'index-banner',array('class'=>'INDEX_BANNER')); 
 														} ?>
+														<?php if ($itemMeta['_skinsplex_media_item_super_title'][0]) { ?>
+															<span class="INDEX_SUPER_TITLE"><?php echo $itemMeta['_skinsplex_media_item_super_title'][0]; ?></span>
+														<?php } ?>
 														<?php if ($item->post_excerpt) { ?>
 															<span class="INDEX_EXCERPT"><?php echo $item->post_excerpt; ?></span>
 														<?php } ?>
@@ -68,6 +72,18 @@
 														<?php } ?>
 														<?php if ($itemMeta['_skinsplex_media_item_exceprt_text_color'][0]) { ?>
 															<span class="INDEX_EXCERPT_TEXT_COLOR"><?php echo $itemMeta['_skinsplex_media_item_exceprt_text_color'][0]; ?></span>
+														<?php } ?>
+														<?php if ($itemMeta['_skinsplex_media_item_exceprt_background_color'][0]) { ?>
+															<span class="INDEX_EXCERPT_BACKGROUND_COLOR"><?php echo $itemMeta['_skinsplex_media_item_exceprt_background_color'][0]; ?></span>
+														<?php } ?>
+														<?php if ($itemMeta['_skinsplex_media_item_title_size'][0]) { ?>
+															<span class="INDEX_TITLE_SIZE"><?php echo $itemMeta['_skinsplex_media_item_title_size'][0]; ?></span>
+														<?php } ?>
+														<?php if ($itemMeta['_skinsplex_media_item_super_title_size'][0]) { ?>
+															<span class="INDEX_SUPER_TITLE_SIZE"><?php echo $itemMeta['_skinsplex_media_item_super_title_size'][0]; ?></span>
+														<?php } ?>
+														<?php if ($itemMeta['_skinsplex_media_item_excerpt_size'][0]) { ?>
+															<span class="INDEX_EXCERPT_SIZE"><?php echo $itemMeta['_skinsplex_media_item_excerpt_size'][0]; ?></span>
 														<?php } ?>
 													</span>
 												</a>
