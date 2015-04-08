@@ -10,8 +10,8 @@ is empty, but you can just start dropping your styles here to
 start customizing. All admin functions are located in lib/admin/
 
 ******************************************************************/
-/* line 16, ../scss/admin.scss */
-#adminmenu .menu-icon-media_items a div.wp-menu-image:after {
+/* line 17, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items a div.wp-menu-image:after, #adminmenu .menu-icon-ad_spaces a div.wp-menu-image:after {
   content: "";
   background-image: url(../images/media-item-icon.png);
   background-position: 5px 4px;
@@ -20,15 +20,28 @@ start customizing. All admin functions are located in lib/admin/
   display: block;
   margin: 3px 0;
 }
-/* line 25, ../scss/admin.scss */
-#adminmenu .menu-icon-media_items a div.wp-menu-image img {
+/* line 26, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items a div.wp-menu-image img, #adminmenu .menu-icon-ad_spaces a div.wp-menu-image img {
   display: none;
 }
-/* line 31, ../scss/admin.scss */
-#adminmenu .menu-icon-media_items a:hover div.wp-menu-image:after {
+/* line 32, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items a:hover div.wp-menu-image:after, #adminmenu .menu-icon-ad_spaces a:hover div.wp-menu-image:after {
   background-position: 5px -46px;
 }
-/* line 40, ../scss/admin.scss */
-#adminmenu .menu-icon-media_items.wp-menu-open a div.wp-menu-image:after {
+/* line 41, ../scss/admin.scss */
+#adminmenu .menu-icon-media_items.wp-menu-open a div.wp-menu-image:after, #adminmenu .menu-icon-ad_spaces.wp-menu-open a div.wp-menu-image:after {
   background-position: 5px -21px;
+}
+/* line 51, ../scss/admin.scss */
+#adminmenu .menu-icon-ad_spaces a div.wp-menu-image:after {
+  background-image: url(../images/advsp-icon.png);
+  background-position: 8px 4px;
+}
+/* line 58, ../scss/admin.scss */
+#adminmenu .menu-icon-ad_spaces a:hover div.wp-menu-image:after {
+  background-position: 8px -46px;
+}
+/* line 67, ../scss/admin.scss */
+#adminmenu .menu-icon-ad_spaces.wp-menu-open a div.wp-menu-image:after {
+  background-position: 8px -21px;
 }

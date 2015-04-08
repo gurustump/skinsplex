@@ -10,35 +10,63 @@ is empty, but you can just start dropping your styles here to
 start customizing. All admin functions are located in lib/admin/
 
 ******************************************************************/
-#adminmenu .menu-icon-media_items {
-	a {
-		div.wp-menu-image {
-			&:after {
-				content:"";
-				background-image:url(../images/media-item-icon.png);
-				background-position:5px 4px;
-				background-repeat:no-repeat;
-				height:28px;
-				display:block;
-				margin:3px 0;
-			}
-			img {
-				display:none;
-			}
-		}
-		&:hover {
+#adminmenu {
+	.menu-icon-media_items, .menu-icon-ad_spaces {
+		a {
 			div.wp-menu-image {
 				&:after {
-					background-position:5px -46px;
+					content:"";
+					background-image:url(../images/media-item-icon.png);
+					background-position:5px 4px;
+					background-repeat:no-repeat;
+					height:28px;
+					display:block;
+					margin:3px 0;
+				}
+				img {
+					display:none;
+				}
+			}
+			&:hover {
+				div.wp-menu-image {
+					&:after {
+						background-position:5px -46px;
+					}
+				}
+			}
+		}
+		&.wp-menu-open {
+			a {
+				div.wp-menu-image {
+					&:after {
+						background-position:5px -21px;
+					}
 				}
 			}
 		}
 	}
-	&.wp-menu-open {
+	.menu-icon-ad_spaces {
 		a {
 			div.wp-menu-image {
 				&:after {
-					background-position:5px -21px;
+					background-image:url(../images/advsp-icon.png);
+					background-position:8px 4px;
+				}
+			}
+			&:hover {
+				div.wp-menu-image {
+					&:after {
+						background-position:8px -46px;
+					}
+				}
+			}
+		}
+		&.wp-menu-open {
+			a {
+				div.wp-menu-image {
+					&:after {
+						background-position:8px -21px;
+					}
 				}
 			}
 		}

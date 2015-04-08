@@ -547,6 +547,41 @@ OVERLAY & VIDEO STYLES
 }
 
 /*********************
+AD SPACE STYLES
+*********************/
+.advspcnt {
+	margin:0;
+	position:relative;
+	& > * {
+		position:absolute;
+		left:0;
+		top:0;
+		opacity:0;
+		z-index:0;
+		@include transition(opacity 375ms);
+		&.active {
+			opacity:1;
+			z-index:1;
+		}
+	}
+	& * {
+		width:100%;
+		height:100%;
+		display:block;
+	}
+	&.w-skyscr {
+		display:none;
+	}
+	&.rect-3-1 {
+		padding:5px 0;
+		margin:10px auto;
+		text-align:center;
+		width:300px;
+		height:100px;
+	}
+}
+
+/*********************
 POSTS & CONTENT STYLES
 *********************/
 

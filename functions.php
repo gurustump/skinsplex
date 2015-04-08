@@ -351,6 +351,16 @@ add_filter( 'wp_mail_from', function( $email ) {
 	return 'contact@skinsplex.com';
 });
 
+// function to contain HTML for each panel in an ad carousel
+function adItemHtml($key, $ad) {
+	$html = '<li class="adv-'.$ad[image_id].($key==0 ? ' active':'').'">';
+	$html .= '<a href="'.$ad[link].'">';
+	$html .= '<img src="'.$ad[image].'" alt="'.$ad[description].'" />';
+	$html .= '</a>';
+	$html .= '</li>';
+	return $html;
+}
+
 // SHORTCODES
 // Overriding default video shortcode
 

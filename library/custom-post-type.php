@@ -22,7 +22,7 @@ function bones_flush_rewrite_rules() {
 	flush_rewrite_rules();
 }
 
-// let's create the function for the custom type
+// Media Item custom post type
 function media_item_custom_type() { 
 	// creating (registering) the custom type 
 	register_post_type( 'media_items', // (http://codex.wordpress.org/Function_Reference/register_post_type) 
@@ -67,52 +67,146 @@ function media_item_custom_type() {
 	
 }
 
-	// adding the function to the Wordpress init
-	add_action( 'init', 'media_item_custom_type');	
-	
-	register_taxonomy( 'media_item_cat', 
-		array('media_items'),
-		array('hierarchical' => true,
-			'labels' => array(
-				'name' => __( 'Media Item Categories', 'bonestheme' ),
-				'singular_name' => __( 'Media Item Category', 'bonestheme' ),
-				'search_items' =>  __( 'Search Media Item Categories', 'bonestheme' ),
-				'all_items' => __( 'All Media Item Categories', 'bonestheme' ),
-				'parent_item' => __( 'Parent Media Item Category', 'bonestheme' ),
-				'parent_item_colon' => __( 'Parent Media Item Category:', 'bonestheme' ),
-				'edit_item' => __( 'Edit Media Item Category', 'bonestheme' ),
-				'update_item' => __( 'Update Media Item Category', 'bonestheme' ),
-				'add_new_item' => __( 'Add New Media Item Category', 'bonestheme' ),
-				'new_item_name' => __( 'New Media Item Category Name', 'bonestheme' )
+// adding the function to the Wordpress init
+add_action( 'init', 'media_item_custom_type');	
+
+register_taxonomy( 'media_item_cat', 
+	array('media_items'),
+	array('hierarchical' => true,
+		'labels' => array(
+			'name' => __( 'Media Item Categories', 'bonestheme' ),
+			'singular_name' => __( 'Media Item Category', 'bonestheme' ),
+			'search_items' =>  __( 'Search Media Item Categories', 'bonestheme' ),
+			'all_items' => __( 'All Media Item Categories', 'bonestheme' ),
+			'parent_item' => __( 'Parent Media Item Category', 'bonestheme' ),
+			'parent_item_colon' => __( 'Parent Media Item Category:', 'bonestheme' ),
+			'edit_item' => __( 'Edit Media Item Category', 'bonestheme' ),
+			'update_item' => __( 'Update Media Item Category', 'bonestheme' ),
+			'add_new_item' => __( 'Add New Media Item Category', 'bonestheme' ),
+			'new_item_name' => __( 'New Media Item Category Name', 'bonestheme' )
+		),
+		'show_admin_column' => true, 
+		'show_ui' => true,
+		'query_var' => true,
+		'rewrite' => array( 'slug' => 'media-item-cat' ),
+	)
+);
+
+// custom tags (these act like categories)
+register_taxonomy( 'media_item_tag', 
+	array('media_items'), // if you change the name of register_post_type( 'media_item', then you have to change this 
+	array('hierarchical' => false,    // if this is false, it acts like tags 
+		'labels' => array(
+			'name' => __( 'Media Item Tags', 'bonestheme' ),
+			'singular_name' => __( 'Media Item Tag', 'bonestheme' ),
+			'search_items' =>  __( 'Search Media Item Tags', 'bonestheme' ),
+			'all_items' => __( 'All Media Item Tags', 'bonestheme' ),
+			'parent_item' => __( 'Parent Media Item Tag', 'bonestheme' ),
+			'parent_item_colon' => __( 'Parent Media Item Tag:', 'bonestheme' ),
+			'edit_item' => __( 'Edit Media Item Tag', 'bonestheme' ),
+			'update_item' => __( 'Update Media Item Tag', 'bonestheme' ),
+			'add_new_item' => __( 'Add New Media Item Tag', 'bonestheme' ),
+			'new_item_name' => __( 'New Media Item Tag Name', 'bonestheme' )
+		),
+		'show_admin_column' => true,
+		'show_ui' => true,
+		'query_var' => true,
+	)
+);
+
+
+// Ad Space custom post type
+function ad_space_custom_type() { 
+	// creating (registering) the custom type 
+	register_post_type( 'ad_spaces', // (http://codex.wordpress.org/Function_Reference/register_post_type) 
+		// let's now add all the options for this post type
+		array( 'labels' => array(
+			'name' => __( 'Ad Spaces', 'bonestheme' ), 
+			'singular_name' => __( 'Ad Space', 'bonestheme' ), 
+			'all_items' => __( 'All Ad Spaces', 'bonestheme' ),
+			'add_new' => __( 'Add New', 'bonestheme' ),
+			'add_new_item' => __( 'Add New Ad Space', 'bonestheme' ),
+			'edit' => __( 'Edit', 'bonestheme' ),
+			'edit_item' => __( 'Edit Ad Space', 'bonestheme' ),
+			'new_item' => __( 'New Ad Space', 'bonestheme' ),
+			'view_item' => __( 'View Ad Space', 'bonestheme' ),
+			'search_items' => __( 'Search Ad Space', 'bonestheme' ),
+			'not_found' =>  __( 'Nothing found in the Database.', 'bonestheme' ),
+			'not_found_in_trash' => __( 'Nothing found in Trash', 'bonestheme' ),
+			'parent_item_colon' => ''
 			),
-			'show_admin_column' => true, 
+			'description' => __( 'Various boxes to display ads throughout the site.', 'bonestheme' ),
+			'public' => true,
+			'publicly_queryable' => false,
+			'exclude_from_search' => true,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'media-item-cat' ),
-		)
-	);
+			'menu_position' => 8,
+			'menu_icon' => get_stylesheet_directory_uri() . '/library/images/ad-space-icon.png',
+			//'rewrite'	=> array( 'slug' => 'advspc', 'with_front' => false ),
+			//'has_archive' => 'media_item',
+			'has_archive' => false,
+			'hierarchical' => false,
+				'capability_type' => 'post',
+			// the next one is important, it tells what's enabled in the post editor 
+			'supports' => array( 'title', 'author', 'custom-fields', 'revisions', 'sticky')
+		) // end of options 
+	); // end of register post type 
 	
-	// now let's add custom tags (these act like categories)
-	register_taxonomy( 'media_item_tag', 
-		array('media_items'), // if you change the name of register_post_type( 'media_item', then you have to change this 
-		array('hierarchical' => false,    // if this is false, it acts like tags 
-			'labels' => array(
-				'name' => __( 'Media Item Tags', 'bonestheme' ),
-				'singular_name' => __( 'Media Item Tag', 'bonestheme' ),
-				'search_items' =>  __( 'Search Media Item Tags', 'bonestheme' ),
-				'all_items' => __( 'All Media Item Tags', 'bonestheme' ),
-				'parent_item' => __( 'Parent Media Item Tag', 'bonestheme' ),
-				'parent_item_colon' => __( 'Parent Media Item Tag:', 'bonestheme' ),
-				'edit_item' => __( 'Edit Media Item Tag', 'bonestheme' ),
-				'update_item' => __( 'Update Media Item Tag', 'bonestheme' ),
-				'add_new_item' => __( 'Add New Media Item Tag', 'bonestheme' ),
-				'new_item_name' => __( 'New Media Item Tag Name', 'bonestheme' )
-			),
-			'show_admin_column' => true,
-			'show_ui' => true,
-			'query_var' => true,
-		)
-	);
+	// this adds your post categories to your custom post type
+	//register_taxonomy_for_object_type( 'category', 'media_item' );
+	// this adds your post tags to your custom post type
+	//register_taxonomy_for_object_type( 'post_tag', 'media_item' );
+	
+}
+
+// adding the function to the Wordpress init
+add_action( 'init', 'ad_space_custom_type');	
+/*
+register_taxonomy( 'media_item_cat', 
+	array('media_items'),
+	array('hierarchical' => true,
+		'labels' => array(
+			'name' => __( 'Ad Space Categories', 'bonestheme' ),
+			'singular_name' => __( 'Ad Space Category', 'bonestheme' ),
+			'search_items' =>  __( 'Search Ad Space Categories', 'bonestheme' ),
+			'all_items' => __( 'All Ad Space Categories', 'bonestheme' ),
+			'parent_item' => __( 'Parent Ad Space Category', 'bonestheme' ),
+			'parent_item_colon' => __( 'Parent Ad Space Category:', 'bonestheme' ),
+			'edit_item' => __( 'Edit Ad Space Category', 'bonestheme' ),
+			'update_item' => __( 'Update Ad Space Category', 'bonestheme' ),
+			'add_new_item' => __( 'Add New Ad Space Category', 'bonestheme' ),
+			'new_item_name' => __( 'New Ad Space Category Name', 'bonestheme' )
+		),
+		'show_admin_column' => true, 
+		'show_ui' => true,
+		'query_var' => true,
+		'rewrite' => array( 'slug' => 'media-item-cat' ),
+	)
+);
+
+// now let's add custom tags (these act like categories)
+register_taxonomy( 'media_item_tag', 
+	array('media_items'), // if you change the name of register_post_type( 'media_item', then you have to change this 
+	array('hierarchical' => false,    // if this is false, it acts like tags 
+		'labels' => array(
+			'name' => __( 'Ad Space Tags', 'bonestheme' ),
+			'singular_name' => __( 'Ad Space Tag', 'bonestheme' ),
+			'search_items' =>  __( 'Search Ad Space Tags', 'bonestheme' ),
+			'all_items' => __( 'All Ad Space Tags', 'bonestheme' ),
+			'parent_item' => __( 'Parent Ad Space Tag', 'bonestheme' ),
+			'parent_item_colon' => __( 'Parent Ad Space Tag:', 'bonestheme' ),
+			'edit_item' => __( 'Edit Ad Space Tag', 'bonestheme' ),
+			'update_item' => __( 'Update Ad Space Tag', 'bonestheme' ),
+			'add_new_item' => __( 'Add New Ad Space Tag', 'bonestheme' ),
+			'new_item_name' => __( 'New Ad Space Tag Name', 'bonestheme' )
+		),
+		'show_admin_column' => true,
+		'show_ui' => true,
+		'query_var' => true,
+	)
+);
+*/
 	
 /*
 // let's create the function for the custom type

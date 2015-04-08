@@ -161,6 +161,22 @@ OVERLAY & VIDEO STYLES
 	font-size:11px;
 }
 
+/*********************
+AD SPACE STYLES
+*********************/
+.advspcnt {
+	&.w-skyscr {
+		display:block;
+		float:right;
+		margin-left:-100%;
+		width:160px;
+		height:600px;
+	}
+	&.rect-3-1 {
+		display:none;
+	}
+}
+
 /******************************************
 PAGE SPECIFIC STYLES
 ******************************************/
@@ -259,6 +275,9 @@ body.page-template-page-custom-index {
 /* Single Media Item Page */
 body.single-media_items {
 	.hentry {
+		&.advactive {
+			padding-right:180px;
+		}
 		.entry-content {
 			padding-right:0;
 		}

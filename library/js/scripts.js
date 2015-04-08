@@ -275,6 +275,16 @@ jQuery(document).ready(function($) {
 		});*/
 	})
 	
+	$('.ADVSPCNT').each(function(k,v) {
+		thisAdContainer = $(this);
+		thisAdContainer.data('fadeInterval', setInterval(function() {
+			var current = thisAdContainer.children('.active');
+			var next = current.next().length > 0 ? current.next() : current.siblings().first();
+			current.removeClass('active');
+			next.addClass('active');
+		}, 20000));
+	});
+	
 /*****************************************************
  Page specific scripts
 */

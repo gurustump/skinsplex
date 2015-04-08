@@ -203,6 +203,57 @@ function skinsplex_register_media_item_metabox() {
 	) );
 }
 
+add_action( 'cmb2_init', 'skinsplex_register_ad_space_metabox' );
+
+function skinsplex_register_ad_space_metabox() {
+	$prefix = '_skinsplex_ad_space_';
+	
+	$cmb_ad_space_box = new_cmb2_box( array(
+		'id'            => $prefix . 'metabox',
+		'title'         => __( 'Ad Space Information', 'cmb2' ),
+		'object_types'  => array( 'ad_spaces', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'high',
+		'show_names'    => true, // Show field names on the left
+		// 'cmb_styles' => false, // false to disable the CMB stylesheet
+		// 'closed'     => true, // true to keep the metabox closed by default
+	) );
+	
+	$group_field_id = $cmb_ad_space_box->add_field( array(
+		'id'          => $prefix . 'group',
+		'type'        => 'group',
+		'description' => __( 'Generates multiple ads in this size', 'cmb2' ),
+		'options'     => array(
+			'group_title'   => __( 'Ad #{#}', 'cmb2' ), // {#} gets replaced by row number
+			'add_button'    => __( 'Add Another Ad', 'cmb2' ),
+			'remove_button' => __( 'Remove Ad', 'cmb2' ),
+			'sortable'      => true, // beta
+		),
+	) );
+
+	$cmb_ad_space_box->add_group_field( $group_field_id, array(
+		'name' => __( 'Ad Image', 'cmb2' ),
+		'desc' => __( 'Upload/Select an image or enter a URL', 'cmb2' ),
+		'id'   => 'image',
+		'type' => 'file',
+	) );
+
+	$cmb_ad_space_box->add_group_field( $group_field_id, array(
+		'name'        => __( 'Description', 'cmb2' ),
+		'description' => __( 'Enter the text that appears in the ad image', 'cmb2' ),
+		'id'          => 'description',
+		'type'        => 'textarea_small',
+	) );
+
+	$cmb_ad_space_box->add_group_field( $group_field_id, array(
+		'name'        => __( 'Link', 'cmb2' ),
+		'description' => __( 'Enter the URL where clicking this ad leads', 'cmb2' ),
+		'id'          => 'link',
+		'type'        => 'text_url',
+	) );
+
+}
+
 
 // add_action( 'cmb2_init', 'skinsplex_register_demo_metabox' );
 /**
