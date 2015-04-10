@@ -35,9 +35,10 @@
 								<a class="btn" href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register">Create an account</a>
 							</div>
 							<?php } ?>
+							
+							<?php echo do_shortcode('[ad-space slug="ad-300x100"]'); ?>
 						</div>
-						<?php $ad_160x600_object = get_posts(array('post_type'=>'ad_spaces','name'=>'ad-160x600')); 
-						$thisPostClass = isset($ad_160x600_object[0]) ? 'cf advactive' : 'cf'; ?>
+						<?php $thisPostClass = isset($ads_160x600[0]) ? 'cf advactive' : 'cf'; ?>
 						<article id="post-<?php the_ID(); ?>" <?php post_class($thisPostClass); ?> role="article" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 							<?php // checking whether this is in the preview media-item category
 							$mediaItemCatTerms = get_the_terms( get_the_ID(), 'media_item_cat'); 
@@ -106,21 +107,7 @@
 								<?php } ?>
 							</section> <?php // end article section ?>
 						</article> <?php // end article ?>
-						<?php if (isset($ad_160x600_object[0])) { ?>
-						<ul class="advspcnt w-skyscr ADVSPCNT">
-							<?php $ads_160x600 = get_post_meta($ad_160x600_object[0]->ID, '_skinsplex_ad_space_group', true);
-							foreach( (array) $ads_160x600 as $key => $ad) { 
-								echo adItemHtml($key, $ad);
-								/*
-								<li class="adv-<?php echo $ad[image_id]; ?><?php echo $key==0 ? ' active':''; ?>">
-									<a href="<?php echo $ad[link]; ?>">
-										<img src="<?php echo $ad[image]; ?>" alt="<?php echo $ad[description]; ?>" />
-									</a>
-								</li>
-								*/
-							} ?>
-						</ul>
-						<?php } ?>
+						<?php echo do_shortcode('[ad-space slug="ad-160x600" wrap="false"]'); ?>
 						
 						<?php endwhile; ?>
 

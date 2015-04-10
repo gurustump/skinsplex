@@ -218,6 +218,20 @@ function skinsplex_register_ad_space_metabox() {
 		// 'cmb_styles' => false, // false to disable the CMB stylesheet
 		// 'closed'     => true, // true to keep the metabox closed by default
 	) );
+
+	$cmb_ad_space_box->add_field( array(
+		'name'		=> __( 'Width', 'cmb2' ),
+		'desc'       => __( 'Enter the pixel width of the ad space', 'cmb2' ),
+		'id' 			=> $prefix . 'width',
+		'type'		=> 'text_small',
+	) );
+
+	$cmb_ad_space_box->add_field( array(
+		'name'		=> __( 'Height', 'cmb2' ),
+		'desc'       => __( 'Enter the pixel height of the ad space', 'cmb2' ),
+		'id' 			=> $prefix . 'height',
+		'type'		=> 'text_small',
+	) );
 	
 	$group_field_id = $cmb_ad_space_box->add_field( array(
 		'id'          => $prefix . 'group',

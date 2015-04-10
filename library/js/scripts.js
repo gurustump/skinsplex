@@ -275,10 +275,11 @@ jQuery(document).ready(function($) {
 		});*/
 	})
 	
+	var adContainers = [];
 	$('.ADVSPCNT').each(function(k,v) {
-		thisAdContainer = $(this);
-		thisAdContainer.data('fadeInterval', setInterval(function() {
-			var current = thisAdContainer.children('.active');
+		adContainers[k] = $(this);
+		adContainers[k].data('fadeInterval', setInterval(function() {
+			var current = adContainers[k].children('.active');
 			var next = current.next().length > 0 ? current.next() : current.siblings().first();
 			current.removeClass('active');
 			next.addClass('active');

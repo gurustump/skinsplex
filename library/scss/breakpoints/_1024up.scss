@@ -165,14 +165,14 @@ OVERLAY & VIDEO STYLES
 AD SPACE STYLES
 *********************/
 .advspcnt {
-	&.w-skyscr {
+	&.r-160x600 {
 		display:block;
 		float:right;
 		margin-left:-100%;
 		width:160px;
 		height:600px;
 	}
-	&.rect-3-1 {
+	&.r-300x100 {
 		display:none;
 	}
 }

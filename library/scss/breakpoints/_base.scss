@@ -569,15 +569,20 @@ AD SPACE STYLES
 		height:100%;
 		display:block;
 	}
-	&.w-skyscr {
+	&.r-160x600 {
 		display:none;
 	}
-	&.rect-3-1 {
+	&.r-300x100 {
 		padding:5px 0;
 		margin:10px auto;
 		text-align:center;
 		width:300px;
 		height:100px;
+	}
+}
+.video-wrapper {
+	.advspwrap {
+		background:rgba(0,0,0,.3);
 	}
 }
 

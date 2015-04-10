@@ -351,16 +351,6 @@ add_filter( 'wp_mail_from', function( $email ) {
 	return 'contact@skinsplex.com';
 });
 
-// function to contain HTML for each panel in an ad carousel
-function adItemHtml($key, $ad) {
-	$html = '<li class="adv-'.$ad[image_id].($key==0 ? ' active':'').'">';
-	$html .= '<a href="'.$ad[link].'">';
-	$html .= '<img src="'.$ad[image].'" alt="'.$ad[description].'" />';
-	$html .= '</a>';
-	$html .= '</li>';
-	return $html;
-}
-
 // SHORTCODES
 // Overriding default video shortcode
 
@@ -434,5 +424,34 @@ function video_player_shortcode($atts) {
 }
 add_shortcode('video-player', 'video_player_shortcode');
 */
+
+function ad_space_shortcode($atts) {
+	$a = shortcode_atts( array(
+		'slug' => '',
+		'wrap' => "true"
+	), $atts);
+	$wrap = $a['wrap'] == 'true';
+	
+	$ad_object = get_posts(array('post_type'=>'ad_spaces','name'=>$a['slug']));
+	$ads = get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_group', true);
+	if (!isset($ads[0])) {
+		return;
+	}
+	
+	if ($wrap) { $html = '<div class="advspwrap">'; }
+	$html .= '<ul class="advspcnt r-'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_width', true).'x'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_height', true).' ADVSPCNT">';
+	foreach( (array) $ads as $key => $ad) { 
+		$html .= '<li class="adv-'.$ad[image_id].($key==0 ? ' active':'').'">';
+		$html .= '<a href="'.$ad[link].'">';
+		$html .= '<img src="'.$ad[image].'" alt="'.$ad[description].'" />';
+		$html .= '</a>';
+		$html .= '</li>';
+	}
+	$html .= '</ul>';
+	if ($wrap) { $html .= '</div>'; }
+	
+	return $html;
+}
+add_shortcode('ad-space','ad_space_shortcode');
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>
