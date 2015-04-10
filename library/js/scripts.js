@@ -319,7 +319,7 @@ jQuery(document).ready(function($) {
 			margin:0,
 			nav:true,
 			dots:false,
-			loop:true,
+			loop:false,
 			navText:['previous','next'],
 			slideBy:2,
 			responsive: {
@@ -360,6 +360,11 @@ jQuery(document).ready(function($) {
 			onInitialized:owlNavVisibility,
 			onResized:owlNavVisibility
 		});
+		/*
+		thumbs.on('initialized.owl.carousel', function(event) {
+			console.log(event);
+		});
+		*/
 		/* 
 		// useful when owl carousel loop != true 
 		thumbs.on('changed.owl.carousel', function(event) {
@@ -448,13 +453,15 @@ jQuery(document).ready(function($) {
 			if (!selectedThumb) {
 				var selectedThumb = (instigator && instigator.hasClass('PREV')) ? (current.parents('.owl-item').prev().length > 0 ? current.parents('.owl-item').prev().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().last().find('.THUMBNAIL_ITEM')) : (current.parents('.owl-item').next().length > 0 ? current.parents('.owl-item').next().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().first().find('.THUMBNAIL_ITEM'))
 			}
-			current.removeClass('active');
-			selectedThumb.addClass('active');
+			selectedThumb.addClass('active').parent('.owl-item').siblings().find('.THUMBNAIL_ITEM').removeClass('active');
 			if (!selectedThumb.parent('.owl-item').hasClass('active')) {
 				if (instigator && instigator.hasClass('PREV')) {
 					thumbs.trigger('prev.owl.carousel');
-				} else {
+				} else if (instigator && instigator.hasClass('NEXT')) {
 					thumbs.trigger('next.owl.carousel');
+				} else {
+					var thisId = selectedThumb.attr('id');
+					thumbs.trigger('to.owl.carousel',Number(thisId.slice(thisId.indexOf('_')+1)),[200],true);
 				}
 			}
 			changeGalleryImage();

@@ -16,7 +16,7 @@ require_once( 'library/admin.php' );
 
 if (!is_admin()) {
 	wp_register_style( 'owl-stylesheet', get_stylesheet_directory_uri() . '/library/css/owl.carousel.css', array(), '', 'all' );
-	wp_register_script( 'owl-carousel', get_stylesheet_directory_uri() . '/library/js/libs/owl.carousel.min.js', array('jquery'), '2.0', false );
+	wp_register_script( 'owl-carousel', get_stylesheet_directory_uri() . '/library/js/libs/owl.carousel.js', array('jquery'), '2.0', false );
 	wp_register_style( 'video-js-stylesheet', get_stylesheet_directory_uri() . '/library/css/video-js.min.css', array(), '', 'all' );
 	wp_register_script( 'video-js', get_stylesheet_directory_uri() . '/library/js/libs/video.js', array('jquery'), '4.2', false );
 	wp_enqueue_style( 'owl-stylesheet' );

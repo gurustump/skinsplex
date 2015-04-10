@@ -48,7 +48,7 @@
 										<div class="thumbnail-gallery THUMBNAIL_GALLERY owl-carousel">
 										<?php foreach($sectionItems as $key => $item) {
 											$itemMeta = get_post_meta($item->ID); ?>
-											<div class="thumbnail-item THUMBNAIL_ITEM<?php if ($key==0) {echo ' active';} ?>">
+											<div id="thumbnailItem_<?php echo $key; ?>" class="thumbnail-item THUMBNAIL_ITEM<?php if ($key==0) {echo ' active';} ?>">
 												<a id="INDEX_ITEM_<?php echo $item->ID; ?>" href="<?php echo get_permalink($item->ID); ?>">
 													<?php echo get_the_post_thumbnail($item->ID, 'index-thumb'); ?>
 													<span class="item-title INDEX_TITLE"><?php echo $item->post_title; ?></span>
