@@ -38,7 +38,11 @@
 							
 							<?php echo do_shortcode('[ad-space slug="ad-300x100"]'); ?>
 						</div>
-						<?php $thisPostClass = isset($ads_160x600[0]) ? 'cf advactive' : 'cf'; ?>
+						<?php 
+						$ads_160x600_object = get_posts(array('post_type'=>'ad_spaces','name'=>'ad-160x600'));
+						$ads_160x600 = get_post_meta($ads_160x600_object[0]->ID, '_skinsplex_ad_space_group', true);
+						$thisPostClass = isset($ads_160x600[0]) ? 'cf advactive' : 'cf'; 
+						?>
 						<article id="post-<?php the_ID(); ?>" <?php post_class($thisPostClass); ?> role="article" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 							<?php // checking whether this is in the preview media-item category
 							$mediaItemCatTerms = get_the_terms( get_the_ID(), 'media_item_cat'); 
