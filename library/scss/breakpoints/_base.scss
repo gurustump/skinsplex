@@ -433,6 +433,13 @@ nav.active .nav.top-nav {
 	}
 	.status {
 		margin-top:0;
+		color:#ff0;
+		&.error {
+			background:rgba(255,0,0,.2);
+			color:#f00;
+			border:1px dotted #f00;
+			padding:5px;
+		}
 	}
 	.alt-links {
 		color:#aaa;

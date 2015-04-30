@@ -22,7 +22,11 @@ body.login {
 }
 
 
-#login {} /* the form box */
+#login { // the form box
+	#reg_passmail {
+		display:none;
+	}
+} 
 
 /*
 This is the Wordpress logo in the admin area.

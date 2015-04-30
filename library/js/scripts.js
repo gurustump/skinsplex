@@ -200,7 +200,7 @@ jQuery(document).ready(function($) {
 	
     // Perform AJAX login on form submit
     $('form#login').on('submit', function(e){
-        $('form#login p.status').show().text('Logging in, please wait...');
+        $('form#login p.status').show().removeClass('error').text('Logging in, please wait...');
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -212,15 +212,18 @@ jQuery(document).ready(function($) {
                 'security': $('form#login #security').val()
 			},
             success: function(data){
-                $('form#login p.status').hide();
-                $('form#login .OV_CLOSE').click();
-				$('.TRIGGER_LOGIN').parent('li').addClass('inactive');
-				$('.TRIGGER_LOGOUT').parent('li').removeClass('inactive');
+				console.log(data);
                 if (data.loggedin == true){
+					$('form#login p.status').removeClass('error').hide();
+					$('form#login .OV_CLOSE').click();
+					$('.TRIGGER_LOGIN').parent('li').addClass('inactive');
+					$('.TRIGGER_LOGOUT').parent('li').removeClass('inactive');
 					//console.log(data)
 					location.reload();
                     //document.location.href = ajax_login_object.redirecturl;
-                }
+                } else {
+					$('form#login p.status').addClass('error').text(data.message);
+				}
             }
         });
         e.preventDefault();
@@ -245,6 +248,7 @@ jQuery(document).ready(function($) {
                 if (data.loggedout == true){
 					//console.log(data)
                     //document.location.href = ajax_login_object.redirecturl;
+					location.reload();
                 }
             }
         });

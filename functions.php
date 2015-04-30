@@ -252,7 +252,7 @@ can replace these fonts, change it in your scss files
 and be up and running in seconds.
 */
 function bones_fonts() {
-  wp_enqueue_style('googleFonts', 'http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
+	wp_enqueue_style('googleFonts', 'http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
 }
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
@@ -321,8 +321,55 @@ function ajax_logout() {
 	wp_die();
 }
 
+// Add Password, Repeat Password and Are You Human fields to WordPress registration form
+// http://wp.me/p1Ehkq-gn
+
+add_action( 'register_form', 'extra_registration_fields' );
+function extra_registration_fields(){
+?>
+	<p>
+		<label for="password">Password<br/>
+		<input id="password" class="input" type="password" size="25" value="" name="password" />
+		</label>
+	</p>
+	<p>
+		<label for="repeat_password">Repeat password<br/>
+		<input id="repeat_password" class="input" type="password" size="25" value="" name="repeat_password" />
+		</label>
+	</p>
+	<?php /*<p>
+		<label for="are_you_human" style="font-size:11px">Sorry, but we must check if you are human. What is the name of website you are registering for?<br/>
+		<input id="are_you_human" class="input" type="text" tabindex="40" size="25" value="" name="are_you_human" />
+		</label>
+	</p>*/ ?>
+<?php
+}
+
+// Check the form for errors
+add_action( 'register_post', 'validate_extra_registration_fields', 10, 3 );
+function validate_extra_registration_fields($login, $email, $errors) {
+	if ( $_POST['password'] !== $_POST['repeat_password'] ) {
+		$errors->add( 'passwords_not_matched', "<strong>ERROR</strong>: Passwords must match" );
+	}
+	if ( strlen( $_POST['password'] ) < 6 ) {
+		$errors->add( 'password_too_short', "<strong>ERROR</strong>: Passwords must be at least six characters long" );
+	}
+	/*
+	if ( $_POST['are_you_human'] !== get_bloginfo( 'name' ) ) {
+		$errors->add( 'not_human', "<strong>ERROR</strong>: Your name is Bot? James Bot? Check bellow the form, there's a Back to [sitename] link." );
+	}
+	*/
+}
+
 // automatically login new registrants and drop them on the home page
 function auto_login_new_user( $user_id ) {
+	$userdata = array();
+	$userdata['ID'] = $user_id;
+	if ( $_POST['password'] !== '' ) {
+		$userdata['user_pass'] = $_POST['password'];
+	}
+	$new_user_id = wp_update_user( $userdata );
+	
 	$user = get_user_by('id', $user_id);
 	if ($user) {
 		wp_set_current_user($user_id);

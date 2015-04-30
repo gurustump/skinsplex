@@ -86,13 +86,17 @@ body.login {
   background: #000;
 }
 
-/* the form box */
+/* line 26, ../scss/login.scss */
+#login #reg_passmail {
+  display: none;
+}
+
 /*
 This is the Wordpress logo in the admin area.
 You'll have to load your own images and mess
 with the width and height.
 */
-/* line 32, ../scss/login.scss */
+/* line 36, ../scss/login.scss */
 .login h1 a {
   /*background: url(../images/login-logo.png) no-repeat top center; 
   text-indent: -9999px;*/
@@ -115,12 +119,12 @@ with the width and height.
   background-size: auto;
   padding-left: 33px;
 }
-/* line 53, ../scss/login.scss */
+/* line 57, ../scss/login.scss */
 .login h1 a:hover {
   color: #fff;
 }
 
-/* line 58, ../scss/login.scss */
+/* line 62, ../scss/login.scss */
 form {
   margin-left: 8px;
   padding: 26px 24px 46px;
@@ -131,7 +135,7 @@ form {
   box-shadow: none;
 }
 
-/* line 68, ../scss/login.scss */
+/* line 72, ../scss/login.scss */
 body form .input {
   font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
   font-weight: 200;
@@ -156,7 +160,7 @@ but since we're referencing the id, it should be easy.
 retina login logo
 */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-  /* line 98, ../scss/login.scss */
+  /* line 102, ../scss/login.scss */
   .login h1 a {
     background: url(../images/login-logo@2x.png) no-repeat top center;
     /* make sure to replace this! */
