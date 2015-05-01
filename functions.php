@@ -390,13 +390,14 @@ function add_favicon_admin() {
 add_action('login_head', 'add_favicon_admin');
 add_action('admin_head', 'add_favicon_admin');
 
+/**** NO LONGER NEEDED -- NOW USING WP MAIL SMTP plugin
 // changing default name and email address for system generated emails (like password recovery)
 add_filter( 'wp_mail_from_name', function( $name ) {
 	return 'Skinsplex Webmaster';
 });
 add_filter( 'wp_mail_from', function( $email ) {
 	return 'contact@skinsplex.com';
-});
+});*/
 
 // SHORTCODES
 // Overriding default video shortcode
