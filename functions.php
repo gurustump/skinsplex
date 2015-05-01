@@ -383,6 +383,33 @@ function auto_login_new_user( $user_id ) {
 }
 add_action( 'user_register', 'auto_login_new_user' );
 
+add_filter( 'wp_login_errors', 'forgot_password_confirm_text_filter', 10, 2 );
+function forgot_password_confirm_text_filter( $errors, $redirect_to )
+{
+   if( isset( $errors->errors['confirm'] ) )
+   {
+     // Use the magic __get method to retrieve the errors array:
+     $tmp = $errors->errors;   
+
+     // What text to modify:
+     $old_confirm = 'Check your e-mail for the confirmation link.';
+     $new_confirm = 'Check your e-mail for the confirmation link. It may take a few minutes to be delivered. If you cannot find it in your inbox, be sure to check your junkmail/spam folder.';
+
+     // Loop through the errors messages and modify the corresponding message:
+     foreach( $tmp['confirm'] as $index => $msg )
+     {
+       if( $msg === $old_confirm )
+           $tmp['confirm'][$index] = $new_confirm;        
+     }
+     // Use the magic __set method to override the errors property:
+     $errors->errors = $tmp;
+
+     // Cleanup:
+     unset( $tmp );
+   }  
+   return $errors;
+}
+
 // adding favicon to admin and login pages
 function add_favicon_admin() {
 	echo '<link rel="shortcut icon" href="' . get_stylesheet_directory_uri().'/favicon.png' . '" />';
