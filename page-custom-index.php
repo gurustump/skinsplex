@@ -45,6 +45,7 @@
 												</div>
 											</div>
 										</div>
+										<?php echo do_shortcode('[ad-space slug="ad-728x90"]'); ?>
 										<div class="thumbnail-gallery THUMBNAIL_GALLERY owl-carousel">
 										<?php foreach($sectionItems as $key => $item) {
 											$itemMeta = get_post_meta($item->ID); ?>

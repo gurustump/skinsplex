@@ -283,6 +283,7 @@ jQuery(document).ready(function($) {
 	$('.ADVSPCNT').each(function(k,v) {
 		adContainers[k] = $(this);
 		adContainers[k].data('fadeInterval', setInterval(function() {
+			if (adContainers[k].children().length <= 1) { return; }
 			var current = adContainers[k].children('.active');
 			var next = current.next().length > 0 ? current.next() : current.siblings().first();
 			current.removeClass('active');
@@ -484,12 +485,24 @@ jQuery(document).ready(function($) {
 			}, 30000);
 		}
 		
+		// for the 728x90 ad
+		function resizeAdSpace() {
+			var ad = $('.ADVSPCNT');
+			if (mobileDeviceType() == 'mobile') {
+				ad.height(gal.width() * 90 / 728);
+			} else {
+				ad.removeAttr('style');
+			}
+		}
+		
 		resizeBannerGallery();
 		changeGalleryImage();
+		resizeAdSpace();
 	
 		win.resize(function () {
 			waitForFinalEvent( function() {
 				resizeBannerGallery();
+				resizeAdSpace();
 			}, timeToWaitForLast, 'resizeIndex');
 		});
 		
