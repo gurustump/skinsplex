@@ -18,6 +18,22 @@
 								<video id="vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
 									<source src="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" type="video/mp4">
 								</video>
+								<input type="hidden" id="vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" />
+								
+								<div class="hidden">
+									<?php if ($itemMeta['_skinsplex_media_item_pre_video_link'][0]) { ?>
+									<video class="hide" id="pre_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
+										<source src="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" type="video/mp4">
+									</video>
+									<input type="hidden" id="pre_roll_vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" />
+									<?php } ?>
+									<?php if ($itemMeta['_skinsplex_media_item_post_video_link'][0]) { ?>
+									<video id="post_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
+										<source src="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" type="video/mp4">
+									</video>
+									<input id="post_roll_vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_post_video_link'][0]; ?>" />
+									<?php } ?>
+								</div>
 							</div>
 							<?php } else if (is_user_logged_in()) { ?>
 							<div class="video-controls">

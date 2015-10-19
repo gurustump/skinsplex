@@ -277,7 +277,7 @@ jQuery(document).ready(function($) {
 			e.preventDefault();
 			vidPlayerOv.dialog('open');
 		});*/
-	})
+	});
 	
 	var adContainers = [];
 	$('.ADVSPCNT').each(function(k,v) {
@@ -546,7 +546,7 @@ jQuery(document).ready(function($) {
 				autoOpen:false,
 				dialogClass:'vid-player-ov-container',
 				open: function() {
-					vidPlayer.play();
+					playVideo(vidPlayer);
 				},
 				close: function() {
 					vidPlayer.exitFullscreen().pause();
@@ -555,6 +555,28 @@ jQuery(document).ready(function($) {
 			$('.TRIGGER_VIDEO').click(function(e) {
 				e.preventDefault();
 				vidPlayerOv.dialog('open');
+			});
+		}
+	
+		function playVideo(vidPlayer) {
+			var pre = $('#pre_roll_vid_src');
+			var feature = $('#vid_src');
+			var post = $('#post_roll_vid_src');
+			if (pre.length > 0) {
+				console.log(pre)
+				console.log(pre.val())
+				vidPlayer.src(pre.val());
+			}
+			vidPlayer.play();
+			console.log(vidPlayer.currentSrc());
+			vidPlayer.on('ended', function() {
+				if (vidPlayer.currentSrc() == pre.val()) {
+					vidPlayer.src(feature.val());
+					vidPlayer.play();
+				} else if (vidPlayer.currentSrc() == feature.val() && post.length > 0) {
+					vidPlayer.src(post.val());
+					vidPlayer.play();
+				}
 			});
 		}
 	}

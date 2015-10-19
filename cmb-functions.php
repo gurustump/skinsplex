@@ -91,6 +91,20 @@ function skinsplex_register_media_item_metabox() {
 	) );
 
 	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Pre-Roll Video Link', 'cmb2' ),
+		'desc' => __( 'Upload/Select a video or enter a URL. This video will run before the main feature (optional).', 'cmb2' ),
+		'id'			=> $prefix . 'pre_video_link',
+		'type'		=> 'file',
+	) );
+
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Post-Roll Video Link', 'cmb2' ),
+		'desc' => __( 'Upload/Select a video or enter a URL. This video will show after the main feature (optional).', 'cmb2' ),
+		'id'			=> $prefix . 'post_video_link',
+		'type'		=> 'file',
+	) );
+
+	$cmb_media_item_box->add_field( array(
 		'name'		=> __( 'Director', 'cmb2' ),
 		'id'			=> $prefix . 'director',
 		'type'		=> 'text',

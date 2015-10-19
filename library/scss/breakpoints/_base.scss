@@ -516,6 +516,12 @@ OVERLAY & VIDEO STYLES
 				max-height:none;
 			}
 		}
+		.hidden {
+			visibility:hidden;
+			position:absolute;
+			z-index:-1;
+			overflow:hidden;
+		}
 	}
 }
 .vjs-skinsplex-skin {
