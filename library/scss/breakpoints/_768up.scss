@@ -49,6 +49,20 @@ NAVIGATION STYLES
 	}
 }
 
+
+
+.thumb-index {
+	max-width:none;
+	.thumb-index-inner {
+		& > ul {
+			& > li {
+				width:32%;
+				margin:0 1% 1% 0;
+			}
+		}
+	}
+}
+
 /*********************
 SIDEBARS & ASIDES
 *********************/

@@ -36,3 +36,13 @@ on larger screens.
 		} 
 	}
 }
+
+.thumb-index {
+	.thumb-index-inner {
+		& > ul {
+			& > li {
+				width:19%;
+			}
+		}
+	}
+}

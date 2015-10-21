@@ -157,6 +157,45 @@ Stylesheet: Tablet Landscape Stylsheet
 }
 
 
+
+.thumb-index {
+	.thumb-index-inner {
+		h2 {
+			padding-top:15px;
+			padding-bottom:15px;
+		}
+		& > ul {
+			margin-right:-1%;
+			& > li {
+				width:24%;
+				margin:0 1% 1% 0;
+				&.hide-3col {
+					display:block;
+				}
+				.item-content {
+					padding:15px 0;
+					& > * {
+						&.item-head, &.item-body {
+							padding:0 20px;
+						}
+						&.item-head {
+							font-size:26px;
+						}
+						&.item-body {
+							font-size:16px;
+						}
+						&.btn {
+							margin:0 20px;
+							bottom:15px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
 /*********************
 OVERLAY & VIDEO STYLES
 *********************/
@@ -271,6 +310,13 @@ body.page-template-page-custom-index {
 					background-color:rgba(255,0,0,.3);
 				}
 			}
+		}
+	}
+	.thumbnail-gallery-container {
+		position:relative;
+		.index-nav {
+			margin-left:90px;
+			margin-right:90px;
 		}
 	}
 }

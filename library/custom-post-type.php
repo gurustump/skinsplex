@@ -162,6 +162,46 @@ function ad_space_custom_type() {
 
 // adding the function to the Wordpress init
 add_action( 'init', 'ad_space_custom_type');	
+
+function module_post_type() { 
+	register_post_type( 'module', 
+		array( 'labels' => array(
+			'name' => __( 'Modules', 'bonestheme' ),
+			'singular_name' => __( 'Module', 'bonestheme' ),
+			'all_items' => __( 'All Modules', 'bonestheme' ), 
+			'add_new' => __( 'Add New', 'bonestheme' ),
+			'add_new_item' => __( 'Add New Module', 'bonestheme' ),
+			'edit' => __( 'Edit', 'bonestheme' ),
+			'edit_item' => __( 'Edit Module', 'bonestheme' ),
+			'new_item' => __( 'New Module', 'bonestheme' ),
+			'view_item' => __( 'View Module', 'bonestheme' ),
+			'search_items' => __( 'Search Modules', 'bonestheme' ),
+			'not_found' =>  __( 'Nothing found in the Database.', 'bonestheme' ),
+			'not_found_in_trash' => __( 'Nothing found in Trash', 'bonestheme' ),
+			'parent_item_colon' => ''
+			),
+			'description' => __( 'This is the module custom post type, mainly used for sections on the home page', 'bonestheme' ),
+			'public' => true,
+			'publicly_queryable' => true,
+			'exclude_from_search' => true,
+			'show_ui' => true,
+			'query_var' => true,
+			'menu_position' => 8, 
+			'menu_icon' => '',
+			'rewrite'	=> array( 'slug' => 'module', 'with_front' => false ),
+			'has_archive' => 'module',
+			'capability_type' => 'post',
+			'hierarchical' => false,
+			'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'sticky')
+		) 
+	);
+	
+	register_taxonomy_for_object_type( 'category', 'module' );
+	register_taxonomy_for_object_type( 'post_tag', 'module' );
+	
+}
+
+add_action( 'init', 'module_post_type');
 /*
 register_taxonomy( 'media_item_cat', 
 	array('media_items'),

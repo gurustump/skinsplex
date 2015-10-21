@@ -71,4 +71,12 @@ start customizing. All admin functions are located in lib/admin/
 			}
 		}
 	}
+	
+	.menu-icon-module {
+		.dashicons-before {
+			&:before {
+				content:"\f509";
+			}
+		}
+	}
 }

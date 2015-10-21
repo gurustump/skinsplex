@@ -47,6 +47,12 @@ $prefixes: ("-webkit-", "-moz-", "-ms-", "-o-",  "");
 	}
 }
 
+@mixin transition-delay($transition-delay...) {
+	@each $prefix in $prefixes {
+		#{$prefix}transition-delay: $transition-delay;
+	}
+}
+
 @mixin v-center {
 	@each $prefix in $prefixes {
 		@include transform(translateY(-50%));
@@ -119,4 +125,32 @@ probably best not to use it. I mean, were you going to anyway? */
 	clear:both;
 }
 
+// triangles
+@mixin tri($direction, $girth, $length, $color, $margin:0, $display:inline-block, $float:none) {
+	&:after {
+		content:"";
+		width:0;
+		height:0;
+		display:$display;
+		float:$float;
+		margin:$margin;
+		@if $direction == 'left' or $direction =='right' {
+		border-top:$girth solid transparent;
+		border-bottom:$girth solid transparent;
+		} @else {
+			border-left:$girth solid transparent;
+			border-right:$girth solid transparent;
+		}
+		@include v-center;
+		@if $direction == 'left' {
+			border-right:$length solid $color;
+		} @else if  $direction == 'right' {
+			border-left:$length solid $color;
+		} @else if  $direction == 'top' {
+			border-bottom:$length solid $color;
+		} @else {
+			border-top:$length solid $color;
+		}
+	}
+}
 

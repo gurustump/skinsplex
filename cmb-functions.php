@@ -50,20 +50,35 @@ function skinsplex_before_row_if_2( $field_args, $field ) {
 	}
 }
 
-// add_action( 'cmb2_init', 'skinsplex_register_media_item_metabox' );
+add_action( 'cmb2_init', 'skinsplex_register_index_grid_metabox' );
 
-function skinsplex_register_custom_index_metabox() {
-	$prefix = '_skinsplex_custom_index_';
+function skinsplex_register_index_grid_metabox() {
+	$prefix = '_skinsplex_index_grid_';
 	
 	$cmb_custom_index_box = new_cmb2_box( array(
-		'id'            => $prefix . 'custom_index_metabox',
-		'title'         => __( 'Custom Index Page Options', 'cmb2' ),
+		'id'            => $prefix . 'metabox',
+		'title'         => __( 'Index Grid Page Options', 'cmb2' ),
 		'object_types'  => array( 'page', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'high',
 		'show_names'    => true, // Show field names on the left
 		// 'cmb_styles' => false, // false to disable the CMB stylesheet
 		// 'closed'     => true, // true to keep the metabox closed by default
+	) );
+
+	$cmb_custom_index_box->add_field( array(
+		'name'             => __( 'Media Item Type', 'cmb2' ),
+		'desc'             => __( 'Choose what type of Media Items will be displayed on this page', 'cmb2' ),
+		'id'               => $prefix . 'select',
+		'type'             => 'select',
+		'show_option_none' => false,
+		'options'          => array(
+			'' 						=> __( 'All', 'cmb2' ),
+			'movies'  			=> __( 'Movies', 'cmb2' ),
+			'documentaries'	=> __( 'Documentaries', 'cmb2' ),
+			'series'     			=> __( 'Series', 'cmb2' ),
+			'previews'     		=> __( 'Previews', 'cmb2' ),
+		),
 	) );
 }
 

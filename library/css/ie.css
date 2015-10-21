@@ -302,31 +302,41 @@ NAVIGATION STYLES
   right: 0;
 }
 
+/* line 54, ../scss/breakpoints/_768up.scss */
+.thumb-index {
+  max-width: none;
+}
+/* line 58, ../scss/breakpoints/_768up.scss */
+.thumb-index .thumb-index-inner > ul > li {
+  width: 32%;
+  margin: 0 1% 1% 0;
+}
+
 /*********************
 SIDEBARS & ASIDES
 *********************/
-/* line 56, ../scss/breakpoints/_768up.scss */
+/* line 70, ../scss/breakpoints/_768up.scss */
 .sidebar {
   margin-top: 2.2em;
 }
 
-/* line 60, ../scss/breakpoints/_768up.scss */
+/* line 74, ../scss/breakpoints/_768up.scss */
 .widgettitle {
   border-bottom: 2px solid #444;
   margin-bottom: 0.75em;
 }
 
-/* line 65, ../scss/breakpoints/_768up.scss */
+/* line 79, ../scss/breakpoints/_768up.scss */
 .widget {
   padding: 0 10px;
   margin: 2.2em 0;
 }
-/* line 70, ../scss/breakpoints/_768up.scss */
+/* line 84, ../scss/breakpoints/_768up.scss */
 .widget ul li {
   margin-bottom: 0.75em;
   /* deep nesting */
 }
-/* line 78, ../scss/breakpoints/_768up.scss */
+/* line 92, ../scss/breakpoints/_768up.scss */
 .widget ul li ul {
   margin-top: 0.75em;
   padding-left: 1em;
@@ -351,7 +361,7 @@ you'll probably need to do quite a bit
 of overriding here if you styled them for
 mobile. Make sure to double check these!
 */
-/* line 186, ../scss/breakpoints/_768up.scss */
+/* line 200, ../scss/breakpoints/_768up.scss */
 .footer-links ul li {
   /*
   be careful with the depth of your menus.
@@ -365,24 +375,24 @@ mobile. Make sure to double check these!
 PAGE SPECIFIC STYLES
 ******************************************/
 /* Home/Category index pages */
-/* line 205, ../scss/breakpoints/_768up.scss */
+/* line 219, ../scss/breakpoints/_768up.scss */
 body.page-template-page-custom-index #inner-content {
   margin-top: 10px;
 }
-/* line 209, ../scss/breakpoints/_768up.scss */
+/* line 223, ../scss/breakpoints/_768up.scss */
 body.page-template-page-custom-index .banner-gallery .banner-heading {
   position: absolute;
   margin: 0;
   padding: 10px 15px;
   font-size: 6.5px;
 }
-/* line 218, ../scss/breakpoints/_768up.scss */
+/* line 232, ../scss/breakpoints/_768up.scss */
 body.page-template-page-custom-index .banner-gallery .navigation .hit-zone .btn span {
   display: inline;
 }
 
 /* Single Media Item Page */
-/* line 229, ../scss/breakpoints/_768up.scss */
+/* line 243, ../scss/breakpoints/_768up.scss */
 body.single-media_items .video-wrapper {
   position: relative;
   z-index: 1;
@@ -392,7 +402,7 @@ body.single-media_items .video-wrapper {
   margin: 0;
   border-bottom: 0;
 }
-/* line 238, ../scss/breakpoints/_768up.scss */
+/* line 252, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry {
   float: left;
   width: 100%;
@@ -404,22 +414,22 @@ body.single-media_items .hentry {
   padding-left: 340px;
   margin-left: -341px;
 }
-/* line 244, ../scss/breakpoints/_768up.scss */
+/* line 258, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry .entry-header {
   max-width: 721px;
 }
-/* line 247, ../scss/breakpoints/_768up.scss */
+/* line 261, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry .super-head {
   border-width: 1px 0;
   font-size: 24px;
   margin-left: 20px;
 }
-/* line 252, ../scss/breakpoints/_768up.scss */
+/* line 266, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry h1 {
   line-height: 40px;
   padding-left: 20px;
 }
-/* line 256, ../scss/breakpoints/_768up.scss */
+/* line 270, ../scss/breakpoints/_768up.scss */
 body.single-media_items .hentry .entry-content {
   border-left: 1px solid #333;
   padding-left: 20px;
@@ -440,6 +450,142 @@ be seen on the Desktop.
 /* line 13, ../scss/breakpoints/_1030up.scss */
 .nav.top-nav {
   position: static;
+}
+
+/* line 17, ../scss/breakpoints/_1030up.scss */
+.skpladv-mobile {
+  display: none;
+}
+
+/* line 20, ../scss/breakpoints/_1030up.scss */
+.skpladv-desktop {
+  display: block;
+}
+
+/******************************************
+PAGE SPECIFIC STYLES
+******************************************/
+/* Home/Category index pages */
+/* line 30, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container {
+  position: relative;
+  overflow: hidden;
+}
+/* line 33, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: -120px;
+  z-index: 1;
+  width: 120px;
+  height: 216px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: right 0.35s, left 0.35s;
+  -moz-transition: right 0.35s, left 0.35s;
+  -ms-transition: right 0.35s, left 0.35s;
+  -o-transition: right 0.35s, left 0.35s;
+  transition: right 0.35s, left 0.35s;
+}
+/* line 43, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active {
+  right: 0;
+}
+/* line 47, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav li a {
+  text-decoration: none;
+  line-height: 24px;
+  height: 24px;
+}
+/* line 55, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active .toggle-index-nav:after {
+  border-top: 0;
+  border-bottom: 8px solid white;
+}
+/* line 59, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active .toggle-index-nav .active-hide {
+  display: none;
+}
+/* line 62, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active .toggle-index-nav .active-show {
+  display: inline;
+}
+/* line 67, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .toggle-index-nav {
+  display: block;
+  position: absolute;
+  left: -44px;
+  bottom: 20px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  background: rgba(0, 0, 0, 0.9);
+  width: 60px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+/* line 130, ../scss/partials/_mixins.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .toggle-index-nav:after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: inline-block;
+  float: none;
+  margin: 0 0 9px 4px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: relative;
+  top: 50%;
+  border-top: 8px solid white;
+}
+/* line 83, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .toggle-index-nav .active-show {
+  display: none;
+}
+/* line 87, ../scss/breakpoints/_1030up.scss */
+body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .toggle-index-nav:hover:after {
+  border-top-color: red;
+  border-bottom-color: red;
 }
 
 /*

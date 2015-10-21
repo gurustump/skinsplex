@@ -45,3 +45,7 @@ start customizing. All admin functions are located in lib/admin/
 #adminmenu .menu-icon-ad_spaces.wp-menu-open a div.wp-menu-image:after {
   background-position: 8px -21px;
 }
+/* line 77, ../scss/admin.scss */
+#adminmenu .menu-icon-module .dashicons-before:before {
+  content: "\f509";
+}

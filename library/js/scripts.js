@@ -531,6 +531,14 @@ jQuery(document).ready(function($) {
 			$('.BANNER_NAV').removeClass('hit-zone-active');
 			//initiateThumbAnimation();
 		});
+		
+		$('.TOGGLE_INDEX_NAV').click(function(e) {
+			e.preventDefault();
+			$('.INDEX_NAV').toggleClass('active');
+		});
+		$('.INDEX_NAV li a').click(function() {
+			$('.INDEX_NAV').toggleClass('active');
+		});
 	}
 // Index (home & category) pages **************************
 	if ( typeof is_single_media_item === "undefined" ) var is_single_media_item = $('body').hasClass('single-media_items');

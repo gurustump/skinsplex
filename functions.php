@@ -503,7 +503,8 @@ add_shortcode('video-player', 'video_player_shortcode');
 function ad_space_shortcode($atts) {
 	$a = shortcode_atts( array(
 		'slug' => '',
-		'wrap' => "true"
+		'wrap' => "true",
+		'class' => ''
 	), $atts);
 	$wrap = $a['wrap'] == 'true';
 	
@@ -513,10 +514,10 @@ function ad_space_shortcode($atts) {
 		return;
 	}
 	
-	if ($wrap) { $html = '<div class="advspwrap">'; }
+	if ($wrap) { $html = '<div class="advspwrap skpladv-'.$a['class'].'">'; }
 	$html .= '<ul class="advspcnt r-'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_width', true).'x'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_height', true).' ADVSPCNT">';
 	foreach( (array) $ads as $key => $ad) { 
-		$html .= '<li class="adv-'.$ad[image_id].($key==0 ? ' active':'').'">';
+		$html .= '<li class="skpladv-'.$ad[image_id].($key==0 ? ' active':'').'">';
 		$html .= '<a target="_blank" href="'.$ad[link].'">';
 		$html .= '<img src="'.$ad[image].'" alt="'.$ad[description].'" />';
 		$html .= '</a>';
