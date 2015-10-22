@@ -261,6 +261,13 @@ function skinsplex_register_ad_space_metabox() {
 		'id' 			=> $prefix . 'height',
 		'type'		=> 'text_small',
 	) );
+
+	$cmb_ad_space_box->add_field( array(
+		'name'		=> __( 'Duration', 'cmb2' ),
+		'desc'       => __( 'Enter the time that each slide will show, in seconds, before the next one fades in. Decimals are okay. Example: 5.5', 'cmb2' ),
+		'id' 			=> $prefix . 'duration',
+		'type'		=> 'text_small',
+	) );
 	
 	$group_field_id = $cmb_ad_space_box->add_field( array(
 		'id'          => $prefix . 'group',

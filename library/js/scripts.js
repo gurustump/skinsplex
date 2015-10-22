@@ -281,6 +281,10 @@ jQuery(document).ready(function($) {
 	
 	var adContainers = [];
 	$('.ADVSPCNT').each(function(k,v) {
+		var id = $(this).attr('id').replace('skpladv_','');
+		var durInput = $('#skpladv_dur_'+id);
+		var duration = durInput.val() ? durInput.val() * 1000 : 10000;
+		console.log(duration);
 		adContainers[k] = $(this);
 		adContainers[k].data('fadeInterval', setInterval(function() {
 			if (adContainers[k].children().length <= 1) { return; }
@@ -288,7 +292,7 @@ jQuery(document).ready(function($) {
 			var next = current.next().length > 0 ? current.next() : current.siblings().first();
 			current.removeClass('active');
 			next.addClass('active');
-		}, 20000));
+		}, duration));
 	});
 	
 /*****************************************************

@@ -24,7 +24,7 @@
 									$pageSlug = $post->post_name;
 									$sectionItems = get_posts(
 										array(
-											'posts_per_page'=>15,
+											'posts_per_page'=>20,
 											'post_type'=>'media_items',
 											'media_item_cat'=>is_front_page() ? 'featured-home' : $pageSlug
 										)

@@ -515,7 +515,7 @@ function ad_space_shortcode($atts) {
 	}
 	
 	if ($wrap) { $html = '<div class="advspwrap skpladv-'.$a['class'].'">'; }
-	$html .= '<ul class="advspcnt r-'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_width', true).'x'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_height', true).' ADVSPCNT">';
+	$html .= '<ul id="skpladv_'.$ad_object[0]->ID.'" class="advspcnt r-'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_width', true).'x'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_height', true).' ADVSPCNT">';
 	foreach( (array) $ads as $key => $ad) { 
 		$html .= '<li class="skpladv-'.$ad[image_id].($key==0 ? ' active':'').'">';
 		$html .= '<a target="_blank" href="'.$ad[link].'">';
@@ -524,6 +524,7 @@ function ad_space_shortcode($atts) {
 		$html .= '</li>';
 	}
 	$html .= '</ul>';
+	$html .= '<input id="skpladv_dur_'.$ad_object[0]->ID.'" type="hidden" class="DURATION" value="'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_duration', true).'" />';
 	if ($wrap) { $html .= '</div>'; }
 	
 	return $html;
