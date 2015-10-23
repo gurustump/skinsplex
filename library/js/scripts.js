@@ -212,7 +212,7 @@ jQuery(document).ready(function($) {
                 'security': $('form#login #security').val()
 			},
             success: function(data){
-				console.log(data);
+				// console.log(data);
                 if (data.loggedin == true){
 					$('form#login p.status').removeClass('error').hide();
 					$('form#login .OV_CLOSE').click();
@@ -284,7 +284,7 @@ jQuery(document).ready(function($) {
 		var id = $(this).attr('id').replace('skpladv_','');
 		var durInput = $('#skpladv_dur_'+id);
 		var duration = durInput.val() ? durInput.val() * 1000 : 10000;
-		console.log(duration);
+		// console.log(duration);
 		adContainers[k] = $(this);
 		adContainers[k].data('fadeInterval', setInterval(function() {
 			if (adContainers[k].children().length <= 1) { return; }
@@ -460,7 +460,7 @@ jQuery(document).ready(function($) {
 			$('.BANNER_NAV').removeClass('banner-active hit-zone-active');
 			var current = thumbs.find('.THUMBNAIL_ITEM.active:first');
 			if (!selectedThumb) {
-				var selectedThumb = (instigator && instigator.hasClass('PREV')) ? (current.parents('.owl-item').prev().length > 0 ? current.parents('.owl-item').prev().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().last().find('.THUMBNAIL_ITEM')) : (current.parents('.owl-item').next().length > 0 ? current.parents('.owl-item').next().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().first().find('.THUMBNAIL_ITEM'))
+				var selectedThumb = (instigator && instigator.hasClass('PREV')) ? (current.parents('.owl-item').prev().length > 0 ? current.parents('.owl-item').prev().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().last().find('.THUMBNAIL_ITEM')) : (current.parents('.owl-item').next().find('.THUMBNAIL_ITEM').length > 0 ? current.parents('.owl-item').next().find('.THUMBNAIL_ITEM') : current.parents('.owl-item').siblings().first().find('.THUMBNAIL_ITEM'))
 			}
 			selectedThumb.addClass('active').parent('.owl-item').siblings().find('.THUMBNAIL_ITEM').removeClass('active');
 			if (!selectedThumb.parent('.owl-item').hasClass('active')) {
@@ -536,6 +536,7 @@ jQuery(document).ready(function($) {
 			//initiateThumbAnimation();
 		});
 		
+		/* Was using this when I was hiding the little menu at the end of the thumb nav on index pages. Now I have it showing all the time, so this is not needed.
 		$('.TOGGLE_INDEX_NAV').click(function(e) {
 			e.preventDefault();
 			$('.INDEX_NAV').toggleClass('active');
@@ -543,6 +544,7 @@ jQuery(document).ready(function($) {
 		$('.INDEX_NAV li a').click(function() {
 			$('.INDEX_NAV').toggleClass('active');
 		});
+		*/
 	}
 // Index (home & category) pages **************************
 	if ( typeof is_single_media_item === "undefined" ) var is_single_media_item = $('body').hasClass('single-media_items');
@@ -575,12 +577,12 @@ jQuery(document).ready(function($) {
 			var feature = $('#vid_src');
 			var post = $('#post_roll_vid_src');
 			if (pre.length > 0) {
-				console.log(pre)
-				console.log(pre.val())
+				/*console.log(pre)
+				console.log(pre.val())*/
 				vidPlayer.src(pre.val());
 			}
 			vidPlayer.play();
-			console.log(vidPlayer.currentSrc());
+			// console.log(vidPlayer.currentSrc());
 			vidPlayer.on('ended', function() {
 				if (vidPlayer.currentSrc() == pre.val()) {
 					vidPlayer.src(feature.val());

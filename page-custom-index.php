@@ -108,6 +108,7 @@
 													*/ ?>
 												</div>
 											<?php } ?>
+												<div class="non-thumbnail-item"></div>
 											</div>
 											<?php if (get_page_by_path('all-shows') || get_page_by_path('all-movies') || get_page_by_path('all-documentaries') || get_page_by_path('all-series') || get_page_by_path('all-previews')) { ?>
 											<div class="index-nav INDEX_NAV">

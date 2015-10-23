@@ -30,14 +30,17 @@ body.page-template-page-custom-index {
 	.thumbnail-gallery-container {
 		position:relative;
 		overflow:hidden;
+		padding-right:30px;
 		.index-nav {
 			margin:0;
 			position:absolute;
 			top:0;
-			right:-120px;
+			/*right:-120px; Decided to make this always visible; */
+			right:0;
 			z-index:1;
 			width:120px;
-			height:216px;
+			/* height:216px; Decided to make this shorter now that I'm not hiding and showing it */
+			height:160px;
 			@include box-sizing;
 			@include transition(right .35s, left .35s);
 			&.active {
@@ -65,13 +68,13 @@ body.page-template-page-custom-index {
 				}
 			}
 			.toggle-index-nav {
-				display:block;
+				display:none; /* decided to always have this nav visible, so am hiding the toggle button to hide and show it */
 				position:absolute;
-				left:-44px;
-				bottom:20px;
+				left:-94px;
+				top:66px;
 				@include transform(rotate(90deg));
 				background:rgba($black, .9);
-				width:60px;
+				width:160px;
 				height:28px;
 				line-height:28px;
 				text-align:center;

@@ -470,16 +470,19 @@ PAGE SPECIFIC STYLES
 body.page-template-page-custom-index .thumbnail-gallery-container {
   position: relative;
   overflow: hidden;
+  padding-right: 30px;
 }
-/* line 33, ../scss/breakpoints/_1030up.scss */
+/* line 34, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav {
   margin: 0;
   position: absolute;
   top: 0;
-  right: -120px;
+  /*right:-120px; Decided to make this always visible; */
+  right: 0;
   z-index: 1;
   width: 120px;
-  height: 216px;
+  /* height:216px; Decided to make this shorter now that I'm not hiding and showing it */
+  height: 160px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -491,42 +494,43 @@ body.page-template-page-custom-index .thumbnail-gallery-container .index-nav {
   -o-transition: right 0.35s, left 0.35s;
   transition: right 0.35s, left 0.35s;
 }
-/* line 43, ../scss/breakpoints/_1030up.scss */
+/* line 46, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active {
   right: 0;
 }
-/* line 47, ../scss/breakpoints/_1030up.scss */
+/* line 50, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav li a {
   text-decoration: none;
   line-height: 24px;
   height: 24px;
 }
-/* line 55, ../scss/breakpoints/_1030up.scss */
+/* line 58, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active .toggle-index-nav:after {
   border-top: 0;
   border-bottom: 8px solid white;
 }
-/* line 59, ../scss/breakpoints/_1030up.scss */
+/* line 62, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active .toggle-index-nav .active-hide {
   display: none;
 }
-/* line 62, ../scss/breakpoints/_1030up.scss */
+/* line 65, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav.active .toggle-index-nav .active-show {
   display: inline;
 }
-/* line 67, ../scss/breakpoints/_1030up.scss */
+/* line 70, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .toggle-index-nav {
-  display: block;
+  display: none;
+  /* decided to always have this nav visible, so am hiding the toggle button to hide and show it */
   position: absolute;
-  left: -44px;
-  bottom: 20px;
+  left: -94px;
+  top: 66px;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
   background: rgba(0, 0, 0, 0.9);
-  width: 60px;
+  width: 160px;
   height: 28px;
   line-height: 28px;
   text-align: center;
@@ -578,11 +582,11 @@ body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .to
   top: 50%;
   border-top: 8px solid white;
 }
-/* line 83, ../scss/breakpoints/_1030up.scss */
+/* line 86, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .toggle-index-nav .active-show {
   display: none;
 }
-/* line 87, ../scss/breakpoints/_1030up.scss */
+/* line 90, ../scss/breakpoints/_1030up.scss */
 body.page-template-page-custom-index .thumbnail-gallery-container .index-nav .toggle-index-nav:hover:after {
   border-top-color: red;
   border-bottom-color: red;
