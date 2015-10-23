@@ -282,6 +282,18 @@ function skinsplex_register_ad_space_metabox() {
 	) );
 
 	$cmb_ad_space_box->add_group_field( $group_field_id, array(
+		'name'             => __( 'Select Ad Type', 'cmb2' ),
+		'desc'             => __( 'Choose whether this ad is a simple image or a code block', 'cmb2' ),
+		'id'               => 'type',
+		'type'             => 'select',
+		'default'			=> 'image',
+		'options'          => array(
+			'image' => __( 'Image', 'cmb2' ),
+			'code'   => __( 'Code Block', 'cmb2' ),
+		),
+	) );
+
+	$cmb_ad_space_box->add_group_field( $group_field_id, array(
 		'name' => __( 'Ad Image', 'cmb2' ),
 		'desc' => __( 'Upload/Select an image or enter a URL', 'cmb2' ),
 		'id'   => 'image',
@@ -300,6 +312,13 @@ function skinsplex_register_ad_space_metabox() {
 		'description' => __( 'Enter the URL where clicking this ad leads', 'cmb2' ),
 		'id'          => 'link',
 		'type'        => 'text_url',
+	) );
+
+	$cmb_ad_space_box->add_group_field( $group_field_id, array(
+		'name' => __( 'Ad Code Block', 'cmb2' ),
+		'desc' => __( 'Enter the block of code for your ad. ', 'cmb2' ),
+		'id'   => 'code',
+		'type' => 'textarea_code',
 	) );
 
 }

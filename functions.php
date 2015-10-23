@@ -516,12 +516,18 @@ function ad_space_shortcode($atts) {
 	
 	if ($wrap) { $html = '<div class="advspwrap skpladv-'.$a['class'].'">'; }
 	$html .= '<ul id="skpladv_'.$ad_object[0]->ID.'" class="advspcnt r-'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_width', true).'x'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_height', true).' ADVSPCNT">';
-	foreach( (array) $ads as $key => $ad) { 
-		$html .= '<li class="skpladv-'.$ad[image_id].($key==0 ? ' active':'').'">';
-		$html .= '<a target="_blank" href="'.$ad[link].'">';
-		$html .= '<img src="'.$ad[image].'" alt="'.$ad[description].'" />';
-		$html .= '</a>';
-		$html .= '</li>';
+	foreach( (array) $ads as $key => $ad) {
+		if ($ad[type] == 'image') {
+			$html .= '<li class="skpladv-'.$ad[image_id].($key==0 ? ' active':'').'">';
+			$html .= '<a target="_blank" href="'.$ad[link].'">';
+			$html .= '<img src="'.$ad[image].'" alt="'.$ad[description].'" />';
+			$html .= '</a>';
+			$html .= '</li>';
+		} else if ($ad[type] == 'code') {
+			$html .= '<li class="skpladv'.($key==0 ? ' active':'').'">';
+			$html .= $ad[code];
+			$html .= '</li>';
+		}
 	}
 	$html .= '</ul>';
 	$html .= '<input id="skpladv_dur_'.$ad_object[0]->ID.'" type="hidden" class="DURATION" value="'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_duration', true).'" />';

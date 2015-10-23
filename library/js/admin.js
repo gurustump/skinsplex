@@ -11,6 +11,11 @@ jQuery(document).ready(function($) {
 	$('#page_template').change(function() {
 		toggleMetaboxes($);
 	});
+	
+	toggleAdType($, $('#_skinsplex_ad_space_group_repeat .cmb2_select'));
+	$('#_skinsplex_ad_space_group_repeat').on('change','.cmb2_select', function() {
+		toggleAdType($, $(this));
+	});
 });
 
 function toggleMetaboxes($) {
@@ -20,4 +25,12 @@ function toggleMetaboxes($) {
 	} else {
 		$('#_skinsplex_index_grid_metabox').hide();
 	}
+}
+
+function toggleAdType($, select) {
+	select.each(function(k,v) {
+		var selection = $(this).val() == 'image' ? '.cmb-type-textarea-code' : '.cmb-type-file, .cmb-type-textarea-small, .cmb-type-text-url';
+		$(this).closest('.cmb-field-list').find('.cmb-row').show();
+		$(this).closest('.cmb-field-list').find(selection).hide();
+	});
 }

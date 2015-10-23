@@ -585,8 +585,13 @@ AD SPACE STYLES
 		height:100%;
 		display:block;
 	}
-	li a img {
-		margin:0;
+	li {
+		img {
+			margin:0;
+		}
+		p {
+			display:block;
+		}
 	}
 	&.r-160x600 {
 		display:none;
