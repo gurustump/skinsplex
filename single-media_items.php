@@ -7,7 +7,7 @@
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						<?php $itemMeta = get_post_meta(get_the_ID()); ?>
 						<div class="video-wrapper">
-							<?php if (is_user_logged_in() && $itemMeta['_skinsplex_media_item_video_link'][0]) { ?>
+							<?php if (is_user_logged_in() && ($itemMeta['_skinsplex_media_item_vimeo_embed'][0] || $itemMeta['_skinsplex_media_item_video_link'][0])) { ?>
 							<div class="video-controls">
 								<a class="video-thumb TRIGGER_VIDEO" href="#">
 									<?php echo get_the_post_thumbnail(get_the_ID(), 'media-item-thumb'); ?>
@@ -15,10 +15,14 @@
 								<a class="btn TRIGGER_VIDEO" href="#">Play</a>
 							</div>
 							<div class="vid-player-container ov VID_PLAYER_OV OV">
-								<video id="vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
-									<source src="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" type="video/mp4">
-								</video>
-								<input type="hidden" id="vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" />
+								<?php if ($itemMeta['_skinsplex_media_item_vimeo_embed'][0]) { ?>
+									<?php echo $itemMeta['_skinsplex_media_item_vimeo_embed'][0]; ?>
+								<?php } else { ?>
+									<video id="vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
+										<source src="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" type="video/mp4">
+									</video>
+									<input type="hidden" id="vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" />
+								<?php } ?>
 								
 								<div class="hidden">
 									<?php if ($itemMeta['_skinsplex_media_item_pre_video_link'][0]) { ?>

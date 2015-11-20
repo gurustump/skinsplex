@@ -122,6 +122,9 @@ jQuery(document).ready(function($) {
 		waitForFinalEvent( function() {
 			adminBarMove = $('#wpadminbar').outerHeight()-1;
 			mobileDeviceBodyClass();
+			if (is_single_media_item && vidPlayerOv.children('iframe').length > 0) {
+				vidPlayerOv.children('iframe').css('margin-top', vidPlayerOv.children('iframe').height() / -2);
+			}
 		}, timeToWaitForLast, 'resizeWindow');
 	});
 	
@@ -550,20 +553,46 @@ jQuery(document).ready(function($) {
 	if ( typeof is_single_media_item === "undefined" ) var is_single_media_item = $('body').hasClass('single-media_items');
 	
 	if (is_single_media_item) {
-		if ($('#vidPlayer').length > 0) {
-			var vidPlayer = videojs('vidPlayer', {
-				/*'width':Math.min(1280,win.width()),
-				'height':Math.min(720,win.height())*/
-			});
-			var vidPlayerOv = $('.VID_PLAYER_OV')
+		var vidPlayerOv = $('.VID_PLAYER_OV');
+		var vidPlayer = false;
+		var vimframe = false;
+		var vimplayer = false;
+		if ($('#vidPlayer').length > 0 || vidPlayerOv.children('iframe').length > 0) {
+			if ($('#vidPlayer').length > 0) {
+				vidPlayer = videojs('vidPlayer', {
+					/*'width':Math.min(1280,win.width()),
+					'height':Math.min(720,win.height())*/
+				});
+			} else {
+				vimframe = vidPlayerOv.children('iframe');
+				vimframeFroog = vimframe[0];
+				vimplayer = $f(vimframeFroog);
+				vimplayer.addEvent('ready', function() {
+					// status.text('ready');
+					
+					// vimplayer.addEvent('pause', onPause);
+					// vimplayer.addEvent('finish', onFinish);
+					// vimplayer.addEvent('playProgress', onPlayProgress);
+				});
+			}
 			vidPlayerOv.dialog({
 				autoOpen:false,
 				dialogClass:'vid-player-ov-container',
 				open: function() {
-					playVideo(vidPlayer);
+					if (vidPlayer) {
+						playVideo(vidPlayer);
+					} else {
+						console.log(vimframe);
+						vimframe.css('margin-top', vimframe.height() / -2);
+						vimplayer.api('play');
+					}
 				},
 				close: function() {
-					vidPlayer.exitFullscreen().pause();
+					if (vidPlayer) {
+						vidPlayer.exitFullscreen().pause();
+					} else {
+						vimplayer.api('pause');
+					}
 				}
 			});
 			$('.TRIGGER_VIDEO').click(function(e) {

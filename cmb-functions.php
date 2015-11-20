@@ -99,8 +99,15 @@ function skinsplex_register_media_item_metabox() {
 	) );
 
 	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Vimeo Embed', 'cmb2' ),
+		'desc' => __( 'Enter embed code of your Vimeo video. If this is filled in, it will override the "Video Link" below.', 'cmb2' ),
+		'id'			=> $prefix . 'vimeo_embed',
+		'type'		=> 'textarea_code',
+	) );
+
+	$cmb_media_item_box->add_field( array(
 		'name'		=> __( 'Video Link', 'cmb2' ),
-		'desc' => __( 'Upload/Select a video or enter a URL', 'cmb2' ),
+		'desc' => __( 'Upload/Select a video or enter a URL. If "Vimeo Embed" is filled in above, this item will have no effect.', 'cmb2' ),
 		'id'			=> $prefix . 'video_link',
 		'type'		=> 'file',
 	) );

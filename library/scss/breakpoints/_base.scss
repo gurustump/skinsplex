@@ -502,6 +502,15 @@ OVERLAY & VIDEO STYLES
 	.vid-player-container {
 		z-index:auto !important;
 		background:rgba(0,0,0,.9);
+		& > iframe {
+			max-width:100%;
+			max-height:100%;
+			display:block;
+			margin:0 auto;
+			// @include v-center;
+			position:relative;
+			top:50%;
+		}
 		.video-js {
 			margin:0 auto;
 			width:100% !important;

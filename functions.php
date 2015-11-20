@@ -19,10 +19,12 @@ if (!is_admin()) {
 	wp_register_script( 'owl-carousel', get_stylesheet_directory_uri() . '/library/js/libs/owl.carousel.js', array('jquery'), '2.0', false );
 	wp_register_style( 'video-js-stylesheet', get_stylesheet_directory_uri() . '/library/css/video-js.min.css', array(), '', 'all' );
 	wp_register_script( 'video-js', get_stylesheet_directory_uri() . '/library/js/libs/video.js', array('jquery'), '4.2', false );
+	//wp_register_script( 'froogaloop', get_stylesheet_directory_uri() . '/library/js/libs/froogaloop.min.js', array('jquery'), '2', false ); // apparently this is already included in wordpress and I don't have to have it in our library
 	wp_enqueue_style( 'owl-stylesheet' );
 	wp_enqueue_script( 'owl-carousel' );
 	wp_enqueue_style( 'video-js-stylesheet' );
 	wp_enqueue_script( 'video-js' );
+	wp_enqueue_script( 'froogaloop' );
 }
 
 /*********************
