@@ -594,6 +594,10 @@ AD SPACE STYLES
 		height:100%;
 		display:block;
 	}
+	img[alt=Advertisement] {
+		width:1px;
+		height:1px;
+	}
 	li {
 		img {
 			margin:0;
