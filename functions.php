@@ -363,6 +363,12 @@ function validate_extra_registration_fields($login, $email, $errors) {
 	*/
 }
 
+// override send_password_change_email filter to prevent sending the email when a new user signs up
+// this is necessary because we added ability to choose one's password during registration...apparently the system automatically creates a password then checks the user's input, sees that there is a new password that doesn't match, and sends the change of password email
+if (in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) )) {
+	add_filter( 'send_password_change_email', '__return_false', $user, $userdata );
+}
+
 // automatically login new registrants and drop them on the home page
 function auto_login_new_user( $user_id ) {
 	$userdata = array();
