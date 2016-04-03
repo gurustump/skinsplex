@@ -104,7 +104,16 @@ function loadGravatars() {
   });
 	}
 } // end function
-
+function getUrlVars() {
+	var vars = [], hash;
+	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	for(var i = 0; i < hashes.length; i++) {
+		hash = hashes[i].split('=');
+		vars.push(hash[0]);
+		vars[hash[0]] = hash[1];
+	}
+	return vars;
+}
 
 /*
  * Put all your regular jQuery in here.
@@ -122,9 +131,6 @@ jQuery(document).ready(function($) {
 		waitForFinalEvent( function() {
 			adminBarMove = $('#wpadminbar').outerHeight()-1;
 			mobileDeviceBodyClass();
-			if (is_single_media_item && vidPlayerOv.children('iframe').length > 0) {
-				vidPlayerOv.children('iframe').css('margin-top', vidPlayerOv.children('iframe').height() / -2);
-			}
 		}, timeToWaitForLast, 'resizeWindow');
 	});
 	
@@ -262,8 +268,6 @@ jQuery(document).ready(function($) {
 	var vidPlayerOvs = []
 	$('.VID_PLAYER').each(function(k,v) {
 		vidPlayers[k] = videojs($(this).attr('id'), {
-			/*'width':Math.min(1280,win.width()),
-			'height':Math.min(720,win.height())*/
 		});
 		vidPlayerOvs[k] = $('.VID_PLAYER_OV')
 		vidPlayerOvs[k].dialog({
@@ -276,10 +280,6 @@ jQuery(document).ready(function($) {
 				vidPlayer.exitFullscreen().pause();
 			}
 		});
-		/*$('.TRIGGER_VIDEO').click(function(e) {
-			e.preventDefault();
-			vidPlayerOv.dialog('open');
-		});*/
 	});
 	
 	var adContainers = [];
@@ -513,7 +513,7 @@ jQuery(document).ready(function($) {
 			}, timeToWaitForLast, 'resizeIndex');
 		});
 		
-		thumbs.find('a').click(function(e) {
+		thumbs.find('a').not('.CLICK_THROUGH a').click(function(e) {
 			e.preventDefault();
 			pauseThumbAnimation();
 			selectThumb($(this).parents('.THUMBNAIL_ITEM'));
@@ -549,49 +549,118 @@ jQuery(document).ready(function($) {
 		});
 		*/
 	}
-// Index (home & category) pages **************************
+// Single Media Item pages **************************
 	if ( typeof is_single_media_item === "undefined" ) var is_single_media_item = $('body').hasClass('single-media_items');
 	
 	if (is_single_media_item) {
+		var urlVars = getUrlVars();
 		var vidPlayerOv = $('.VID_PLAYER_OV');
+		var vidPlayerWrap = vidPlayerOv.find('.VID_PLAYER_WRAPPER');
 		var vidPlayer = false;
 		var vimframe = false;
 		var vimplayer = false;
-		if ($('#vidPlayer').length > 0 || vidPlayerOv.children('iframe').length > 0) {
-			if ($('#vidPlayer').length > 0) {
-				vidPlayer = videojs('vidPlayer', {
-					/*'width':Math.min(1280,win.width()),
-					'height':Math.min(720,win.height())*/
-				});
+		var currentPlay = false;
+		var playPaused = false;
+		var playNextCountdown = false;
+		function resetVidVars() {
+			var currentPlay = false;
+			var playPaused = false;
+			var playNextCountdown = false;
+		}
+	
+		var pre = $('#pre_vimeo_embed').length > 0 ? $('#pre_vimeo_embed') : $('#pre_roll_vid_src');
+		var feature = $('#feature_vimeo_embed').length > 0 ? $('#feature_vimeo_embed') : $('#vid_src');
+		var post = $('#post_vimeo_embed').length > 0 ? $('#post_vimeo_embed') : $('#post_roll_vid_src');
+		currentPlayObj = {
+			'pre' : pre,
+			'feature' : feature,
+			'post' : post
+		}
+		var last = post.length > 0 ? post : feature;
+		var next_vid = $('#next_vid_url').val();
+		var credits_timecode = $('#credits_timecode').val();
+		var nextVidTriggered = false;
+		function playVideo() {
+			if (playPaused) {
+				if (vimplayer) {
+					vimplayer.api('play');
+				} else if (vidPlayer) {
+					vidPlayer.exitFullscreen().play();
+				}
+				playPaused = false;
+				return;
+			}
+			// if currentPlay is already set, change it to the next item. If not set, make it either "pre" or "feature" depending on whether there is a pre-roll
+			currentPlay = currentPlay == 'pre' ? 'feature' : currentPlay == 'feature' ? 'post' : pre.length > 0 ? 'pre' : 'feature';
+			if (currentPlayObj[currentPlay].is('#'+currentPlay+'_vimeo_embed')) {
+				$('#'+currentPlay+'_vimeo_embed iframe').clone().appendTo(vidPlayerWrap);
+				$('#vidPlayer').hide();
+			} else if (currentPlayObj[currentPlay].length > 0) {
+				vidPlayer.src(currentPlayObj[currentPlay].val());
 			} else {
-				vimframe = vidPlayerOv.children('iframe');
+				currentPlay = 'end';
+				vidPlayerOv.dialog('close');
+				resetVidVars();
+				return;
+			}
+			if (vidPlayerWrap.children('iframe').length > 0) {
+				function onFinish(id) {
+					vidPlayerWrap.children('iframe').remove();
+					playVideo();
+				}
+				function onPlayProgress(data) {
+					if (nextVidTriggered || last != currentPlayObj[currentPlay]) { return };
+					if (data.seconds > Number(credits_timecode) + 3) {
+						nextVidTriggered = true;
+						vidPlayerWrap.addClass('next-video-triggered');
+						var timeToPlayNext = parseInt(data.duration - data.seconds);
+						timeToPlayNext = timeToPlayNext > 15 ? 15 : timeToPlayNext;
+						playNextCountdown = setInterval(function() {
+							if (timeToPlayNext <= 0) {
+								clearInterval(playNextCountdown);
+								window.location.href = next_vid+'?autoplay';
+							}
+							$('.NEXT_PLAY_COUNTDOWN').text(timeToPlayNext);
+							timeToPlayNext --;
+						}, 1000);
+					}
+				}
+				vimframe = vidPlayerWrap.children('iframe');
 				vimframeFroog = vimframe[0];
 				vimplayer = $f(vimframeFroog);
 				vimplayer.addEvent('ready', function() {
-					// status.text('ready');
-					
-					// vimplayer.addEvent('pause', onPause);
-					// vimplayer.addEvent('finish', onFinish);
-					// vimplayer.addEvent('playProgress', onPlayProgress);
+					vimplayer.api('play');
+					vimplayer.addEvent('finish', onFinish);
+					if (credits_timecode) {
+						vimplayer.addEvent('playProgress', onPlayProgress);
+					}
 				});
+			} else {
+				vidPlayer.play();
+				vidPlayer.on('ended', function() {
+					playVideo();
+				});
+			}
+		}
+		if ($('#vidPlayer').length > 0 || vidPlayerWrap.children('iframe').length > 0) {
+			if ($('#vidPlayer').length > 0) {
+				vidPlayer = videojs('vidPlayer');
 			}
 			vidPlayerOv.dialog({
 				autoOpen:false,
 				dialogClass:'vid-player-ov-container',
 				open: function() {
-					if (vidPlayer) {
-						playVideo(vidPlayer);
-					} else {
-						console.log(vimframe);
-						vimframe.css('margin-top', vimframe.height() / -2);
-						vimplayer.api('play');
-					}
+					playVideo();
 				},
 				close: function() {
-					if (vidPlayer) {
-						vidPlayer.exitFullscreen().pause();
-					} else {
-						vimplayer.api('pause');
+					if (currentPlay != 'end') {
+						if (vidPlayer) {
+							vidPlayer.exitFullscreen().pause();
+						}
+						if (vimplayer) {
+							vimplayer.api('pause');
+						}
+						playPaused = true;
 					}
 				}
 			});
@@ -599,27 +668,15 @@ jQuery(document).ready(function($) {
 				e.preventDefault();
 				vidPlayerOv.dialog('open');
 			});
-		}
-	
-		function playVideo(vidPlayer) {
-			var pre = $('#pre_roll_vid_src');
-			var feature = $('#vid_src');
-			var post = $('#post_roll_vid_src');
-			if (pre.length > 0) {
-				/*console.log(pre)
-				console.log(pre.val())*/
-				vidPlayer.src(pre.val());
+			if (urlVars.indexOf('autoplay') > -1) {
+				$('.TRIGGER_VIDEO').click();
 			}
-			vidPlayer.play();
-			// console.log(vidPlayer.currentSrc());
-			vidPlayer.on('ended', function() {
-				if (vidPlayer.currentSrc() == pre.val()) {
-					vidPlayer.src(feature.val());
-					vidPlayer.play();
-				} else if (vidPlayer.currentSrc() == feature.val() && post.length > 0) {
-					vidPlayer.src(post.val());
-					vidPlayer.play();
+			$('.CANCEL_AUTOPLAY').click(function(e) {
+				e.preventDefault();
+				if (playNextCountdown) {
+					clearInterval(playNextCountdown);
 				}
+				vidPlayerWrap.removeClass('next-video-triggered');
 			});
 		}
 	}

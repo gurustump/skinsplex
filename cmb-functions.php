@@ -100,8 +100,22 @@ function skinsplex_register_media_item_metabox() {
 
 	$cmb_media_item_box->add_field( array(
 		'name'		=> __( 'Vimeo Embed', 'cmb2' ),
-		'desc' => __( 'Enter embed code of your Vimeo video. If this is filled in, it will override the "Video Link" below.', 'cmb2' ),
+		'desc' => __( 'Enter embed code of your Vimeo video. You can change the width and height in the embed code to 1280 by 720 if you want the video to start out larger. If this is filled in, it will override the "Video Link" below.', 'cmb2' ),
 		'id'			=> $prefix . 'vimeo_embed',
+		'type'		=> 'textarea_code',
+	) );
+
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Pre-Roll Video Embed', 'cmb2' ),
+		'desc' => __( 'Enter embed code of a Vimeo video. If this is filled in, it will override the "Pre-Roll Video Link" below (optional).', 'cmb2' ),
+		'id'			=> $prefix . 'pre_vimeo_embed',
+		'type'		=> 'textarea_code',
+	) );
+
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Post-Roll Video Embed', 'cmb2' ),
+		'desc' => __( 'Enter embed code of a Vimeo video. If this is filled in, it will override the "Post-Roll Video Link" below (optional).', 'cmb2' ),
+		'id'			=> $prefix . 'post_vimeo_embed',
 		'type'		=> 'textarea_code',
 	) );
 
@@ -124,6 +138,19 @@ function skinsplex_register_media_item_metabox() {
 		'desc' => __( 'Upload/Select a video or enter a URL. This video will show after the main feature (optional).', 'cmb2' ),
 		'id'			=> $prefix . 'post_video_link',
 		'type'		=> 'file',
+	) );
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Next Video', 'cmb2' ),
+		'desc'       => __( 'Select the video that will play when the first one and any post-roll videos end.', 'cmb2' ),
+		'id' 			=> $prefix . 'next_video',
+		'type'		=> 'post_search_text',
+		'post_type'=> 'media_items'
+	) );
+	$cmb_media_item_box->add_field( array(
+		'name'		=> __( 'Beginning of Credits Timecode', 'cmb2' ),
+		'desc'       => __( 'Ender the elapsed time, IN SECONDS, when the credits start to play. Used to calculate when the Next Play overlay should pop up.', 'cmb2' ),
+		'id' 			=> $prefix . 'credits_timecode',
+		'type'		=> 'text',
 	) );
 
 	$cmb_media_item_box->add_field( array(

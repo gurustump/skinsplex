@@ -63,6 +63,36 @@ NAVIGATION STYLES
 	}
 }
 
+
+/*********************
+OVERLAY & VIDEO STYLES
+*********************/
+.vid-player-ov-container {
+	.vid-player-container {
+		.vid-player-wrapper {
+			.vid-playing-next {
+				font-size:20px;
+				padding-top:0;
+				margin:0;
+				max-width:none;
+				width:50%;
+				overflow:visible;
+			}
+			&.next-video-triggered {
+				& > iframe {
+					margin-top:77px;
+					position:absolute;
+					width:45%;
+					height:45%;
+					right:0;
+					top:0;
+					max-height:none;
+				}
+			}
+		}
+	}
+}
+
 /*********************
 SIDEBARS & ASIDES
 *********************/

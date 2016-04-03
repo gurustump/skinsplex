@@ -108,6 +108,25 @@
 													*/ ?>
 												</div>
 											<?php } ?>
+												<?php if (get_page_by_path('all-shows') || get_page_by_path('all-movies') || get_page_by_path('all-documentaries') || get_page_by_path('all-series') || get_page_by_path('all-previews')) { ?>
+												<div class="thumbnail-item CLICK_THROUGH">
+														<?php if (get_page_by_path('all-shows')) { ?>
+														<div><a href="<?php echo get_the_permalink(get_page_by_path('all-shows')); ?>">All Shows, A-Z</a></div>
+														<?php } ?>
+														<?php if (get_page_by_path('all-movies')) { ?>
+														<div><a href="<?php echo get_the_permalink(get_page_by_path('all-movies')); ?>">Movies</a></div>
+														<?php } ?>
+														<?php if (get_page_by_path('all-documentaries')) { ?>
+														<div><a href="<?php echo get_the_permalink(get_page_by_path('all-documentaries')); ?>">Documentaries</a></div>
+														<?php } ?>
+														<?php if (get_page_by_path('all-series')) { ?>
+														<div><a href="<?php echo get_the_permalink(get_page_by_path('all-series')); ?>">Series</a></div>
+														<?php } ?>
+														<?php if (get_page_by_path('all-previews')) { ?>
+														<div><a href="<?php echo get_the_permalink(get_page_by_path('all-previews')); ?>">Previews</a></div>
+														<?php } ?>
+												</div>
+												<?php } ?>
 												<div class="non-thumbnail-item"></div>
 											</div>
 											<?php if (get_page_by_path('all-shows') || get_page_by_path('all-movies') || get_page_by_path('all-documentaries') || get_page_by_path('all-series') || get_page_by_path('all-previews')) { ?>

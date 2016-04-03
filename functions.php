@@ -89,6 +89,7 @@ if ( ! isset( $content_width ) ) {
 add_image_size( 'index-thumb', 160, 90, true );
 add_image_size( 'index-banner', 1280, 512, true );
 add_image_size( 'media-item-thumb', 320, 180, true );
+add_image_size( 'media-item-medium', 640, 360, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -117,6 +118,7 @@ function bones_custom_image_sizes( $sizes ) {
         'index-thumb' => __('160px by 90px'),
         'index-banner' => __('1280px by 512px'),
         'media-item-thumb' => __('320px by 180px'),
+        'media-item-medium' => __('640px by 360px'),
     ) );
 }
 
@@ -267,6 +269,7 @@ add_action('wp_enqueue_scripts', 'bones_fonts');
 	) );
 
 require_once( 'cmb-functions.php' );
+require_once( 'cmb2-extra-functions/cmb2_post_search_field.php' );
 
 
 add_filter('wp_nav_menu_items','add_items_to_main_menu', 10, 2);

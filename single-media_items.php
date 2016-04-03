@@ -15,27 +15,64 @@
 								<a class="btn TRIGGER_VIDEO" href="#">Play</a>
 							</div>
 							<div class="vid-player-container ov VID_PLAYER_OV OV">
-								<?php if ($itemMeta['_skinsplex_media_item_vimeo_embed'][0]) { ?>
-									<?php echo $itemMeta['_skinsplex_media_item_vimeo_embed'][0]; ?>
-								<?php } else { ?>
+								<div class="vid-player-wrapper VID_PLAYER_WRAPPER">
 									<video id="vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
 										<source src="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" type="video/mp4">
 									</video>
-									<input type="hidden" id="vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" />
-								<?php } ?>
+									<?php if ($itemMeta['_skinsplex_media_item_next_video'][0]) { ?>
+									<div class="vid-playing-next">
+										<p>Playing next in <span class="next-play-countdown NEXT_PLAY_COUNTDOWN"></span> seconds:</p>
+										<h3><a href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>"><?php echo get_the_title($itemMeta['_skinsplex_media_item_next_video'][0]); ?></a></h3>
+										<a class="video-thumb" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>">
+											<?php echo get_the_post_thumbnail($itemMeta['_skinsplex_media_item_next_video'][0], 'media-item-medium'); ?>
+										</a>
+										<div class="actions">
+											<a class="cancel CANCEL_AUTOPLAY">Cancel Autoplay</a>
+											<a class="play-now PLAY_NOW" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>">Play Now</a>
+										</div>
+									</div>
+									<?php } ?>
+								</div>
 								
 								<div class="hidden">
-									<?php if ($itemMeta['_skinsplex_media_item_pre_video_link'][0]) { ?>
-									<video class="hide" id="pre_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
+									// pre vimeo
+									<?php if ($itemMeta['_skinsplex_media_item_pre_vimeo_embed'][0]) { ?>
+									<div class="hide" id="pre_vimeo_embed">
+										<?php echo $itemMeta['_skinsplex_media_item_pre_vimeo_embed'][0]; ?>
+									</div>
+									// pre embed
+									<?php } else if ($itemMeta['_skinsplex_media_item_pre_video_link'][0]) { ?>
+									<?php /* <video class="hide" id="pre_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
 										<source src="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" type="video/mp4">
-									</video>
+									</video> */ ?>
 									<input type="hidden" id="pre_roll_vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" />
 									<?php } ?>
-									<?php if ($itemMeta['_skinsplex_media_item_post_video_link'][0]) { ?>
-									<video id="post_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
+									// feature vimeo
+									<?php if ($itemMeta['_skinsplex_media_item_vimeo_embed'][0]) { ?>
+									<div id="feature_vimeo_embed">
+										<?php echo $itemMeta['_skinsplex_media_item_vimeo_embed'][0]; ?>
+									</div>
+									// feature embed
+									<?php } else { ?>
+									<input type="hidden" id="vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" />
+									<?php } ?>
+									// post vimeo
+									<?php if ($itemMeta['_skinsplex_media_item_post_vimeo_embed'][0]) { ?>
+									<div class="hide" id="post-vimeo-embed">
+										<?php echo $itemMeta['_skinsplex_media_item_post_vimeo_embed'][0]; ?>
+									</div>
+									// post embed
+									<?php } else if ($itemMeta['_skinsplex_media_item_post_video_link'][0]) { ?>
+									<?php /*<video id="post_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
 										<source src="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" type="video/mp4">
-									</video>
+									</video> */ ?>
 									<input id="post_roll_vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_post_video_link'][0]; ?>" />
+									<?php } ?>
+									<?php if ($itemMeta['_skinsplex_media_item_next_video'][0]) { ?>
+									<input id="next_vid_url" value="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>" />
+									<?php } ?>
+									<?php if ($itemMeta['_skinsplex_media_item_credits_timecode'][0]) { ?>
+									<input id="credits_timecode" value="<?php echo $itemMeta['_skinsplex_media_item_credits_timecode'][0]; ?>" />
 									<?php } ?>
 								</div>
 							</div>
@@ -67,10 +104,12 @@
 							<?php // checking whether this is in the preview media-item category
 							$mediaItemCatTerms = get_the_terms( get_the_ID(), 'media_item_cat'); 
 							$isPreview = false;
-							foreach ($mediaItemCatTerms as $term) {
-								if ($term->slug == 'previews') {
-									$isPreview = true;
-									break;
+							if ($mediaItemCatTerms) {
+								foreach ($mediaItemCatTerms as $term) {
+									if ($term->slug == 'previews') {
+										$isPreview = true;
+										break;
+									}
 								}
 							} ?> 
 							<header class="article-header entry-header">
