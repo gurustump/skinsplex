@@ -631,7 +631,7 @@ jQuery(document).ready(function($) {
 				vimplayer.addEvent('ready', function() {
 					vimplayer.api('play');
 					vimplayer.addEvent('finish', onFinish);
-					if (credits_timecode) {
+					if (credits_timecode && next_vid) {
 						vimplayer.addEvent('playProgress', onPlayProgress);
 					}
 				});
