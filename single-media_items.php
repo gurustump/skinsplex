@@ -22,13 +22,13 @@
 									<?php if ($itemMeta['_skinsplex_media_item_next_video'][0]) { ?>
 									<div class="vid-playing-next">
 										<p>Playing next in <span class="next-play-countdown NEXT_PLAY_COUNTDOWN"></span> seconds:</p>
-										<h3><a href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>"><?php echo get_the_title($itemMeta['_skinsplex_media_item_next_video'][0]); ?></a></h3>
-										<a class="video-thumb" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>">
+										<h3><a href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>?autoplay"><?php echo get_the_title($itemMeta['_skinsplex_media_item_next_video'][0]); ?></a></h3>
+										<a class="video-thumb" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>?autoplay">
 											<?php echo get_the_post_thumbnail($itemMeta['_skinsplex_media_item_next_video'][0], 'media-item-medium'); ?>
 										</a>
 										<div class="actions">
 											<a class="cancel CANCEL_AUTOPLAY">Cancel Autoplay</a>
-											<a class="play-now PLAY_NOW" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>">Play Now</a>
+											<a class="play-now PLAY_NOW" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>?autoplay">Play Now</a>
 										</div>
 									</div>
 									<?php } ?>
