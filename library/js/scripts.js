@@ -612,6 +612,15 @@ jQuery(document).ready(function($) {
 					if (nextVidTriggered || last != currentPlayObj[currentPlay]) { return };
 					if (data.seconds > Number(credits_timecode) + 3) {
 						nextVidTriggered = true;
+						if (document.exitFullscreen) {
+							document.exitFullscreen();
+						} else if (document.msExitFullscreen) {
+							document.msExitFullscreen();
+						} else if (document.mozCancelFullScreen) {
+							document.mozCancelFullScreen();
+						} else if (document.webkitExitFullscreen) {
+							document.webkitExitFullscreen();
+						}
 						vidPlayerWrap.addClass('next-video-triggered');
 						var timeToPlayNext = parseInt(data.duration - data.seconds);
 						timeToPlayNext = timeToPlayNext > 15 ? 15 : timeToPlayNext;
@@ -631,7 +640,7 @@ jQuery(document).ready(function($) {
 				vimplayer.addEvent('ready', function() {
 					vimplayer.api('play');
 					vimplayer.addEvent('finish', onFinish);
-					if (credits_timecode && next_vid) {
+					if (credits_timecode && next_vid && !mobileDeviceType()) {
 						vimplayer.addEvent('playProgress', onPlayProgress);
 					}
 				});
