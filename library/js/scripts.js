@@ -562,6 +562,8 @@ jQuery(document).ready(function($) {
 		var currentPlay = false;
 		var playPaused = false;
 		var playNextCountdown = false;
+		var playNextMobileTriggered = false;
+		var playNextMobileCountdown = false;
 		function resetVidVars() {
 			var currentPlay = false;
 			var playPaused = false;
@@ -611,27 +613,31 @@ jQuery(document).ready(function($) {
 				function onPlayProgress(data) {
 					if (nextVidTriggered || last != currentPlayObj[currentPlay]) { return };
 					if (data.seconds > Number(credits_timecode) + 3) {
-						nextVidTriggered = true;
-						if (document.exitFullscreen) {
-							document.exitFullscreen();
-						} else if (document.msExitFullscreen) {
-							document.msExitFullscreen();
-						} else if (document.mozCancelFullScreen) {
-							document.mozCancelFullScreen();
-						} else if (document.webkitExitFullscreen) {
-							document.webkitExitFullscreen();
-						}
-						vidPlayerWrap.addClass('next-video-triggered');
-						var timeToPlayNext = parseInt(data.duration - data.seconds);
-						timeToPlayNext = timeToPlayNext > 15 ? 15 : timeToPlayNext;
-						playNextCountdown = setInterval(function() {
-							if (timeToPlayNext <= 0) {
-								clearInterval(playNextCountdown);
-								window.location.href = next_vid+'?autoplay';
+						if (mobileDeviceType() == 'mobile' || mobileDeviceType() == 'tablet') {
+							playNextMobileTriggered = true;
+						} else {
+							nextVidTriggered = true;
+							if (document.exitFullscreen) {
+								document.exitFullscreen();
+							} else if (document.msExitFullscreen) {
+								document.msExitFullscreen();
+							} else if (document.mozCancelFullScreen) {
+								document.mozCancelFullScreen();
+							} else if (document.webkitExitFullscreen) {
+								document.webkitExitFullscreen();
 							}
-							$('.NEXT_PLAY_COUNTDOWN').text(timeToPlayNext);
-							timeToPlayNext --;
-						}, 1000);
+							vidPlayerWrap.addClass('next-video-triggered');
+							var timeToPlayNext = parseInt(data.duration - data.seconds);
+							timeToPlayNext = timeToPlayNext > 15 ? 15 : timeToPlayNext;
+							playNextCountdown = setInterval(function() {
+								if (timeToPlayNext <= 0) {
+									clearInterval(playNextCountdown);
+									window.location.href = next_vid+'?autoplay';
+								}
+								$('.NEXT_PLAY_COUNTDOWN').text(timeToPlayNext);
+								timeToPlayNext --;
+							}, 1000);
+						}
 					}
 				}
 				vimframe = vidPlayerWrap.children('iframe');
@@ -640,7 +646,7 @@ jQuery(document).ready(function($) {
 				vimplayer.addEvent('ready', function() {
 					vimplayer.api('play');
 					vimplayer.addEvent('finish', onFinish);
-					if (credits_timecode && next_vid && !mobileDeviceType()) {
+					if (credits_timecode && next_vid) {
 						vimplayer.addEvent('playProgress', onPlayProgress);
 					}
 				});
@@ -662,6 +668,18 @@ jQuery(document).ready(function($) {
 					playVideo();
 				},
 				close: function() {
+					if ((mobileDeviceType() == 'mobile' || mobileDeviceType() == 'tablet') && next_vid && playNextMobileTriggered) {
+						$('.VID_PLAYING_NEXT_MOBILE').addClass('next-video-triggered');
+						var mobileCounter = $('.NEXT_PLAY_COUNTDOWN_MOBILE');
+						playNextMobileCountdown = setInterval(function() {
+							if (Number(mobileCounter.text()) <= 0) {
+								clearInterval(playNextMobileCountdown);
+								window.location.href = next_vid;
+								return;
+							}
+							mobileCounter.text(Number(mobileCounter.text() - 1));
+						}, 1000);
+					}
 					if (currentPlay != 'end') {
 						if (vidPlayer) {
 							vidPlayer.exitFullscreen().pause();
@@ -686,6 +704,13 @@ jQuery(document).ready(function($) {
 					clearInterval(playNextCountdown);
 				}
 				vidPlayerWrap.removeClass('next-video-triggered');
+			});
+			$('.CANCEL_AUTOPLAY_MOBILE').click(function(e) {
+				e.preventDefault();
+				if (playNextMobileCountdown) {
+					clearInterval(playNextMobileCountdown);
+				}
+				$('.VID_PLAYING_NEXT_MOBILE').removeClass('next-video-triggered');
 			});
 		}
 	}

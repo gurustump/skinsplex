@@ -1669,6 +1669,58 @@ body.single-media_items {
 		margin:0 auto;
 		text-align:center;
 	}
+	.video-controls {
+		position:relative;
+	}
+	.vid-playing-next-mobile {
+		display:none;
+		position:absolute;
+		top:0;
+		z-index:1;
+		background:#222;
+		&.next-video-triggered {
+			display:block;
+		}
+		p {
+			margin:0;
+			.next-play-countdown {
+				color:$skins-red;
+			}
+		}
+		h3 {
+			margin:0;
+			height:25px;
+			margin-bottom:-25px;
+			position:relative;
+			z-index:2;
+			background:rgba(0,0,0,.65);
+			a {
+				color:$skins-yellow;
+			}
+		}
+		.video-thumb {
+			margin-bottom:0;
+		}
+		.actions {
+			height:40px;
+			text-align:left;
+			a {
+				height:30px;
+				line-height:30px;
+				display:inline-block;
+				color:$skins-red;
+				text-transform:uppercase;
+				text-decoration:none;
+				cursor:pointer;
+				&:hover {
+					color:darken($skins-red, 20%);
+				}
+				&.cancel {
+					float:right;
+				}
+			}
+		}
+	}
 	.video-login {
 		h2 {
 			margin:0 0 10px;

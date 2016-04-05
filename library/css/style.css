@@ -3455,14 +3455,78 @@ body.single-media_items .video-login, body.single-media_items .video-controls {
   margin: 0 auto;
   text-align: center;
 }
-/* line 1673, ../scss/breakpoints/_base.scss */
+/* line 1672, ../scss/breakpoints/_base.scss */
+body.single-media_items .video-controls {
+  position: relative;
+}
+/* line 1675, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  background: #222;
+}
+/* line 1681, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile.next-video-triggered {
+  display: block;
+}
+/* line 1684, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile p {
+  margin: 0;
+}
+/* line 1686, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile p .next-play-countdown {
+  color: #ff0d00;
+}
+/* line 1690, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile h3 {
+  margin: 0;
+  height: 25px;
+  margin-bottom: -25px;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.65);
+}
+/* line 1697, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile h3 a {
+  color: #faff08;
+}
+/* line 1701, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile .video-thumb {
+  margin-bottom: 0;
+}
+/* line 1704, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile .actions {
+  height: 40px;
+  text-align: left;
+}
+/* line 1707, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile .actions a {
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  color: #ff0d00;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* line 1715, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile .actions a:hover {
+  color: #990800;
+}
+/* line 1718, ../scss/breakpoints/_base.scss */
+body.single-media_items .vid-playing-next-mobile .actions a.cancel {
+  float: right;
+}
+/* line 1725, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-login h2 {
   margin: 0 0 10px;
   width: 320px;
   height: 180px;
   background-repeat: no-repeat;
 }
-/* line 1678, ../scss/breakpoints/_base.scss */
+/* line 1730, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-login h2 span {
   display: block;
   height: 100%;
@@ -3475,25 +3539,25 @@ body.single-media_items .video-login h2 span {
   box-sizing: border-box;
   line-height: 32px;
 }
-/* line 1687, ../scss/breakpoints/_base.scss */
+/* line 1739, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-login > span {
   display: block;
   margin-bottom: 8px;
 }
-/* line 1692, ../scss/breakpoints/_base.scss */
+/* line 1744, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-thumb {
   display: inline-block;
   margin-bottom: 15px;
   background: black;
   max-width: 100%;
 }
-/* line 1698, ../scss/breakpoints/_base.scss */
+/* line 1750, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-thumb:before, body.single-media_items .video-thumb:after {
   left: 50%;
   top: 50%;
   z-index: 1;
 }
-/* line 1703, ../scss/breakpoints/_base.scss */
+/* line 1755, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-thumb:before {
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -3501,7 +3565,7 @@ body.single-media_items .video-thumb:before {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1706, ../scss/breakpoints/_base.scss */
+/* line 1758, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-thumb:after {
   -webkit-transform: translate(-38%, -47%);
   -moz-transform: translate(-38%, -47%);
@@ -3509,7 +3573,7 @@ body.single-media_items .video-thumb:after {
   -o-transform: translate(-38%, -47%);
   transform: translate(-38%, -47%);
 }
-/* line 1710, ../scss/breakpoints/_base.scss */
+/* line 1762, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-thumb img {
   display: block;
   max-width: 100%;
@@ -3521,7 +3585,7 @@ body.single-media_items .video-thumb img {
   -o-transition: all 275ms ease-in-out;
   transition: all 275ms ease-in-out;
 }
-/* line 1717, ../scss/breakpoints/_base.scss */
+/* line 1769, ../scss/breakpoints/_base.scss */
 body.single-media_items .video-thumb .sub-head {
   text-transform: uppercase;
   font-size: 12px;
@@ -3529,27 +3593,27 @@ body.single-media_items .video-thumb .sub-head {
   height: 20px;
   line-height: 20px;
 }
-/* line 1726, ../scss/breakpoints/_base.scss */
+/* line 1778, ../scss/breakpoints/_base.scss */
 body.single-media_items a.video-thumb:hover img {
   opacity: .7;
 }
-/* line 1731, ../scss/breakpoints/_base.scss */
+/* line 1783, ../scss/breakpoints/_base.scss */
 body.single-media_items span.video-thumb:before, body.single-media_items span.video-thumb:after {
   opacity: .5;
 }
-/* line 1737, ../scss/breakpoints/_base.scss */
+/* line 1789, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry {
   background: transparent;
 }
-/* line 1739, ../scss/breakpoints/_base.scss */
+/* line 1791, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry, body.single-media_items .hentry .entry-header {
   border: 0;
 }
-/* line 1742, ../scss/breakpoints/_base.scss */
+/* line 1794, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .entry-header, body.single-media_items .hentry .entry-content {
   padding: 0;
 }
-/* line 1745, ../scss/breakpoints/_base.scss */
+/* line 1797, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .super-head {
   text-transform: uppercase;
   border: 1px dotted #333;
@@ -3557,27 +3621,27 @@ body.single-media_items .hentry .super-head {
   margin-top: 0;
   font-size: 16px;
 }
-/* line 1752, ../scss/breakpoints/_base.scss */
+/* line 1804, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry h1 {
   font-size: 32px;
   line-height: 32px;
   margin-bottom: 20px;
 }
-/* line 1757, ../scss/breakpoints/_base.scss */
+/* line 1809, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info {
   border: 1px solid #333;
   padding: 20px;
 }
-/* line 1760, ../scss/breakpoints/_base.scss */
+/* line 1812, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info table {
   width: 100%;
 }
-/* line 1763, ../scss/breakpoints/_base.scss */
+/* line 1815, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info td {
   padding: 6px 0 6px 20px;
   vertical-align: top;
 }
-/* line 1766, ../scss/breakpoints/_base.scss */
+/* line 1818, ../scss/breakpoints/_base.scss */
 body.single-media_items .hentry .media-item-info td:first-child {
   padding-left: 0;
   padding-right: 20px;
@@ -3586,7 +3650,7 @@ body.single-media_items .hentry .media-item-info td:first-child {
 }
 
 /* Index Grid Pages */
-/* line 1777, ../scss/breakpoints/_base.scss */
+/* line 1829, ../scss/breakpoints/_base.scss */
 body.page-template-page-index-grid {
   color: white;
 }

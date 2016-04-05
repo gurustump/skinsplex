@@ -13,6 +13,17 @@
 									<?php echo get_the_post_thumbnail(get_the_ID(), 'media-item-thumb'); ?>
 								</a>
 								<a class="btn TRIGGER_VIDEO" href="#">Play</a>
+								<div class="vid-playing-next-mobile VID_PLAYING_NEXT_MOBILE">
+									<p>Going to next video in <span class="next-play-countdown NEXT_PLAY_COUNTDOWN_MOBILE">10</span> seconds:</p>
+									<h3><a href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>"><?php echo get_the_title($itemMeta['_skinsplex_media_item_next_video'][0]); ?></a></h3>
+									<a class="video-thumb" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>">
+										<?php echo get_the_post_thumbnail($itemMeta['_skinsplex_media_item_next_video'][0], 'media-item-thumb'); ?>
+									</a>
+									<div class="actions">
+										<a class="cancel CANCEL_AUTOPLAY_MOBILE">Cancel Next Video</a>
+										<a href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>">Go Now</a>
+									</div>
+								</div>
 							</div>
 							<div class="vid-player-container ov VID_PLAYER_OV OV">
 								<div class="vid-player-wrapper VID_PLAYER_WRAPPER">
@@ -28,7 +39,7 @@
 										</a>
 										<div class="actions">
 											<a class="cancel CANCEL_AUTOPLAY">Cancel Autoplay</a>
-											<a class="play-now PLAY_NOW" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>?autoplay">Play Now</a>
+											<a class="play-now" href="<?php echo get_permalink($itemMeta['_skinsplex_media_item_next_video'][0]); ?>?autoplay">Play Now</a>
 										</div>
 									</div>
 									<?php } ?>
