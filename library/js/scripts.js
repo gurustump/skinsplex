@@ -184,6 +184,7 @@ jQuery(document).ready(function($) {
 	$('.TRIGGER_SEARCH').click(function(e) {
 		e.preventDefault();
 		$('.TOP_NAV_SEARCH_FORM').addClass('active');
+		$('#s').focus();
 	});
 	$('.TRIGGER_LOGIN').click(function(e) {
 		e.preventDefault();

@@ -992,7 +992,7 @@ PAGE NAVI STYLES
 
     ul {
       display: inline-block;
-      background-color: $white;
+      background-color:rgba($black, .2);
       white-space: nowrap;
       padding: 0;
       clear: both;
@@ -1000,30 +1000,33 @@ PAGE NAVI STYLES
     }
 
     li {
-      padding: 0;
-      margin: 0;
-      float: left;
-      display: inline;
-      overflow: hidden;
-      border-right: 1px solid $gray;
+		padding: 0;
+		margin: 0;
+		float: left;
+		display: inline;
+		overflow: hidden;
+		border-left:1px solid rgba($gray,.1);
+		&:first-child {
+			border-left:0;
+		}
     }
 
     a, span {
-      margin: 0;
-      text-decoration: none;
-      padding: 0;
-      line-height: 1em;
-      font-size: 1em;
-      font-weight: normal;
-      padding: 0.75em;
-      min-width: 1em;
-      display: block;
-      color: $blue;
-
-      &:hover, &:focus {
-      	background-color: $blue;
-      	color: $white;
-      }
+		margin: 0;
+		text-decoration: none;
+		padding: 0;
+		line-height: 1em;
+		font-size: 1em;
+		font-weight: normal;
+		padding: 0.75em;
+		min-width: 1em;
+		display: block;
+		color: $skins-red;
+		@include transition(all .35s);
+		&:hover, &:focus {
+			background-color: $skins-red;
+			color: $white;
+		}
     }
 
     .current{
@@ -1031,7 +1034,7 @@ PAGE NAVI STYLES
     	color: $text-color;
 
     	&:hover, &:focus {
-    		background-color: $white;
+    		background-color:transparent;
     		color: $text-color;
     	}
     }
@@ -1826,6 +1829,12 @@ body.single-media_items {
 	}
 }
 /* Index Grid Pages */
-body.page-template-page-index-grid {
+body.page-template-page-index-grid, body.search {
 	color:$white;
+	article {
+		color:$text-color;
+		h2 {
+			margin:0;
+		}
+	}
 }
