@@ -46,33 +46,33 @@
 								</div>
 								
 								<div class="hidden">
-									// pre vimeo
+									<?php // pre vimeo ?>
 									<?php if ($itemMeta['_skinsplex_media_item_pre_vimeo_embed'][0]) { ?>
 									<div class="hide" id="pre_vimeo_embed">
 										<?php echo $itemMeta['_skinsplex_media_item_pre_vimeo_embed'][0]; ?>
 									</div>
-									// pre embed
+									<?php // pre embed ?>
 									<?php } else if ($itemMeta['_skinsplex_media_item_pre_video_link'][0]) { ?>
 									<?php /* <video class="hide" id="pre_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
 										<source src="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" type="video/mp4">
 									</video> */ ?>
 									<input type="hidden" id="pre_roll_vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" />
 									<?php } ?>
-									// feature vimeo
+									<?php // feature vimeo ?>
 									<?php if ($itemMeta['_skinsplex_media_item_vimeo_embed'][0]) { ?>
 									<div id="feature_vimeo_embed">
 										<?php echo $itemMeta['_skinsplex_media_item_vimeo_embed'][0]; ?>
 									</div>
-									// feature embed
+									<?php // feature embed ?>
 									<?php } else { ?>
 									<input type="hidden" id="vid_src" value="<?php echo $itemMeta['_skinsplex_media_item_video_link'][0]; ?>" />
 									<?php } ?>
-									// post vimeo
+									<?php // post vimeo ?>
 									<?php if ($itemMeta['_skinsplex_media_item_post_vimeo_embed'][0]) { ?>
 									<div class="hide" id="post-vimeo-embed">
 										<?php echo $itemMeta['_skinsplex_media_item_post_vimeo_embed'][0]; ?>
 									</div>
-									// post embed
+									<?php // post embed ?>
 									<?php } else if ($itemMeta['_skinsplex_media_item_post_video_link'][0]) { ?>
 									<?php /*<video id="post_vidPlayer" class="video-js vjs-default-skin vjs-skinsplex-skin" controls>
 										<source src="<?php echo $itemMeta['_skinsplex_media_item_pre_video_link'][0]; ?>" type="video/mp4">

@@ -117,7 +117,7 @@
 							<a class="forgotten-password" href="<?php echo wp_lostpassword_url(); ?>"><span>Forgot your password?</span></a>
 							<?php if (get_option('users_can_register')) { ?>
 							<span>- or -</span>
-							<a class="register-new" href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register"><span>Register for a new account</span></a>
+							<a class="register-new" href="<?php echo wp_registration_url(); ?>"><span>Register for a new account</span></a>
 						<?php } ?>
 						</div>
 						<button class="submit_button btn" type="submit" name="submit">Login</button>
