@@ -115,3 +115,20 @@ do they need tweaking?
 	}
 } /* end .footer-links */
 
+
+/* Stripe Checkout Form */
+#s2member-pro-stripe-checkout-form {
+	h2 {
+		border-bottom:1px solid $border-color;
+	}
+	#s2member-pro-stripe-checkout-form-source-token-button {
+		padding-bottom:10px;
+		&:before {
+			bottom:auto;
+			left:auto;
+			right:10px;
+			top:30px;
+			@include transform(translateY(-50%));
+		}
+	}
+}

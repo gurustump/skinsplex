@@ -216,6 +216,36 @@ SIDEBARS & ASIDES
 	.textwidget p {}
 
 
+
+/******************************************************************
+s2Member STYLES
+******************************************************************/
+/* s2Member Checkout Page */
+.s2member-form {
+	margin-bottom:30px !important;
+	&:after {
+		@include clearfix;
+	}
+	.column-left, .column-right {
+		max-width:none;
+		width:50%;
+		float:left;
+		@include box-sizing;
+	}
+	.column-left {
+		padding-right:25px;
+		border-right:1px solid #ccc;
+	}
+	.column-right {
+		padding-left:25px;
+		border-left:1px solid #ccc;
+		margin-left:-1px;
+	}
+	.s2member-pro-paypal-form-card-expiration-div {
+		max-width:400px;
+	}
+}
+
 /*********************
 FOOTER STYLES
 *********************/
@@ -302,6 +332,60 @@ body.single-media_items {
 			padding-left:20px;
 			padding-right:10px;
 			max-width:700px;
+		}
+	}
+}
+
+/* Stripe Checkout Form */
+#s2member-pro-stripe-checkout-form {
+	.s2member-pro-stripe-form-section {
+		.description {
+			float:left;
+			height:40px;
+			line-height:40px;
+			margin-right:8px;
+		}
+	}
+}
+
+/* My Account */
+ul.tabs {
+	margin-bottom:30px;
+	&:after {
+		@include clearfix;
+	}
+	& > li {
+		margin:0;
+		& > input[type=radio]:checked + .tab-container {
+			& > h2 {
+				label {
+					border-bottom-color:$white;
+				}
+			}
+			.tab-content {
+				display:block;
+			}
+		}
+		.tab-container {
+			& > h2 {
+				float:left;
+				margin:0 4px;
+				label {
+					padding:0 15px;
+					border:1px solid $border-color;
+					height:50px;
+					line-height:50px;
+					@include border-radius(8px 8px 0 0);
+					position:relative;
+				}
+			}
+			.tab-content {
+				display:none;
+				float:right;
+				width:100%;
+				margin:51px 0 0 -100%;
+				border-top:1px solid $border-color;
+			}
 		}
 	}
 }

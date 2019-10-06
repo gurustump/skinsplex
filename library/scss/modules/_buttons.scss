@@ -149,16 +149,23 @@ and it will create a button dependant on those variables.
 	padding:0 6px;
 }
 .blue-btn {
-  @extend %btn; // here we load the btn defaults
-  background-color: $blue;
+	@extend %btn; // here we load the btn defaults
+	background-color: $blue;
 
-  &:hover,
-  &:focus {
-    background-color: darken($blue, 4%);
-  } // end hover
+	&:hover,
+	&:focus {
+		background-color: darken($blue, 4%);
+	} // end hover
 
-  &:active {
-    background-color: darken($blue, 5%);
-  } // end active
+	&:active {
+		background-color: darken($blue, 5%);
+	} // end active
 
 } // end blue button
+.btn-warning {
+	@extend %btn;
+	background-color:$skins-red;
+	&:hover {
+		background-color: darken($skins-red, 4%);
+	}
+}

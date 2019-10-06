@@ -157,7 +157,8 @@ h2, .h2 {
 }
 
 h3, .h3 {
-	font-size: 1.125em;
+	font-size: 1.25em;
+	font-weight:700;
 }
 
 h4, .h4 {
@@ -480,6 +481,75 @@ OVERLAY & VIDEO STYLES
 .ov {
 	display:none;
 }
+.basic-ov {
+	padding:20px 40px;
+	height:100%;
+	width:100%;
+	@include box-sizing;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:9999;
+	&.active {
+		display:block;
+	}
+	&:after {
+		content:"";
+		position:absolute;
+		height:100%;
+		width:100%;
+		top:0;
+		left:0;
+		background:rgba($black, .7);
+		z-index:9997;
+	}
+	.ov-content-wrap {
+		width:600px;
+		height:600px;
+		max-width:100%;
+		max-height:100%;
+		position:absolute;
+		z-index:9998;
+		left:50%;
+		top:50%;
+		@include transform(translate(-50%,-50%));
+		@include box-sizing;
+		padding-top:40px;
+		background:$white;
+	}
+	.ov-title {
+		height:40px;
+		line-height:40px;
+		font-weight:bold;
+		margin:0;
+		padding:0 60px 0 40px;
+		border-bottom:1px solid $border-color;
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		@include box-sizing;
+		font-size:1.25em;
+	}
+	.ov-content {
+		overflow:auto;
+		height:100%;
+		padding:20px 40px;
+		@include box-sizing;
+	}
+	.btn-close {
+		@extend %btn-close;
+		@include border-radius(0);
+		z-index:9999;
+		position:fixed;
+		right:0;
+		top:0;
+		background-color:rgba($black, .8);
+		&:hover {
+			background-color:rgba($black, .75);
+		}
+	}
+}
 .vid-player-ov-container, .vid-player-container {
 	position:fixed !important;
 	width:100% !important;
@@ -750,8 +820,22 @@ POSTS & CONTENT STYLES
 			margin: 0;
 		}
 	}
-
-} /* end .hentry */
+	span.ic-user {
+		display:inline-block;
+		width:24px;
+		height:24px;
+		background:$meta-gray url(../images/ic.png) no-repeat 50% -196px;
+		@include border-radius(3px);
+		margin-bottom:-5px;
+	}
+	a {
+		color:$blue;
+		&:hover {
+			color:darken($blue, 10%);
+		}
+	}
+}
+ /* end .hentry */
 
 .single-title,
 .page-title,
@@ -978,6 +1062,56 @@ POSTS & CONTENT STYLES
 		}
 	}
 }
+
+/******************************************************************
+s2Member STYLES
+******************************************************************/
+/* s2Member Checkout Page */
+.s2member-form {
+	.column-left, .column-right {
+		max-width:400px;
+		margin:0 auto;
+	}
+	.s2member-pro-paypal-form-description-div {
+		background:rgba($alert-yellow,.4);
+		border:1px dotted rgba($alert-yellow, 1);
+		padding:10px 20px;
+		text-align:right;
+		span {
+			font-size:11px;
+			display:block;
+		}
+	}
+	.s2member-form-section-title {
+		font-family:$lato;
+	}
+	.s2member-pro-paypal-form-card-type-div {
+		max-width:100%;
+		.s2member-pro-paypal-form-card-type-label {
+			max-width:51px;
+			width:16%;
+			margin-right:5%;
+			background-size:contain;
+			&.s2member-pro-paypal-form-card-type-amex-label {
+				margin-right:0;
+			}
+			input[type=radio] {
+				margin-top:75% !important;
+				cursor:pointer;
+			}
+		}
+		#s2member-pro-paypal-checkout-form-card-type-maestro-label, #s2member-pro-paypal-checkout-form-card-type-solo-label {
+			display:none;
+		}
+	}
+	.s2member-pro-paypal-submit.btn {
+		background-color:$skins-red;
+		&:hover {
+			background-color: darken($skins-red, 9%);
+		}
+	}
+}
+
 
 /******************************************************************
 PAGE NAVI STYLES
@@ -1443,6 +1577,9 @@ body.page-template-page-custom-index {
 		header {
 			border:0;
 		}
+		a {
+			color:$white;
+		}
 	}
 	.entry-content {
 		padding:0;
@@ -1730,13 +1867,18 @@ body.single-media_items {
 			width:320px;
 			height:180px;
 			background-repeat:no-repeat;
-			span {
+			& > span {
+				font-size:.8em;
 				display:block;
 				height:100%;
 				background:rgba(0,0,0,.7);
-				padding:60px 25px 0;
+				padding:0 25px;
 				@include box-sizing;
 				line-height:32px;
+				& > span {
+					@include v-center;
+					display:block;
+				}
 			}
 		}
 		& > span {
@@ -1835,6 +1977,175 @@ body.page-template-page-index-grid, body.search {
 		color:$text-color;
 		h2 {
 			margin:0;
+		}
+	}
+}
+
+/* Stripe Checkout Form */
+
+.subscription-desc {
+	margin:1em 0;
+	font-size:20px;
+}
+.s2member-pro-stripe-form-description-div {
+	background:$alert-blue;
+	padding:10px 15px;
+}
+.subscription-form-wrapper {
+	&.disabled {
+		#s2member-pro-stripe-checkout-form {
+			position:relative;
+			&:after {
+				content:"";
+				display:block;
+				height:100%;
+				width:100%;
+				position:absolute;
+				top:0;
+				left:0;
+				background:rgba($white, .8);
+			}
+		}
+	}
+}
+.terms-of-use-form {
+	p {
+		font-size:12px;
+		margin-bottom:.75em;
+	}
+	label {
+		padding-left:10px;
+	}
+}
+#s2member-pro-stripe-checkout-form {
+	.desktop-only {
+		display:none;
+	}
+	h2 {
+		border-bottom:1px solid $border-color;
+	}
+	#s2member-pro-stripe-checkout-form-source-token-button {
+		height:auto;
+		position:relative;
+		padding-bottom:45px;
+		.blue-btn {
+			font-size:30px;
+			line-height:38px;
+			width:40px;
+			text-align:center;
+			padding:0;
+		}
+		.blue-btn, & > span {
+			float:left;
+		}
+		& > span {
+			line-height:1.1em;
+			border-bottom:0;
+			width:100%;
+			padding-left:48px;
+			@include box-sizing;
+			margin-left:-40px;
+			position:relative;
+			top:20px;
+			@include transform(translateY(-50%));
+		}
+		&:before {
+			float:none;
+			position:absolute;
+			bottom:10px;
+			left:50%;
+			@include transform(translateX(-50%));
+		}
+	}
+	.s2member-pro-stripe-form-source-token-summary {
+		text-align:left;
+		padding:9px;
+	}
+	.s2member-pro-stripe-form-source-token-summary:not(:empty) {
+		border:1px dotted $green;
+		background:rgba($green, .2);
+	}
+	.s2member-pro-stripe-form-section {
+		.s2member-pro-stripe-form-submit-div {
+			margin-top:0;
+		}
+		.description {
+			margin-bottom:10px;
+		}
+		.blue-btn {
+			float:right;
+		}
+	}
+}
+
+/* My Account */
+ul.tabs {
+	margin:0;
+	& > li {
+		margin-bottom:20px;
+		& > input[type=radio] {
+			display:none;
+		}
+		.tab-container {
+			& > h2 {
+				margin:0;
+				label {
+					cursor:pointer;
+					display:block;
+					border-bottom:1px solid $border-color;
+				}
+			}
+		}
+	}
+}
+form#ws-plugin--s2member-profile {
+	.ws-plugin--s2member-password-strength {
+		max-width:400px;
+		padding:6px 3px;
+		@include box-sizing;
+		font-size:12px;
+		text-transform:uppercase;
+		color:$text-color;
+		text-align:center;
+	}
+	.btn.btn-primary {
+		@extend .blue-btn;
+		max-width:400px;
+	}
+}
+#s2member-pro-stripe-cancellation-form {
+	.s2member-pro-stripe-form-description-div {
+		font-family:inherit;
+		background:$alert-red;
+		padding:10px 15px;
+		color:$black;
+		border:1px solid $skins-red;
+		@include border-radius(5px);
+	}
+	h3 {
+		border-bottom:1px solid $border-color;
+		margin-bottom:0;
+	}
+}
+
+/* Subscription Success Page */
+body.page-template-page-subscription-success {
+	.response-message {
+		table {
+			margin-bottom:24px;
+			font-size:12px;
+			font-weight:bold;
+			text-transform:uppercase;
+			td {
+				padding:4px 8px;
+				border-top:1px solid $border-color;
+				&:first-child {
+					font-weight:normal;
+				}
+			}
+			tr:first-child td {
+				border:0;
+			}
 		}
 	}
 }

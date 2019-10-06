@@ -38,3 +38,17 @@ body.page-template-page-custom-index {
 		}
 	}
 }
+
+/* Stripe Checkout Form */
+#s2member-pro-stripe-checkout-form {
+	#s2member-pro-stripe-checkout-form-source-token-button {
+		padding-bottom:10px;
+		&:before {
+			bottom:auto;
+			left:auto;
+			right:10px;
+			top:30px;
+			@include transform(translateY(-50%));
+		}
+	}
+}

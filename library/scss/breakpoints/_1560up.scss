@@ -42,6 +42,9 @@ on larger screens.
 		& > ul {
 			& > li {
 				width:19%;
+				.item-thumb, img {
+					max-width:none;
+				}
 			}
 		}
 	}

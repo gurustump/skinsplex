@@ -96,3 +96,12 @@ body.page-template-page-custom-index {
 		}
 	}
 }
+/* Stripe Checkout Form */
+#s2member-pro-stripe-checkout-form {
+	.mobile-only {
+		display:none;
+	}
+	.desktop-only {
+		display:inline;
+	}
+}

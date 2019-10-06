@@ -332,3 +332,33 @@ body.single-media_items {
 		}
 	}
 }
+
+/* Stripe Checkout Form */
+#s2member-pro-stripe-checkout-form {
+	#s2member-pro-stripe-checkout-form-source-token-button {
+		padding-bottom:45px;
+		&:before {
+			right:auto;
+			top:auto;
+			bottom:10px;
+			left:50%;
+			@include transform(translateX(-50%));
+		}
+	}
+	.s2member-pro-stripe-form-registration-section, .s2member-pro-stripe-form-billing-method-section {
+		width:50%;
+		@include box-sizing;
+	}
+	.s2member-pro-stripe-form-registration-section {
+		padding-right:10px;
+		float:left;
+	}
+	.s2member-pro-stripe-form-billing-method-section {
+		padding-left:10px;
+		float:right;
+	}
+	.s2member-pro-stripe-form-submission-section {
+		clear:both;
+		padding-top:1px;
+	}
+}

@@ -7,7 +7,7 @@
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						<?php $itemMeta = get_post_meta(get_the_ID()); ?>
 						<div class="video-wrapper">
-							<?php if (is_user_logged_in() && ($itemMeta['_skinsplex_media_item_vimeo_embed'][0] || $itemMeta['_skinsplex_media_item_video_link'][0])) { ?>
+							<?php if (is_user_logged_in() && current_user_can("access_s2member_level1") && ($itemMeta['_skinsplex_media_item_vimeo_embed'][0] || $itemMeta['_skinsplex_media_item_video_link'][0])) { ?>
 							<div class="video-controls">
 								<a class="video-thumb TRIGGER_VIDEO" href="#">
 									<?php echo get_the_post_thumbnail(get_the_ID(), 'media-item-thumb'); ?>
@@ -87,7 +87,7 @@
 									<?php } ?>
 								</div>
 							</div>
-							<?php } else if (is_user_logged_in()) { ?>
+							<?php } else if (is_user_logged_in() && current_user_can("access_s2member_level1")) { ?>
 							<div class="video-controls">
 								<span class="video-thumb">
 									<?php echo get_the_post_thumbnail(get_the_ID(), 'media-item-thumb'); ?>
@@ -97,10 +97,10 @@
 							<?php } else { ?>
 							<div class="video-login">
 								<?php $post_thumb_src_array = wp_get_attachment_image_src(get_post_thumbnail_id(),'media-item-thumb',true); ?>
-								<h2 style="background-image:url(<?php echo $post_thumb_src_array[0]; ?>);"><span>You must be logged in to view this video</span></h2>
+								<h2 style="background-image:url(<?php echo $post_thumb_src_array[0]; ?>);"><span><span>You must be a premium subscriber to view this video</span></span></h2>
 								<a class="btn TRIGGER_LOGIN" href="#">Login</a>
 								<span>- or -</span>
-								<a class="btn" href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=register">Create an account</a>
+								<a class="btn" href="<?php bloginfo('wpurl'); ?>/sign-up">Subscribe Now</a>
 							</div>
 							<?php } ?>
 							

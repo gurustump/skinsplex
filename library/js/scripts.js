@@ -95,13 +95,13 @@ var timeToWaitForLast = 100;
  * then we can swap out those images since they are located in a data attribute.
 */
 function loadGravatars() {
-  // set the viewport using the function above
-  viewport = updateViewportDimensions();
-  // if the viewport is tablet or larger, we load in the gravatars
-  if (viewport.width >= 768) {
-  jQuery('.comment img[data-gravatar]').each(function(){
-    jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
-  });
+	// set the viewport using the function above
+	viewport = updateViewportDimensions();
+	// if the viewport is tablet or larger, we load in the gravatars
+	if (viewport.width >= 768) {
+	jQuery('.comment img[data-gravatar]').each(function(){
+		jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
+	});
 	}
 } // end function
 function getUrlVars() {
@@ -222,7 +222,7 @@ jQuery(document).ready(function($) {
                 'security': $('form#login #security').val()
 			},
             success: function(data){
-				// console.log(data);
+				console.log(data);
                 if (data.loggedin == true){
 					$('form#login p.status').removeClass('error').hide();
 					$('form#login .OV_CLOSE').click();
@@ -232,9 +232,16 @@ jQuery(document).ready(function($) {
 					location.reload();
                     //document.location.href = ajax_login_object.redirecturl;
                 } else {
+					console.log('the heck');
 					$('form#login p.status').addClass('error').text(data.message);
 				}
-            }
+            },
+			error: function(data) {
+				console.log('error');
+				console.log(data);
+				console.log(data.responseText);
+				location.reload();
+			}
         });
         e.preventDefault();
     });
@@ -565,9 +572,11 @@ jQuery(document).ready(function($) {
 		var playNextCountdown = false;
 		var playNextMobileTriggered = false;
 		var playNextMobileCountdown = false;
+		var testorama = 0;
 		function resetVidVars() {
 			var currentPlay = false;
 			var playPaused = false;
+			clearInterval(playNextCountdown);
 			var playNextCountdown = false;
 		}
 	
@@ -586,7 +595,7 @@ jQuery(document).ready(function($) {
 		function playVideo() {
 			if (playPaused) {
 				if (vimplayer) {
-					vimplayer.api('play');
+					vimplayer.play();
 				} else if (vidPlayer) {
 					vidPlayer.exitFullscreen().play();
 				}
@@ -617,9 +626,10 @@ jQuery(document).ready(function($) {
 						if (mobileDeviceType() == 'mobile' || mobileDeviceType() == 'tablet') {
 							playNextMobileTriggered = true;
 						} else {
-							nextVidTriggered = true;
 							if (document.exitFullscreen) {
-								document.exitFullscreen();
+								if (document.fullscreenElement) {
+									document.exitFullscreen(); 
+								}
 							} else if (document.msExitFullscreen) {
 								document.msExitFullscreen();
 							} else if (document.mozCancelFullScreen) {
@@ -630,27 +640,40 @@ jQuery(document).ready(function($) {
 							vidPlayerWrap.addClass('next-video-triggered');
 							var timeToPlayNext = parseInt(data.duration - data.seconds);
 							timeToPlayNext = timeToPlayNext > 15 ? 15 : timeToPlayNext;
-							playNextCountdown = setInterval(function() {
-								if (timeToPlayNext <= 0) {
-									clearInterval(playNextCountdown);
-									window.location.href = next_vid+'?autoplay';
-								}
-								$('.NEXT_PLAY_COUNTDOWN').text(timeToPlayNext);
-								timeToPlayNext --;
-							}, 1000);
+							if (!playNextCountdown) {
+								playNextCountdown = setInterval(function() {
+									testorama++;
+									console.log(testorama);
+									console.log('interval');
+									if (timeToPlayNext <= 0) {
+										clearInterval(playNextCountdown);
+										console.log('############interval should be canceled##############');
+										window.location.href = next_vid+'?autoplay';
+									}
+									$('.NEXT_PLAY_COUNTDOWN').text(timeToPlayNext);
+									timeToPlayNext--;
+								}, 1000);
+							}
 						}
 					}
 				}
-				vimframe = vidPlayerWrap.children('iframe');
-				vimframeFroog = vimframe[0];
-				vimplayer = $f(vimframeFroog);
-				vimplayer.addEvent('ready', function() {
+				vimframeObj = vidPlayerWrap.children('iframe');
+				vimframe = vimframeObj[0];
+				vimplayer = new Vimeo.Player(vimframe);
+				vimplayer.play();
+				vimplayer.on('ended', onFinish);
+				if (credits_timecode && next_vid) {
+					console.log(credits_timecode);
+					console.log(next_vid);
+					vimplayer.on('timeupdate', onPlayProgress);
+				}
+				/*vimplayer.addEvent('ready', function() {
 					vimplayer.api('play');
 					vimplayer.addEvent('finish', onFinish);
 					if (credits_timecode && next_vid) {
 						vimplayer.addEvent('playProgress', onPlayProgress);
 					}
-				});
+				});*/
 			} else {
 				vidPlayer.play();
 				vidPlayer.on('ended', function() {
@@ -686,7 +709,7 @@ jQuery(document).ready(function($) {
 							vidPlayer.exitFullscreen().pause();
 						}
 						if (vimplayer) {
-							vimplayer.api('pause');
+							vimplayer.pause();
 						}
 						playPaused = true;
 					}
@@ -714,6 +737,41 @@ jQuery(document).ready(function($) {
 				$('.VID_PLAYING_NEXT_MOBILE').removeClass('next-video-triggered');
 			});
 		}
+	}
+// Checkout page **************************
+	if ( typeof is_account === "undefined" ) var is_account = $('body').hasClass('page-template-page-member-profile');
+	
+	if (is_account) {
+		var resDiv = $('#s2member-pro-stripe-cancellation-form-response-div');
+		var resDivText = resDiv.text();
+		resDivText = resDivText.replace(/\s/g, '');
+		// attempt to select second tab if there is a message from s2Member showing on it
+		if (resDiv.is(':not(:empty)') && resDivText != '' && resDivText != "Nothing to cancel. You're NOT a paid Member." && resDivText != "Nothing to cancel. You have NO recurring fees.") {
+			$('#tab2').prop('checked', true);
+		}
+	}
+	
+// Pages with s2Member Checkout form ***********************************
+	if ( typeof has_checkout === "undefined" ) var has_checkout = $('body').hasClass('page-template-page-member-profile') || $('body').hasClass('page-template-page-checkout');
+	
+	if (has_checkout) {
+		var termsInput = $('#accept_terms');
+		var subscriptionWrap = $('.SUBSCRIPTION_FORM_WRAPPER');
+		function toggle_terms_acceptantce() {
+			if (termsInput.is(':checked')) {
+				subscriptionWrap.removeClass('disabled');
+			} else {
+				subscriptionWrap.addClass('disabled');
+			}
+		}
+		toggle_terms_acceptantce();
+		termsInput.change(function() {
+			toggle_terms_acceptantce();
+		});
+		$('.TERMS_OV_LAUNCH').click(function(e) {
+			e.preventDefault();
+			$('.TERMS_OV').addClass('active');
+		});
 	}
 
 }); /* end of as page load scripts */

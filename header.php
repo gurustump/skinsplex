@@ -108,6 +108,26 @@
 						?>
 
 					</nav>
+					<?php /*<div class="top-nav-hidden-form TOP_NAV_LOGIN_FORM OV" style="left:0">
+						<?php 
+						$loginFormTitleText = 'Sign in to '.get_bloginfo('name');
+						echo s2member_pro_login_widget(
+							array(
+								'title'						=> $loginFormTitleText,
+								'signup_url'			=> '',
+								'login_redirect'		=> '%%previous%%',
+								'logged_out_code'	=> '',
+								'profile_title'			=> 'My Profile Summary',
+								'display_gravatar'	=> '1',
+								'link_gravatar'		=> '1',
+								'display_name'		=> '1',
+								'logged_in_code'	=> '',
+								'logout_redirect'		=> '%%home%%',
+								'my_account_url'	=> '%%automatic%%',
+								'my_profile_url'		=> get_site_url().'/membership-profile',
+							)
+						); ?>
+					</div> */ ?>
 					<form class="login-form top-nav-hidden-form TOP_NAV_LOGIN_FORM OV" id="login" action="login" method="post">
 						<h2>Sign in to <?php bloginfo('name'); ?></h2>
 						<p class="status"></p>
@@ -117,7 +137,7 @@
 							<a class="forgotten-password" href="<?php echo wp_lostpassword_url(); ?>"><span>Forgot your password?</span></a>
 							<?php if (get_option('users_can_register')) { ?>
 							<span>- or -</span>
-							<a class="register-new" href="<?php echo wp_registration_url(); ?>"><span>Register for a new account</span></a>
+							<a class="register-new" href="<?php bloginfo('wpurl'); ?>/sign-up"><span>Subscribe to Skinsplex</span></a>
 						<?php } ?>
 						</div>
 						<button class="submit_button btn" type="submit" name="submit">Login</button>
@@ -125,9 +145,27 @@
 						<?php wp_nonce_field( 'ajax-login-nonce', 'security' ); ?>
 					</form>
 					<div class="top-nav-hidden-form TOP_NAV_LOGOUT_FORM OV">
+						<?php /*
+						$loginFormTitleText = 'Sign in to '.get_bloginfo('name');
+						echo s2member_pro_login_widget(
+							array(
+								'title'						=> $loginFormTitleText,
+								'signup_url'			=> '',
+								'login_redirect'		=> '%%previous%%',
+								'logged_out_code'	=> '',
+								'profile_title'			=> 'My Profile Summary',
+								'display_gravatar'	=> '1',
+								'link_gravatar'		=> '1',
+								'display_name'		=> '1',
+								'logged_in_code'	=> '',
+								'logout_redirect'		=> '%%home%%',
+								'my_account_url'	=> '%%automatic%%',
+								'my_profile_url'		=> get_site_url().'/membership-profile',
+							)
+						); */ ?>
 						<div class="section">
 							<h2>My Account</h2>
-							<a class="btn" href="<?php bloginfo('wpurl'); ?>/wp-admin/profile.php">Edit my Profile</a>
+							<a class="btn" href="<?php bloginfo('wpurl'); ?>/account">Edit my Account</a>
 						</div>
 						<form class="logout-form" id="logout" action="logout" method="post">
 							<p class="status"></p>

@@ -19,12 +19,12 @@ if (!is_admin()) {
 	wp_register_script( 'owl-carousel', get_stylesheet_directory_uri() . '/library/js/libs/owl.carousel.js', array('jquery'), '2.0', false );
 	wp_register_style( 'video-js-stylesheet', get_stylesheet_directory_uri() . '/library/css/video-js.min.css', array(), '', 'all' );
 	wp_register_script( 'video-js', get_stylesheet_directory_uri() . '/library/js/libs/video.js', array('jquery'), '4.2', false );
-	//wp_register_script( 'froogaloop', get_stylesheet_directory_uri() . '/library/js/libs/froogaloop.min.js', array('jquery'), '2', false ); // apparently this is already included in wordpress and I don't have to have it in our library
+	wp_register_script( 'vimeoplayer-js', get_stylesheet_directory_uri() . '/library/js/libs/player.js', array('jquery'), '2.10.0', false );
 	wp_enqueue_style( 'owl-stylesheet' );
 	wp_enqueue_script( 'owl-carousel' );
 	wp_enqueue_style( 'video-js-stylesheet' );
 	wp_enqueue_script( 'video-js' );
-	wp_enqueue_script( 'froogaloop' );
+	wp_enqueue_script( 'vimeoplayer-js' );
 }
 
 /*********************
@@ -372,6 +372,7 @@ if (in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ))
 	add_filter( 'send_password_change_email', '__return_false', $user, $userdata );
 }
 
+/*
 // automatically login new registrants and drop them on the home page
 function auto_login_new_user( $user_id ) {
 	$userdata = array();
@@ -393,6 +394,7 @@ function auto_login_new_user( $user_id ) {
 	exit;
 }
 add_action( 'user_register', 'auto_login_new_user' );
+*/
 
 add_filter( 'wp_login_errors', 'forgot_password_confirm_text_filter', 10, 2 );
 function forgot_password_confirm_text_filter( $errors, $redirect_to )
@@ -436,6 +438,71 @@ add_filter( 'wp_mail_from_name', function( $name ) {
 add_filter( 'wp_mail_from', function( $email ) {
 	return 'contact@skinsplex.com';
 });*/
+// Remove admin bar for subscribers
+add_action('after_setup_theme', 'remove_admin_bar');
+function remove_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+		show_admin_bar(false);
+	}
+}
+
+// Adding a new settings/option section to Wordpress Admin for s2Member
+function skinsplex_s2Member_subscription_options() {
+	add_options_page(
+		's2Member Subscription Options', 
+		's2Member Subscription Options', 
+		'manage_options', 
+		'skinsplex-s2member-subscription-options', 
+		'skinsplex_s2member_subscription_options_callback'
+	);
+}
+function skinsplex_s2member_subscription_options_callback() {
+	if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
+
+    // variables for the field and option names 
+    $opt_names = array('skinsplex_s2Member_subscription_amount','skinsplex_s2Member_subscription_desc');
+    $hidden_field_name = 'skinsplex_s2Member_submit_hidden';
+    $data_field_names = array('skinsplex_s2Member_subscription_amount','skinsplex_s2Member_subscription_desc');
+	
+	$opt_vals = array();
+	foreach($opt_names as $key => $val) {
+		array_push($opt_vals, get_option( $opt_names[$key] ));
+	}
+	
+	if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+		$opt_vals = array();
+		foreach($data_field_names as $key => $val) {
+			array_push($opt_vals, $_POST[ $data_field_names[$key] ]);
+		}
+		foreach($opt_vals as $key => $val) {
+			update_option( $opt_names[$key], $val );
+		} ?>
+		<div class="updated"><p><strong>Settings Saved</strong></p></div>
+	<?php }
+	
+	?>
+	<div class="wrap">
+		<form action="" name="skinsplex_s2Member_subscription_options" method="post">
+			<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+			<fieldset>
+				<h2 class="title"><label for="skinsplex_s2Member_subscription_amount">Monthly Subscription Price (in dollars)</label></h2>
+				<input type="text" id="<?php echo $data_field_names[0]; ?>" name="<?php echo $data_field_names[0]; ?>" value="<?php echo $opt_vals[0]; ?>" />
+			</fieldset>
+			<fieldset>
+				<h2 class="title"><label for="skinsplex_s2Member_subscription_desc">Description Text for Subscription Forms</label></h2>
+				<p>This text will appear above the subscription form. It's intended to tell the user what benefits they will receive with their subscription.</p>
+				<?php wp_editor($opt_vals[1], $data_field_names[1]); ?>
+			</fieldset>
+			<fieldset class="submit">
+				<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
+			</fieldset>
+		</form>
+	</div>
+	<?php
+}
+add_action('admin_menu', 'skinsplex_s2Member_subscription_options'); 
 
 // SHORTCODES
 // Overriding default video shortcode
@@ -528,15 +595,15 @@ function ad_space_shortcode($atts) {
 	if ($wrap) { $html = '<div class="advspwrap skpladv-'.$a['class'].'">'; }
 	$html .= '<ul id="skpladv_'.$ad_object[0]->ID.'" class="advspcnt r-'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_width', true).'x'.get_post_meta($ad_object[0]->ID, '_skinsplex_ad_space_height', true).' ADVSPCNT">';
 	foreach( (array) $ads as $key => $ad) {
-		if ($ad[type] == 'image') {
-			$html .= '<li class="skpladv-'.$ad[image_id].($key==0 ? ' active':'').'">';
-			$html .= '<a target="_blank" href="'.$ad[link].'">';
-			$html .= '<img src="'.$ad[image].'" alt="'.$ad[description].'" />';
+		if ($ad['type'] == 'image') {
+			$html .= '<li class="skpladv-'.$ad['image_id'].($key==0 ? ' active':'').'">';
+			$html .= '<a target="_blank" href="'.$ad['link'].'">';
+			$html .= '<img src="'.$ad['image'].'" alt="'.$ad['description'].'" />';
 			$html .= '</a>';
 			$html .= '</li>';
-		} else if ($ad[type] == 'code') {
+		} else if ($ad['type'] == 'code') {
 			$html .= '<li class="skpladv'.($key==0 ? ' active':'').'">';
-			$html .= $ad[code];
+			$html .= $ad['code'];
 			$html .= '</li>';
 		}
 	}
@@ -547,5 +614,35 @@ function ad_space_shortcode($atts) {
 	return $html;
 }
 add_shortcode('ad-space','ad_space_shortcode');
+
+function terms_of_use_shortcode($atts) {
+	$a = shortcode_atts( array(
+		'slug' => 'terms-of-use',
+		'posttype' => 'module',
+		'title' => 'Terms of Use'
+		
+	), $atts);
+	
+	$termsPost = get_page_by_path($a['slug'], OBJECT, $a['posttype']);
+	$termsTitle = $termsPost->post_title;
+	$termsContent = apply_filters('the_content', $termsPost->post_content); 
+	
+	$html = '<form id="terms_of_use_acceptance" class="terms-of-use-form">';
+	$html .= '<fieldset>';
+	$html .= '<p>Please checkmark the box below to indicate you have accepted the terms of use before continuing:</p>';
+	$html .= '<input id="accept_terms" type="checkbox" />';
+	$html .= '<label for="accept_terms">I agree to the <a class="TERMS_OV_LAUNCH" href="#">'.$a['title'].'</a></label>';
+	$html .= '</fieldset>';
+	$html .= '</form>';
+	$html .= '<div class="ov basic-ov OV TERMS_OV"><div class="ov-content-wrap">';
+	$html .= '<h2 class="ov-title">'.$termsTitle.'</h2>';
+	$html .= '<a class="btn-close OV_CLOSE">Close</a>';
+	$html .= '<div class="ov-content">';
+	$html .= $termsContent;
+	$html .= '</div></div></div>';
+	
+	return $html;
+}
+add_shortcode('terms_of_use','terms_of_use_shortcode');
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>
