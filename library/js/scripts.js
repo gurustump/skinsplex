@@ -222,17 +222,14 @@ jQuery(document).ready(function($) {
                 'security': $('form#login #security').val()
 			},
             success: function(data){
-				console.log(data);
                 if (data.loggedin == true){
 					$('form#login p.status').removeClass('error').hide();
 					$('form#login .OV_CLOSE').click();
 					$('.TRIGGER_LOGIN').parent('li').addClass('inactive');
 					$('.TRIGGER_LOGOUT').parent('li').removeClass('inactive');
-					//console.log(data)
 					location.reload();
                     //document.location.href = ajax_login_object.redirecturl;
                 } else {
-					console.log('the heck');
 					$('form#login p.status').addClass('error').text(data.message);
 				}
             },
@@ -572,7 +569,6 @@ jQuery(document).ready(function($) {
 		var playNextCountdown = false;
 		var playNextMobileTriggered = false;
 		var playNextMobileCountdown = false;
-		var testorama = 0;
 		function resetVidVars() {
 			var currentPlay = false;
 			var playPaused = false;
@@ -642,12 +638,8 @@ jQuery(document).ready(function($) {
 							timeToPlayNext = timeToPlayNext > 15 ? 15 : timeToPlayNext;
 							if (!playNextCountdown) {
 								playNextCountdown = setInterval(function() {
-									testorama++;
-									console.log(testorama);
-									console.log('interval');
 									if (timeToPlayNext <= 0) {
 										clearInterval(playNextCountdown);
-										console.log('############interval should be canceled##############');
 										window.location.href = next_vid+'?autoplay';
 									}
 									$('.NEXT_PLAY_COUNTDOWN').text(timeToPlayNext);
@@ -663,8 +655,6 @@ jQuery(document).ready(function($) {
 				vimplayer.play();
 				vimplayer.on('ended', onFinish);
 				if (credits_timecode && next_vid) {
-					console.log(credits_timecode);
-					console.log(next_vid);
 					vimplayer.on('timeupdate', onPlayProgress);
 				}
 				/*vimplayer.addEvent('ready', function() {
